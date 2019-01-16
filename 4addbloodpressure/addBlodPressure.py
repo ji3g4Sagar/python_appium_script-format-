@@ -6,7 +6,7 @@ import sys
 import os
 import unittest
 from appium import webdriver
-from addBloodPressureScript import script
+from addBlodPressureScript import script
 
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
