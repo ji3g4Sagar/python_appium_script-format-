@@ -1,9 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-from appium.webdriver.common.touch_action import TouchAction
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -11,50 +7,80 @@ from time import sleep
 
 class swipePage():
 	def __init__(self, driver):
-		self.driver = driver
-		self.screenWidth = driver.get_window_size()['width']
-		self.screenHeight = driver.get_window_size()['height']
+		try:
+			self.driver = driver
+			self.screenWidth = driver.get_window_size()['width']
+			self.screenHeight = driver.get_window_size()['height']
+		except:
+			prin("Swipe page init error!\n")
+
 	def swipeUp(self, t=250, n=1):
-		x1 = self.screenWidth * 0.5    
-		y1 = self.screenHeight * 0.75   
-		y2 = self.screenHeight * 0.1   
-		for i in range(n):
-			self.driver.swipe(x1, y1, x1, y2, t)
+		try:
+			x1 = self.screenWidth * 0.5    
+			y1 = self.screenHeight * 0.75   
+			y2 = self.screenHeight * 0.1   
+			for i in range(n):
+				self.driver.swipe(x1, y1, x1, y2, t)
+		except:
+			print("SwipeUp error!!\n")
 	def swipeDown(self, t=250, n=1):
-		x1 = self.screenWidth * 0.5         
-		y1 = self.screenHeight * 0.1       
-		y2 = self.screenHeight * 0.75        
-		for i in range(n):
-			self.driver.swipe(x1, y1, x1, y2,t)
+		try:
+			x1 = self.screenWidth * 0.5         
+			y1 = self.screenHeight * 0.1       
+			y2 = self.screenHeight * 0.75        
+			for i in range(n):
+				self.driver.swipe(x1, y1, x1, y2,t)
+		except:
+			print("SwipeDown error!!\n")
 	def swipLeft(self, t=300, n=1):
-		x1 = self.screenWidth * 0.8
-		y1 = self.screenHeight * 0.5
-		x2 = self.screenWidth * 0.05
-		for i in range(n):
-			self.driver.swipe(x1, y1, x2, y1, t)
+		try:
+			x1 = self.screenWidth * 0.8
+			y1 = self.screenHeight * 0.5
+			x2 = self.screenWidth * 0.05
+			for i in range(n):
+				self.driver.swipe(x1, y1, x2, y1, t)
+		except:
+			print("SwipeLeft error!!\n")
 	def swipRight(self, t=250, n=1):
-		l = driver.get_window_size()
-		x1 = self.screenWidth * 0.1
-		y1 = self.screenHeight * 0.5
-		x2 = self.screenWidth * 0.75
-		for i in range(n):  
-			self.driver.swipe(x1, y1, x2, y1, t)    
+		try:
+			x1 = self.screenWidth * 0.1
+			y1 = self.screenHeight * 0.5
+			x2 = self.screenWidth * 0.75
+			for i in range(n):  
+				self.driver.swipe(x1, y1, x2, y1, t)    
+		except:
+			print("SwipeRight error!!\n")
 
 class enterContext():
 	def __init__(self, driver):
-		self.driver = driver
+		try:
+			self.driver = driver
+		except:
+			print("EnterContext init error!!\n")
+
 	def enter(self, context, resource_id):
-		#testfiled = self.driver.find_elements_by_class_name("android.widget.EditText")
-		testfiled = self.driver.find_element_by_id(resource_id)
-		#testfiled.send_keys(context)
-		testfiled.set_text(context)
+		try:
+			testfiled = self.driver.find_element_by_id(resource_id)
+		except:
+			print("[Enter string]Can not find the target %s" % resource_id)
+		else:
+			testfiled.set_text(context)
+
 
 class clickAndTap():
 	def __init__(self, driver):
-		self.driver = driver
+		try:
+			self.driver = driver
+		except:
+			print("ClickAndTap init error!!\n")
 
-	def tap(self, target):
-		self.driver.tap(target)
+	def tap(self, resource_id):
+		try:
+			target = self.driver.find_element_by_id(resource_id)
+		except:
+			print("[Tap]Can not find the target %s" % resource_id)
+		else:
+			target.tap()
 
 	def click(self, resource_id):
 		try:
@@ -88,6 +114,8 @@ class waittingFor():
 				element = wait.until(EC.presence_of_element_located((By.ID, resource_id)))
 			except:
 				print("Time out!!! Element %s does not exist" % resource_id )
+			else:
+				sleep(3)
 		else:
 			locator = self.driver.find_elements_by_id(resource_id)
 			target = locator[index]
@@ -96,6 +124,8 @@ class waittingFor():
 				element = waait.until(EC.presence_of_element_located(target))
 			except:
 				print("Time out!!!! Element %s does not exist!!!" % resource_id)
+			else:
+				sleep(3)
 
 
 class getToast():
