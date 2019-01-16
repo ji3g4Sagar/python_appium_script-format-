@@ -26,10 +26,10 @@ class swipePage():
 		y2 = self.screenHeight * 0.75        
 		for i in range(n):
 			self.driver.swipe(x1, y1, x1, y2,t)
-	def swipLeft(self, t=250, n=1):
-		x1 = self.screenWidth * 0.75
+	def swipLeft(self, t=300, n=1):
+		x1 = self.screenWidth * 0.8
 		y1 = self.screenHeight * 0.5
-		x2 = self.screenWidth * 0.1
+		x2 = self.screenWidth * 0.05
 		for i in range(n):
 			self.driver.swipe(x1, y1, x2, y1, t)
 	def swipRight(self, t=250, n=1):
@@ -57,31 +57,22 @@ class clickAndTap():
 		self.driver.tap(target)
 
 	def click(self, resource_id):
-		target = self.driver.find_element_by_id(resource_id)
-		self.driver.implicitly_wait(3)
-		target.click()
+		try:
+			target = self.driver.find_element_by_id(resource_id)
+			self.driver.implicitly_wait(3)
+		except:
+			print("[click]Can not find the target %s " % resource_id)
+		else:
+			target.click()
 
 	def clickFromManyThings(self, resources_id, index):
-		targets = self.driver.find_elements_by_id(resources_id)
-		targets[index].click()
+		try:
+			targets = self.driver.find_elements_by_id(resources_id)
+		except:
+			print("[clickFromManyThings]Cant not find the target %s" % resources_id)
+		else:
+			targets[index].click()
 
-
-	def clickEnter(self, resource_id):
-		target = self.driver.find_element_by_id(resource_id)
-		target.send_keys(Keys.ENTER)
-
-	def performAction (self, resource_id):
-		target = self.driver.find_element_by_id(resource_id)
-		sleep(3)
-		action = TouchAction(self.driver)
-		sleep(3)
-		action.tap(target)
-		sleep(3)
-		action.perform()
-		#ActionChainsDriver = ActionChains(self.driver)
-		#ActionChainsDriver.move_to_element(target)
-		#ActionChainsDriver.click(target)
-		#ActionChainsDriver.perform()
 
 class waittingFor():
 	def __init__(self, driver):
@@ -90,9 +81,42 @@ class waittingFor():
 	def implicitWait(self):
 		self.driver.implicitly_wait(5)
 
-	def explicitWait(self, resource_id):
-		wait = WebDriverWait(self.driver, 30)
-		element = wait.until(EC.element_to_be_clickable((By.ID, resource_id)))
+	def explicitWait(self, resource_id, index = -1): #利用index 來判斷是否要找尋特定元素是否存在
+		if index == -1:
+			try:
+				wait = WebDriverWait(self.driver, 30)
+				element = wait.until(EC.presence_of_element_located((By.ID, resource_id)))
+			except:
+				print("Time out!!! Element %s does not exist" % resource_id )
+		else:
+			locator = self.driver.find_elements_by_id(resource_id)
+			target = locator[index]
+			try:
+				wait = WebDriverWait(self.driver, 30)
+				element = waait.until(EC.presence_of_element_located(target))
+			except:
+				print("Time out!!!! Element %s does not exist!!!" % resource_id)
+
+
+class getToast():
+	def __init__(self, driver):
+		self.driver = driver
+
+	def search4Toast(self, toastMessage):
+		#print (target.text)
+		try:
+			message = '//*[@text=\'{}\']'.format(toastMessage)
+			target = self.driver.find_element_by_xpath(message)
+			wait = WebDriverWait(self.driver, 30)
+			element = wait.until(EC.invisibility_of_element_located(target))
+		except:
+			print("Toast does not exist!!!" )
+		else:
+			print("FInd toast!!!!")
+
+
+
+
 
 # 目前已知選擇器 
 		#  - find_element_by_accessibility_id
