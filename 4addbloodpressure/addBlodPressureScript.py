@@ -27,7 +27,7 @@ class script():
 		"""利用顯式等待等登入後的頁面(動態牆)出現"""
 		self.wf.explicitWait("com.lavidatec.wacare:id/home_tab_icon")
 
-	def addbloodsugar(self):
+	def addBloodPressure(self):
 		self.login()
 		self.ct.clickFromManyThings("com.lavidatec.wacare:id/home_tab_icon", 1)
 		self.wf.explicitWait("com.lavidatec.wacare:id/tv_status_level")
