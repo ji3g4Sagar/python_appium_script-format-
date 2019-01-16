@@ -16,7 +16,7 @@ class script():
 
 	def basicMotion(self):
 		sleep(4)
-		self.sp.swipLeft(n=4)
+		self.sp.swipLeft(n=3)
 
 	def login(self):
 		self.basicMotion()

@@ -16,7 +16,7 @@ class script():
 
 	def basicMotion(self):
 		sleep(4)
-		self.sp.swipLeft(n=4)
+		self.sp.swipLeft(n=3)
 
 	def login(self):
 		self.basicMotion()
@@ -33,7 +33,7 @@ class script():
 		self.wf.explicitWait("com.lavidatec.wacare:id/iv_head")
 		self.ct.click("com.lavidatec.wacare:id/iv_head")
 		self.wf.explicitWait("com.lavidatec.wacare:id/familyChatRoomMessage")
-		enterstring = ""
+		enterstring = "Hey there"
 		self.ct.click("com.lavidatec.wacare:id/familyChatRoomMessage")
 		self.ec.enter(enterstring , "com.lavidatec.wacare:id/familyChatRoomMessage")
 		self.ct.click("com.lavidatec.wacare:id/familyChatRoomSend")
