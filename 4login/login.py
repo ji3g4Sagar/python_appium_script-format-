@@ -21,6 +21,7 @@ class WaCareTest(unittest.TestCase):
 		desired_caps['platformVersion'] = '5.1.1' #定義版本
 		desired_caps['deviceName'] = 'Android Emulator' #定義裝置名稱
 		desired_caps['automationName'] = 'uiautomator2'
+		desired_caps['noReset'] = 'true'
 		self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 		self.driver.implicitly_wait(10)#隱式等待
 
