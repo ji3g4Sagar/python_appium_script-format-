@@ -14,38 +14,38 @@ class swipePage():
 		except:
 			prin("Swipe page init error!\n")
 
-	def swipeUp(self, t=250, n=1):
+	def swipeUp(self, t=400, n=1, xStart=0.5, yStart=0.75, yEnd=0.3):
 		try:
-			x1 = self.screenWidth * 0.5    
-			y1 = self.screenHeight * 0.75   
-			y2 = self.screenHeight * 0.1   
+			x1 = self.screenWidth * xStart    
+			y1 = self.screenHeight * yStart  
+			y2 = self.screenHeight * yEnd  
 			for i in range(n):
 				self.driver.swipe(x1, y1, x1, y2, t)
 		except:
 			print("SwipeUp error!!\n")
-	def swipeDown(self, t=250, n=1):
+	def swipeDown(self, t=400, n=1, xStart=0.5, yStart=0.3, yEnd=0.75):
 		try:
-			x1 = self.screenWidth * 0.5         
-			y1 = self.screenHeight * 0.1       
-			y2 = self.screenHeight * 0.75        
+			x1 = self.screenWidth * xStart       
+			y1 = self.screenHeight * yStart     
+			y2 = self.screenHeight * yEnd      
 			for i in range(n):
 				self.driver.swipe(x1, y1, x1, y2,t)
 		except:
 			print("SwipeDown error!!\n")
-	def swipLeft(self, t=300, n=1):
+	def swipLeft(self, t=400, n=1, yStart=0.5, xStart=0.8, xEnd=0.05):
 		try:
-			x1 = self.screenWidth * 0.8
-			y1 = self.screenHeight * 0.5
-			x2 = self.screenWidth * 0.05
+			x1 = self.screenWidth * xStart
+			y1 = self.screenHeight * yStart
+			x2 = self.screenWidth * xEnd
 			for i in range(n):
 				self.driver.swipe(x1, y1, x2, y1, t)
 		except:
 			print("SwipeLeft error!!\n")
-	def swipRight(self, t=250, n=1):
+	def swipRight(self, t=400, n=1, yStart=0.5, xStart=0.1, xEnd=0.75):
 		try:
-			x1 = self.screenWidth * 0.1
-			y1 = self.screenHeight * 0.5
-			x2 = self.screenWidth * 0.75
+			x1 = self.screenWidth * xStart
+			y1 = self.screenHeight * yStart
+			x2 = self.screenWidth * xEnd
 			for i in range(n):  
 				self.driver.swipe(x1, y1, x2, y1, t)    
 		except:
@@ -103,28 +103,35 @@ class waittingFor():
 	def implicitWait(self, time = 5):
 		self.driver.implicitly_wait(time)
 
-	def explicitWaitByResourceID(self, resource_id, index = -1): #利用index 來判斷是否要找尋特定元素是否存在
+	def explicitWaitByResourceID(self, resource_id, index = -1, time = 30, freuency = 1): #利用index 來判斷是否要找尋特定元素是否存在
 		sleep(3)
 		if index == -1:
 			try:
-				wait = WebDriverWait(self.driver, timeout = 30, poll_frequency = 1)
+				wait = WebDriverWait(self.driver, timeout = time, poll_frequency = freuency)
 				element = wait.until(EC.presence_of_element_located((By.ID, resource_id)))
 			except:
-				print("Time out!!! Element %s does not exist" % resource_id )
+				print("Time out!!! Element %s does not exist" % resource_id)
+				sleep(3)
+				return False
 			else:
 				print("The element waitting for %s appear!" % resource_id)
 				sleep(3)
+				return True
 		else:
 			locator = self.driver.find_elements_by_id(resource_id)
 			target = locator[index]
 			try:
-				wait = WebDriverWait(self.driver, timeout = 30, poll_frequency = 1)
+				wait = WebDriverWait(self.driver, timeout = time, poll_frequency = freuency)
 				element = wait.until(EC.presence_of_element_located(target))
 			except:
 				print("Time out!!!! Element %s does not exist!!!" % resource_id)
+				sleep(3)
+				return False
 			else:
 				print("The element waitting for %s appear!" % resource_id)
 				sleep(3)
+				return False
+
 	def explicitWaitByTargetString(self, targetString):# 怪怪的!待修!
 		self.implicitWait()
 		try:
@@ -134,6 +141,7 @@ class waittingFor():
 			print("Can not locate element %s" % targetString)
 		else:
 			try:
+				sleep(1)
 				wait = WebDriverWait(self.driver, timeout = 30, poll_frequency = 1)
 				element = wait.until(EC.presence_of_element_located(target))
 			except:
@@ -158,15 +166,25 @@ class getToast():
 class findSpecificText():
 	def __init__(self, driver):
 		self.driver = driver
-	def findText(self, targetText):
+	def findText(self, targetText, mode = 0): 
+		# Mode 0 for return object instance
+		# Mode 1 for return True/Flase
 		try:
 			message = '//*[@text=\'{}\']'.format(targetText)
 			target = self.driver.find_element_by_xpath(message)
 		except:
-			print("[findSpecificText]Can not locate target text %s" % targetText)
+			print("[findSpecificText]Can not locate target text %s \n" % targetText)
+			if(mode==1):
+				return False
 		else:
-			print("Successfully find the target text %s" % targetText)
-			return target
+			print("Successfully find the target text %s \n" % targetText)
+			if (mode==0):
+				return target
+			else:
+				return True
+
+	#def findSpecificItemByResourceID(self, targetID, mode =0):
+
 			
 
 

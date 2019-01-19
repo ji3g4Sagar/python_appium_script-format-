@@ -4,7 +4,7 @@
 from appium import webdriver
 
 class Config():
-	def __init__(self, apkName="qaExternalWaCare-v1.0.3.1.2.apk"):
+	def __init__(self, apkName="qaExternalWaCare-v1.0.3.1.1.apk"):
 		self.apkName = apkName
 		desired_caps = {} # Appium收到http Request後會解析這個key-value pair
 		app = ('http://35.194.192.102:5000/getfile?filename='+apkName)
