@@ -74,7 +74,7 @@ class click():
 	def clickByResourceID(self, resource_id):
 		try:
 			target = self.driver.find_element_by_id(resource_id)
-			self.driver.implicitly_wait(3)
+			#self.driver.implicitly_wait(time = 3)
 		except:
 			print("[click]Can not find the target %s " % resource_id)
 		else:
@@ -100,8 +100,8 @@ class waittingFor():
 	def __init__(self, driver):
 		self.driver = driver
 
-	def implicitWait(self):
-		self.driver.implicitly_wait(5)
+	def implicitWait(self, time = 5):
+		self.driver.implicitly_wait(time)
 
 	def explicitWaitByResourceID(self, resource_id, index = -1): #利用index 來判斷是否要找尋特定元素是否存在
 		sleep(3)
@@ -155,6 +155,20 @@ class getToast():
 			print("Toast does not exist!!!" )
 		else:
 			print("FInd toast!!!!")
+class findSpecificText():
+	def __init__(self, driver):
+		self.driver = driver
+	def findText(self, targetText):
+		try:
+			message = '//*[@text=\'{}\']'.format(targetText)
+			target = self.driver.find_element_by_xpath(message)
+		except:
+			print("[findSpecificText]Can not locate target text %s" % targetText)
+		else:
+			print("Successfully find the target text %s" % targetText)
+			return target
+			
+
 
 # 目前已知選擇器 
 	#  - find_element_by_accessibility_id
