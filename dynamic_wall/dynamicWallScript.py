@@ -40,6 +40,7 @@ class script():
 		findHiFive = False
 		while(findHiFive != True):
 			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/likeTime", time=2, freuency=0.5)):
+				print(type(self))
 				self.ft.findText("為您擊掌")
 				findHiFive = True
 			else:

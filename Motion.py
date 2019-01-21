@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from time import sleep
+import os
 
 class swipePage():
 	def __init__(self, driver):
@@ -16,10 +17,13 @@ class swipePage():
 
 	def swipeUp(self, t=400, n=1, xStart=0.5, yStart=0.75, yEnd=0.3):
 		try:
+			os.system("pause")
 			x1 = self.screenWidth * xStart    
 			y1 = self.screenHeight * yStart  
 			y2 = self.screenHeight * yEnd  
 			for i in range(n):
+				os.system("pause")
+				print("x1: ", x1, " y1: ", y1, "y2: ", y2)
 				self.driver.swipe(x1, y1, x1, y2, t)
 		except:
 			print("SwipeUp error!!\n")
