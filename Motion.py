@@ -3,8 +3,10 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from appium.webdriver.common.touch_action import TouchAction
 from time import sleep
 import os
+import sys
 
 class swipePage():
 	def __init__(self, driver):
@@ -17,15 +19,19 @@ class swipePage():
 
 	def swipeUp(self, t=400, n=1, xStart=0.5, yStart=0.75, yEnd=0.3):
 		try:
-			os.system("pause")
+			sleep(1)
 			x1 = self.screenWidth * xStart    
 			y1 = self.screenHeight * yStart  
 			y2 = self.screenHeight * yEnd  
 			for i in range(n):
-				os.system("pause")
+				sleep(1)
 				print("x1: ", x1, " y1: ", y1, "y2: ", y2)
+				print("Currrent driver: ", self.driver)
 				self.driver.swipe(x1, y1, x1, y2, t)
-		except:
+		except():
+			#a, b, c = sys.exc_info()
+			#print(a)
+			print("Currrent driver: ", self.driver)
 			print("SwipeUp error!!\n")
 	def swipeDown(self, t=400, n=1, xStart=0.5, yStart=0.3, yEnd=0.75):
 		try:
@@ -73,12 +79,11 @@ class click():
 		try:
 			self.driver = driver
 		except:
-			print("ClickAndTap init error!!\n")
+			print("Click init error!!\n")
 
 	def clickByResourceID(self, resource_id):
 		try:
 			target = self.driver.find_element_by_id(resource_id)
-			#self.driver.implicitly_wait(time = 3)
 		except:
 			print("[click]Can not find the target %s " % resource_id)
 		else:
@@ -100,6 +105,12 @@ class click():
 			print("[clickFromManyThings]Cant not find the target %s" % resources_id)
 		else:
 			targets[index].click()
+
+	def tap(self, driver):
+		actions = TouchAction(self.driver)
+		actions.tap(driver)
+		actions.perform()
+
 class waittingFor():
 	def __init__(self, driver):
 		self.driver = driver
@@ -107,7 +118,8 @@ class waittingFor():
 	def implicitWait(self, time = 5):
 		self.driver.implicitly_wait(time)
 
-	def explicitWaitByResourceID(self, resource_id, index = -1, time = 30, freuency = 1): #利用index 來判斷是否要找尋特定元素是否存在
+	def explicitWaitByResourceID(self, resource_id, index = -1, time = 30, freuency = 1):
+		#利用index 來判斷是否要從多個相同resourceID的元素中找尋特定元素
 		sleep(3)
 		if index == -1:
 			try:
@@ -122,8 +134,8 @@ class waittingFor():
 				sleep(3)
 				return True
 		else:
-			locator = self.driver.find_elements_by_id(resource_id)
-			target = locator[index]
+			locator = self.driver.find_elements_by_id(resource_id)# 抓取全部擁有相同ID的元素
+			target = locator[index]#利用index 辨別要選取的
 			try:
 				wait = WebDriverWait(self.driver, timeout = time, poll_frequency = freuency)
 				element = wait.until(EC.presence_of_element_located(target))
@@ -189,6 +201,19 @@ class findSpecificText():
 
 	#def findSpecificItemByResourceID(self, targetID, mode =0):
 
+class getXYLocation():
+	def __init__(self, driver):
+		try:
+			self.driver = driver
+		except:
+			print("[getXYLocation] init error!!\n")
+	
+	def getXYByResourceID(self, resource_id, index=-1):
+		if(index==-1):
+			return (self.driver.find_element_by_id(resource_id).location)
+		else:
+			target = self.driver.find_elements_by_id(resource_id)
+			return (target[index].location)
 			
 
 

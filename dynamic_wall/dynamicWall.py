@@ -25,10 +25,10 @@ class WaCareTest(unittest.TestCase):
 
 	def test(self):
 		test = script(self.driver, self.apkVersionIdName)
-		#test.checkForDynamicWall()
+		test.checkForDynamicWall()
 		test.swipeAroundInDynamicWall()
-		#test.hiFiveCheck()
-		#test.deleteFriendOfHiFive()
+		test.hiFiveCheck()
+		test.deleteFriendOfHiFive()
 		#test.checkForAlbum()
 		#test.deleteFriendOfAlbum()
 

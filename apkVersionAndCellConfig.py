@@ -21,7 +21,6 @@ class Config():
 			self.apkName = apkName
 			appiumAddress = 'http://localhost:'+port+'/wd/hub'
 			print(appiumAddress)
-			os.system("pause")
 			self.driver = webdriver.Remote(appiumAddress, desired_caps_outer)
 
 

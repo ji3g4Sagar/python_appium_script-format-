@@ -4,6 +4,7 @@
 from appium import webdriver
 import time
 import threading
+import multiprocessing as mp
 import unittest
 from dynamicWallScript import script
 from apkVersionAndCellConfig import Config
@@ -60,9 +61,9 @@ class WaCareTest2(unittest.TestCase):
 
 	def test(self):
 		test = script(self.driver, self.apkVersionIdName)
-		test.checkForDynamicWall()
+		#test.checkForDynamicWall()
 		#test.swipeAroundInDynamicWall()
-		#test.hiFiveCheck()
+		test.hiFiveCheck()
 		#test.deleteFriendOfHiFive()
 		#test.checkForAlbum()
 		#test.deleteFriendOfAlbum()
@@ -77,7 +78,13 @@ def task2():
 	suite = unittest.TestLoader().loadTestsFromTestCase(WaCareTest2)
 	unittest.TextTestRunner(verbosity=0).run(suite)
 
- 
+""" 
+multiprocess = []
+p1 = mp.Process(target=task1)
+multiprocess.append(p1)
+p2 = mp.Process(target=task2)
+multiprocess.append(p2)
+"""
 threads = []
 t1 = threading.Thread(target=task1)
 threads.append(t1)
@@ -86,5 +93,7 @@ t2 = threading.Thread(target=task2)
 threads.append(t2)
  
 if __name__ == '__main__':
+	#for p in multiprocess:
+	#	p.start()
 	for t in threads:
 		t.start()
