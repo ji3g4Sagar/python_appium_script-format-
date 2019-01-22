@@ -199,7 +199,35 @@ class findSpecificText():
 			else:
 				return True
 
-	#def findSpecificItemByResourceID(self, targetID, mode =0):
+	def findSpecificItemByResourceID(self, targetID, mode=0, index=-1):
+		if(index==-1):
+			try:
+				target = self.driver.find_element_by_id(targetID)
+			except:
+				print("[findSpecificItemByResourceID]Can not locate!")
+				if(mode==1):
+					return False
+			else:
+				print("Successfully find the target with sourceID %s \n" % targetID)
+				if(mode==0):
+					return target
+				else:
+					return True
+		else:
+			try:
+				targets = self.driver.find_elements_by_id(targetID)
+			except:
+				print("[findSpecificItemByResourceID]Can not locate!")
+				if(mode==1):
+					return False
+			else:
+				print("Successfully find the target with sourceID %s \n" % targetID)
+				if(mode==0):
+					return target[index]
+				else:
+					return True
+
+
 
 class getXYLocation():
 	def __init__(self, driver):
@@ -222,5 +250,5 @@ class getXYLocation():
 	#  id - find_element(s)_by_id
 	#  class - find_element(s)_by_class_name
 	#  name - find_element(s)_by_name
-		
+		 
 	   

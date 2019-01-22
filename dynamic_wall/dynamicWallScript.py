@@ -17,6 +17,7 @@ class script():
 		self.wf = waittingFor(driver)
 		self.ft = findSpecificText(driver)
 		self.xy = getXYLocation(driver)
+		self.testCountName ="test999"
 		self.apkVersionIdName = apkVersionIdName
 	def goBackToDynamicWall(self):
 		# 呼叫於每次操作前，返回動態牆畫面使用
@@ -124,11 +125,10 @@ class script():
 			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/viewPagerImageView", time=2, freuency=0.5)):
 				findAlbum = True
 			else:
-				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/likeTime"))
+				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/viewPagerImageView"))
 				self.sp.swipeUp()		
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/titleNickName")
-		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 		sleep(5)
 	def deleteFriendOfAlbum(self):
@@ -143,7 +143,6 @@ class script():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
 		self.checkForAlbum()
 		nameOfFriendGoingToDelete = self.driver.find_element_by_id(self.apkVersionIdName + "/homeAlbumName").text
-		self.ck.clickByResourceID(self.apkVersionIdName + "/homeAlbumName")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tvDelete")
@@ -157,12 +156,66 @@ class script():
 		self.sp.swipeDown(n=3, yStart=0.1)
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 		sleep(5)
-
-
 	def leftMessageInAlbum(self):
+		#在動態牆中出現的相簿動態下留言測試
+		"""
+			1.利用self.checkForAlbum()找尋是否有相簿動態
+			2.進到相簿中留言,並利用self.ft確認留言是否成功
+			3.返回動態牆
+		"""
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
-
-		
-
+		self.checkForAlbum()
+		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/titleNickName")
+		self.ck.clickByResourceID(self.apkVersionIdName + "/messageBoardTitleLayout")
+		message = str(random.randint(1,1000))+" message!!!"
+		self.ec.enter(message, self.apkVersionIdName + "/albumContentEdText")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/sendAlbumMsg")
+		if( self.ft.findText(message, mode=1)==False):
+			self.leftMessageInAlbum()
+		self.driver.keyevent("4")
+		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		sleep(3)
+
+	def checkForEmotion(self):
+		self.goBackToDynamicWall()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		findEmotion = False
+		emotionClickTarget =self.driver
+		nameOfFriendGoingToDelete=""
+		while(findEmotion != True):
+			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/emotionFacePhoto", time=2, freuency=1)):
+				targets = self.driver.find_elements_by_id(self.apkVersionIdName+"/emotionNickName")
+				for t in targets:
+					print(t.text)
+					if (t.text==self.testCountName):
+						continue
+					else:
+						nameOfFriendGoingToDelete=t.text
+						t.click()
+						#emotionClickTarget = t
+						findEmotion = True
+						break
+			else:
+				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/emotionFacePhoto"))
+			if(findEmotion==False):
+				self.sp.swipeUp()
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
+		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tvDelete")
+		self.ck.clickByString("刪除好友")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/alertTitle")
+		self.ck.clickByString("刪除")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/addFriend")
+		if(self.ft.findText(nameOfFriendGoingToDelete, mode=1) == False):
+			print("Successuflly delete friend!! %s" % nameOfFriendGoingToDelete)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")		
+		sleep(3)
 	
+
+
+"""
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+"""
