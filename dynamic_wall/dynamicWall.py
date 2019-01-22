@@ -32,7 +32,8 @@ class WaCareTest(unittest.TestCase):
 		#test.checkForAlbum()
 		#test.deleteFriendOfAlbum()
 		#test.leftMessageInAlbum()
-		test.checkForEmotion()
+		#test.checkForEmotion()
+		test.leftMessageInEmotion()
 
 
 

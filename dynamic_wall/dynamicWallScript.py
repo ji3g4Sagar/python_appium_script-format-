@@ -177,7 +177,6 @@ class script():
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 		sleep(3)
-
 	def checkForEmotion(self):
 		self.goBackToDynamicWall()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
@@ -201,6 +200,12 @@ class script():
 				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/emotionFacePhoto"))
 			if(findEmotion==False):
 				self.sp.swipeUp()
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")		
+		sleep(3)
+	def deleteFriendOfEmotion(self):
+		self.goBackToDynamicWall()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		self.checkForEmotion()
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tvDelete")
@@ -211,8 +216,27 @@ class script():
 		if(self.ft.findText(nameOfFriendGoingToDelete, mode=1) == False):
 			print("Successuflly delete friend!! %s" % nameOfFriendGoingToDelete)
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")		
-		sleep(3)
-	
+	def leftMessageInEmotion(self):
+		self.goBackToDynamicWall()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		self.checkForEmotion()
+		self.driver.keyevent("4")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/emotionLayout4")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/emotionContentEdText")
+		message = str(random.randint(1,1000)) + " message!!!"
+		self.ec.enter(message, self.apkVersionIdName+"/emotionContentEdText")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/sendEmotionMsg")
+		if( self.ft.findText(message, mode=1)==False):
+			self.leftMessageInAlbum()
+		self.driver.keyevent("4")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		sleep(3)	
+	def leftApp(self):
+		self.goBackToDynamicWall()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		self.driver.keyevent("4")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")		
+
 
 
 """
