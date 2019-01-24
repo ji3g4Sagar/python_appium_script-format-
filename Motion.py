@@ -63,7 +63,6 @@ class enterContext():
 			self.driver = driver
 		except:
 			print("EnterContext init error!!\n")
-
 	def enter(self, context, resource_id):
 		try:
 			testfiled = self.driver.find_element_by_id(resource_id)
@@ -71,7 +70,7 @@ class enterContext():
 			print("[Enter string]Can not find the target %s" % resource_id)
 		else:
 			testfiled.set_text(context)
-			
+
 	def enterSelectByTextviewText(self, context, textviewText): #利用Textview預設文字選擇
 		try:
 			message = '//*[@text=\'{}\']'.format(textviewText)
