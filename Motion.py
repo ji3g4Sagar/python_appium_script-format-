@@ -71,6 +71,16 @@ class enterContext():
 			print("[Enter string]Can not find the target %s" % resource_id)
 		else:
 			testfiled.set_text(context)
+			
+	def enterSelectByTextviewText(self, context, textviewText): #利用Textview預設文字選擇
+		try:
+			message = '//*[@text=\'{}\']'.format(textviewText)
+			target = self.driver.find_element_by_xpath(message)
+		except:
+			print("[enterSelectByTextviewText] Selecting target  %s can not be locate!" % textviewText)
+		else:
+			target.send_keys(context)		
+
 class click():
 	def __init__(self, driver):
 		try:
