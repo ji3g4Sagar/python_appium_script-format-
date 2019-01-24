@@ -25,13 +25,10 @@ class swipePage():
 			y2 = self.screenHeight * yEnd  
 			for i in range(n):
 				sleep(1)
-				print("x1: ", x1, " y1: ", y1, "y2: ", y2)
-				print("Currrent driver: ", self.driver)
 				self.driver.swipe(x1, y1, x1, y2, t)
 		except():
 			#a, b, c = sys.exc_info()
 			#print(a)
-			print("Currrent driver: ", self.driver)
 			print("SwipeUp error!!\n")
 	def swipeDown(self, t=400, n=1, xStart=0.5, yStart=0.3, yEnd=0.75):
 		try:
@@ -110,7 +107,6 @@ class click():
 		actions = TouchAction(self.driver)
 		actions.tap(driver)
 		actions.perform()
-
 class waittingFor():
 	def __init__(self, driver):
 		self.driver = driver
@@ -193,7 +189,7 @@ class findSpecificText():
 			if(mode==1):
 				return False
 		else:
-			print("Successfully find the target text %s \n" % targetText)
+			print("Successfully find the target text [%s] \n" % targetText)
 			if (mode==0):
 				return target
 			else:
@@ -226,15 +222,12 @@ class findSpecificText():
 					return target[index]
 				else:
 					return True
-
-
-
 class getXYLocation():
 	def __init__(self, driver):
 		try:
 			self.driver = driver
 		except:
-			print("[getXYLocation] init error!!\n")
+			print("[getXYLocation] Init error!!\n")
 	
 	def getXYByResourceID(self, resource_id, index=-1):
 		if(index==-1):
@@ -242,6 +235,36 @@ class getXYLocation():
 		else:
 			target = self.driver.find_elements_by_id(resource_id)
 			return (target[index].location)
+class homePage():
+	def __init__(self, driver, apkVersionIdName):
+		try: 
+			self.driver = driver
+			self.apkVersionIdName = apkVersionIdName
+			self.wf = waittingFor(driver)
+			self.ck = click(driver)
+			self.sp = swipePage(driver)
+		except:
+			print("[checkForStartPage] Init error!\n")
+	def goBackToHomePage(self):
+		# 呼叫於每次操作前，返回動態牆畫面使用
+		"""
+			1.檢查畫面最下方的home tab是否存在
+			2.利用tap進到動態牆頁面
+			3.檢查畫面中是否出現Notification元件,用以確認是否返回動態牆最上方
+		"""
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/home_tab_icon")
+		target = self.driver.find_elements_by_id(self.apkVersionIdName+ "/home_tab_icon")
+		self.ck.tap(target[0])
+		findNotification = False
+		while (findNotification == False):
+			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/home_notification", time=2, freuency=1)):
+				findNotification = True
+			else:
+				self.sp.swipeDown()
+		print("Successuflly go back to dynaamic wall!!\n")
+
+
+
 			
 
 
