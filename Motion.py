@@ -79,8 +79,6 @@ class enterContext():
 			print("[enterSelectByTextviewText] Selecting target  %s can not be locate!" % textviewText)
 		else:
 			target.send_keys(context)		
-
-
 class click():
 	def __init__(self, driver):
 		try:
@@ -195,7 +193,7 @@ class findSpecificText():
 			message = '//*[@text=\'{}\']'.format(targetText)
 			target = self.driver.find_element_by_xpath(message)
 		except:
-			print("[findSpecificText]Can not locate target text %s \n" % targetText)
+			print("[findSpecificText]Can not locate target text [%s} \n" % targetText)
 			if(mode==1):
 				return False
 		else:
