@@ -21,15 +21,15 @@ class script():
 		self.apkVersionIdName = apkVersionIdName
 		self.hp = homePage(driver, apkVersionIdName)
 	def starter(self):
-		self.checkForDynamicWall()
-		self.swipeAroundInDynamicWall()
-		self.hiFiveCheck()
+		#self.checkForDynamicWall()
+		#self.swipeAroundInDynamicWall()
+		#self.hiFiveCheck()
 		#self.deleteFriendOfHiFive()
 		self.checkForAlbum()
-		#self.deleteFriendOfAlbum()
-		self.checkForEmotion()
-		#self.deleteFriendOfEmotion()
 		self.leftMessageInAlbum()
+		#self.deleteFriendOfAlbum()
+		#self.checkForEmotion()
+		#self.deleteFriendOfEmotion()
 		self.leftApp()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
@@ -124,6 +124,7 @@ class script():
 				self.sp.swipeUp()		
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/titleNickName")
+		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 		sleep(5)
 	def deleteFriendOfAlbum(self):
@@ -161,7 +162,6 @@ class script():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
 		self.checkForAlbum()
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/titleNickName")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/messageBoardTitleLayout")
 		message = str(random.randint(1,1000))+" test message!!!"
 		self.ec.enter(message, self.apkVersionIdName + "/albumContentEdText")
