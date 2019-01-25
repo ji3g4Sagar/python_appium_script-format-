@@ -20,7 +20,17 @@ class script():
 		self.testCountName ="test999" #想辦法改成自動去取得該次測試帳號的使用者名稱
 		self.apkVersionIdName = apkVersionIdName
 		self.hp = homePage(driver, apkVersionIdName)
-		
+	def starter(self):
+		self.checkForDynamicWall()
+		self.swipeAroundInDynamicWall()
+		self.hiFiveCheck()
+		self.deleteFriendOfHiFive()
+		self.checkForAlbum()
+		self.deleteFriendOfAlbum()
+		self.checkForEmotion()
+		self.deleteFriendOfEmotion()
+		self.leftMessageInAlbum()
+		self.leftApp()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
