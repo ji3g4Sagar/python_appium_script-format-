@@ -11,10 +11,8 @@
 * useage:
 anyname = swipe(driver)
 
-***
-
-### swipePage.swipeUp([t,n,xStart,yStart,yEnd])
-
+swipePage.swipeUp([t,n,xStart,yStart,yEnd])
+====
 * Des: 在頁面中向上滑動的動作
 
 * Args:
