@@ -21,8 +21,8 @@ class WaCareTest(unittest.TestCase):
 		self.driver.quit()
 
 	def test1_Topic(self):
-		testScript = scriptForHelthForum_1_1(self.driver, self.apkVersionIdName)
-		testScript.starter()
+		#testScript = scriptForHelthForum_1_1(self.driver, self.apkVersionIdName)
+		#testScript.starter()
 		testScript = scriptForHelthForum_1_2(self.driver, self.apkVersionIdName)
 		testScript.starter()
 	#def test2_ReplayPostSelf(self):

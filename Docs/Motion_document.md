@@ -248,6 +248,3 @@ anyname = swipe(driver)
 
 
 
-
-
-

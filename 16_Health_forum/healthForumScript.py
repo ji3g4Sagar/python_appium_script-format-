@@ -88,12 +88,13 @@ class scriptForHelthForum_1_2():
 		self.hp = homePage(driver, apkVersionIdName)
 		self.apkVersionIdName = apkVersionIdName
 	def starter(self):
-		self.Question()
-		self.QuestionAnonymous()
-		self.QuestionNonAnonymous()
-		self.EditQuestion()
-		self.DeleteQuestion()
-		self.ReplaySelfQuestion()
+		#self.Question()
+		#self.QuestionAnonymous()
+		#self.QuestionNonAnonymous()
+		#self.EditQuestion()
+		#self.DeleteQuestion()
+		#self.ReplaySelfQuestion()
+		self.QuestionWithPicture()
 		#self.DeleteReplayMessage()
 	def Question(self):
 		self.hp.goBackToHomePage()
@@ -243,6 +244,32 @@ class scriptForHelthForum_1_2():
 		self.ck.clickByString("刪除")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 		sleep(5)
+	def QuestionWithPicture(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumTopicTitle")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_ask")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_ask")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_healthForumPostAlbum")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_healthForumPostAlbum")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/upload_photo")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order", 0)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order", 1)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order", 2)
+		self.ck.clickByResourceID(self.apkVersionIdName+"/upload_photo")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_healthForumPostItemPhoto")
+		title = "我是標題"
+		self.ec.enter(title, self.apkVersionIdName + "/ed_healthForumPostArticleTitle")
+		questionText = str(random.randint(1,1000))
+		self.ec.enterSelectByTextviewText(questionText+"Question", "請將您的問題描述詳細，專家能更精準的為您解答...")
+		self.ck.clickByResourceID(self.apkVersionIdName + "/tv_healthForumPostUpload")
+		self.gt.search4Toast("上傳完成")
+		self.driver.keyevent("4")
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+
 
 
 """
@@ -250,3 +277,29 @@ class scriptForHelthForum_1_2():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
