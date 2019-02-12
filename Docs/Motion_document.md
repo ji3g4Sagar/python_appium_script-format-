@@ -11,7 +11,7 @@
 * useage:
 anyname = swipe(driver)
 
-###
+***
 
 ### swipePage.swipeUp([t,n,xStart,yStart,yEnd])
 
