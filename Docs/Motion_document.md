@@ -124,7 +124,7 @@ anyname = swipe(driver)
 
 * Description: 等待操作後的特定元件出現,避免操作速度過快造成錯誤
 
-* waittingFor.waittingFor(driver)
+# waittingFor.waittingFor(driver)
 
 * Des: 建構子
 
@@ -150,11 +150,65 @@ anyname = swipe(driver)
 3. time(option): 等待的時間,單位為秒,預設為30秒
 4. frequncy(option): 檢查特定元素是否存在的頻率, 單位為秒,預設為1秒
 
+------
 
+# class [getToast]
 
+* Description: 找尋手機上顯示的Tost訊息
 
+# getTost.getToast(driver)
 
+* Des: 建構子
 
+* Args:
+1. driver(necessary): webdriver的物件,來自於apkVersionAndCellConfig.py這個class
+
+# search4Toast(tostMessage)
+
+* Des: 找尋有特定文字的Toast訊息
+
+* Args: 
+1. toastMessage(necessary): 要找尋的Toast顯示的文字內容
+
+------
+
+# class [findSpecificText]
+
+* Description: 找尋包含特定文字的元件是否存在
+
+# findSpecificText.findSpecificText(driver)
+
+* Des: 建構子
+
+* Args:
+1. driver(necessary): webdriver的物件,來自於apkVersionAndCellConfig.py這個class
+
+# findText(targetText, [mode])
+
+* Des: 透過文字找尋特定元件是否存在
+
+* Args: 
+1. targetText(necessary): 所有找尋的文字內容
+2. mode(option): 用來決定這個函數的回傳值
+* 預設為0表示回傳值為找尋到的元件driver物件
+* mode傳入值為1,表示回傳值為True/False
+
+# findSpecificItemByResourceID(targetId [mode, index])
+
+* Des: 利用元件id找尋特定物件
+
+* Args:
+1. targetId(necessary):要找尋的目標物件id
+2. mode(option):決定這個函數的回傳值
+* 預設為0表示回傳值為找尋到的元件driver物件
+* mode傳入值為1,表示回傳值為True/False
+3. index(option):找尋的物件是否唯一設定,
+* 預設為-1表示要等待的元件id為唯一
+* 其他任意數字表示要等待的元件id有多個, 數字表示要找尋的元素索引值
+
+------
+
+# class
 
 
 
