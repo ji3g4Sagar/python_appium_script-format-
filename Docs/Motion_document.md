@@ -208,7 +208,26 @@ anyname = swipe(driver)
 
 ------
 
-# class
+# class [getXYLocation]
+
+* Description: 取得特定物件的X、Y座標
+
+# getXYLocation.getXYLocation(driver)
+
+* Des: 建構子
+
+* Args:
+1. driver(necessary): webdriver的物件,來自於apkVersionAndCellConfig.py這個class
+
+# getXYByResourceID(resource_id, [index])
+
+* Des: 透過元件id取得特定的元件Ｘ、Ｙ座標
+
+* Args: 
+1. resource_id(necessary): 要取得Ｘ、Ｙ座標的元件id
+2. index(option):找尋的物件是否唯一設定
+* 預設為-1表示要等待的元件id為唯一
+* 其他任意數字表示要等待的元件id有多個, 數字表示要找尋的元素索引值
 
 
 

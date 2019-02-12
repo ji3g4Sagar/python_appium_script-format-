@@ -271,15 +271,4 @@ class homePage():
 				self.sp.swipeDown()
 		print("Successuflly go back to dynaamic wall!!\n")
 
-
-
-			
-
-
-# 目前已知選擇器 
-	#  - find_element_by_accessibility_id
-	#  id - find_element(s)_by_id
-	#  class - find_element(s)_by_class_name
-	#  name - find_element(s)_by_name
-		 
 	   
