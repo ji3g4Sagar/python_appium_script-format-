@@ -163,7 +163,7 @@ anyname = swipe(driver)
 * Args:
 1. driver(necessary): webdriver的物件,來自於apkVersionAndCellConfig.py這個class
 
-# search4Toast(tostMessage)
+# search4Toast(toastMessage)
 
 * Des: 找尋有特定文字的Toast訊息
 
