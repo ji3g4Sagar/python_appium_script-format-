@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-sys.path.append("..")
+sys.path.append("../..")
 from Motion import swipePage, enterContext, click, waittingFor, getToast
 from time import sleep
 from selenium.webdriver.support.ui import WebDriverWait

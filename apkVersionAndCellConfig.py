@@ -12,8 +12,8 @@ class Config():
 			app = ('http://35.194.192.102:5000/getfile?filename='+apkName)
 			desired_caps['app'] = app
 			desired_caps['platformName'] = 'Android' #定義測試的系統環境
-			desired_caps['platformVersion'] = '5.1.1' #定義版本
-			desired_caps['deviceName'] = 'Android Emulator' #定義裝置名稱
+			desired_caps['platformVersion'] = '8.0' #定義版本
+			desired_caps['deviceName'] = 'TestDevices' #定義裝置名稱
 			desired_caps['automationName'] = 'uiautomator2'
 			desired_caps['noReset'] = 'true'
 			self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -37,6 +37,8 @@ class Config():
 			return ("com.lavidatec.wacaredev:id")
 		elif(self.apkName.startswith("pre")):
 			return ("com.lavidatec.wacareprealpha:id")
+
+			
 
 
 
