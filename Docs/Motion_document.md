@@ -114,15 +114,41 @@ anyname = swipe(driver)
 
 * Des: 點擊多個擁有相同元件id中的特定元件
 
-* Des: 
+* Args: 
 1. resources_id(necessary): 要被點擊的元件id
-2. index(necessary): 被點擊的元件索引, 從0開始
+2. index(necessary): 被點擊的元件索引, 索引值從0開始
 
 -------
 
+# class [waittingFor]
 
+* Description: 等待操作後的特定元件出現,避免操作速度過快造成錯誤
 
+* waittingFor.waittingFor(driver)
 
+* Des: 建構子
+
+* Args:
+1. driver(necessary): webdriver的物件,來自於apkVersionAndCellConfig.py這個class
+
+# waittingFor.implicitWait([time])
+
+* Des: 等待特定時間
+
+* Args:
+1. time(option): 等待的時間,以秒為單位,預設為5秒
+
+# waittingFor.explicitWaitByResourceID(resource_id, [index, time, frequecy])
+
+* Des: 等待手機上特定元件出現
+
+* Args:
+1. resource_id(necessary): 要等待的特定元件id
+2. index(option): 方法的模式設定,
+> 預設為-1表示要等待的元件id為唯一
+> 其他任意數字表示要等待的元件id有多個, 數字表示要等待的元素索引值
+3. time(option): 等待的時間,單位為秒,預設為30秒
+4. frequncy(option): 檢查特定元素是否存在的頻率, 單位為秒,預設為1秒
 
 
 
