@@ -94,7 +94,8 @@ class scriptForHelthForum_1_2():
 		#self.EditQuestion()
 		#self.DeleteQuestion()
 		#self.ReplaySelfQuestion()
-		self.QuestionWithPicture()
+		#self.QuestionWithPicture()
+		self.QuestionWithTakePhoto()
 		#self.DeleteReplayMessage()
 	def Question(self):
 		self.hp.goBackToHomePage()
@@ -269,7 +270,40 @@ class scriptForHelthForum_1_2():
 		self.driver.keyevent("4")
 		sleep(5)
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+	def QuestionWithTakePhoto(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumTopicTitle")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_ask")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_ask")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_healthForumPostAlbum")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_healthForumPostAlbum")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/upload_photo")
+		#target = self.driver.find_element_by_id(self.apkVersionIdName+"/order")
+		xpath = "//android.widget.TextView[@resource-id='"+ self.apkVersionIdName + "/order" + "']/parent::android.widget.FrameLayout/preceding-sibling::android.widget.ImageView"
+		target = self.driver.find_element_by_xpath(xpath)
+		target.click()
+		self.driver.keyevent("27")
+		self.wf.explicitWaitByResourceID("com.android.camera2:id/done_button")
+		self.ck.clickByResourceID("com.android.camera2:id/done_button")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_healthForumPostItemPhoto")
+		title = "我是標題"
+		self.ec.enter(title, self.apkVersionIdName + "/ed_healthForumPostArticleTitle")
+		questionText = str(random.randint(1,1000))
+		self.ec.enterSelectByTextviewText(questionText+"Question", "請將您的問題描述詳細，專家能更精準的為您解答...")
+		self.ck.clickByResourceID(self.apkVersionIdName + "/tv_healthForumPostUpload")
+		self.gt.search4Toast("上傳完成")
+		self.driver.keyevent("4")
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 
+	def AnswerOtherPost(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 
 
 """
