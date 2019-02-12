@@ -39,7 +39,7 @@ class swipePage():
 				self.driver.swipe(x1, y1, x1, y2,t)
 		except:
 			print("SwipeDown error!!\n")
-	def swipLeft(self, t=400, n=1, yStart=0.5, xStart=0.8, xEnd=0.05):
+	def swipeLeft(self, t=400, n=1, yStart=0.5, xStart=0.8, xEnd=0.05):
 		try:
 			x1 = self.screenWidth * xStart
 			y1 = self.screenHeight * yStart
@@ -48,7 +48,7 @@ class swipePage():
 				self.driver.swipe(x1, y1, x2, y1, t)
 		except:
 			print("SwipeLeft error!!\n")
-	def swipRight(self, t=400, n=1, yStart=0.5, xStart=0.1, xEnd=0.75):
+	def swipeRight(self, t=400, n=1, yStart=0.5, xStart=0.1, xEnd=0.75):
 		try:
 			x1 = self.screenWidth * xStart
 			y1 = self.screenHeight * yStart
