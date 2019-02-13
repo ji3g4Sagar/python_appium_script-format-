@@ -97,7 +97,9 @@ class scriptForHelthForum_1_2():
 		#self.QuestionWithPicture()
 		#self.QuestionWithTakePhoto()
 		#self.DeleteReplayMessage()
-		self.AnswerOtherPost()
+		#self.AnswerOtherPost()
+		self.CheckForPicture()
+
 	def Question(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
@@ -322,6 +324,28 @@ class scriptForHelthForum_1_2():
 		sleep(5)
 
 	def CheckForPicture(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumTopicTitle")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_ask")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_expert_Image")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_expert_Image")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_healthForumPostItemPhoto")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_healthForumPostItemPhoto")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/viewPagerImageView")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/viewPagerImageView")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/familyAlbumPhotoDownland")
+		self.driver.keyevent("4")
+		sleep(1)
+		self.driver.keyevent("4")
+		sleep(1)
+		self.driver.keyevent("4")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
+		sleep(5)
+
+	def CheckForExpert(self):/tv_expert_response2
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		
