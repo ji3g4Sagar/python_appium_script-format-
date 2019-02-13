@@ -245,6 +245,7 @@ class findSpecificText():
 		while(targetFind!=True):
 			if(self.findSpecificItemByResourceID(sourde_id, mode = 1)):
 				targetFind=True
+				return self.findSpecificItemByResourceID(sourde_id)
 			else:
 				sp.swipeUp()				
 class getXYLocation():
