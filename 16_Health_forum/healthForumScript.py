@@ -281,7 +281,6 @@ class scriptForHelthForum_1_2():
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_healthForumPostAlbum")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_healthForumPostAlbum")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/upload_photo")
-		#target = self.driver.find_element_by_id(self.apkVersionIdName+"/order")
 		xpath = "//android.widget.TextView[@resource-id='"+ self.apkVersionIdName + "/order" + "']/parent::android.widget.FrameLayout/preceding-sibling::android.widget.ImageView"
 		target = self.driver.find_element_by_xpath(xpath)
 		target.click()
@@ -298,10 +297,14 @@ class scriptForHelthForum_1_2():
 		self.driver.keyevent("4")
 		sleep(5)
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
-
 	def AnswerOtherPost(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumTopicTitle")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_ask")
+
 		
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 
