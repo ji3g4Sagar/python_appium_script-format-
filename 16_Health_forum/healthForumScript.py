@@ -97,9 +97,9 @@ class scriptForHelthForum_1_2():
 		#self.QuestionWithPicture()
 		#self.QuestionWithTakePhoto()
 		#self.DeleteReplayMessage()
-		#self.AnswerOtherPost()
+		self.AnswerOtherPost()
 		#self.CheckForPicture()
-		self.CheckForExpert()
+		#self.CheckForExpert()
 
 	def Question(self):
 		self.hp.goBackToHomePage()
@@ -318,12 +318,15 @@ class scriptForHelthForum_1_2():
 		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_forumQuestionSend")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_forumQuestionBack")
 		self.ft.findTextInWholePage(message)
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumQuestionItemDot")
+		self.ck.clickByString("刪除")
+		sleep(1)
+		self.ck.clickByString("刪除")
 		self.driver.keyevent("4")
 		sleep(1)
 		self.driver.keyevent("4")		
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
-
 	def CheckForPicture(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
@@ -345,7 +348,6 @@ class scriptForHelthForum_1_2():
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
 		sleep(5)
-
 	def CheckForExpert(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
