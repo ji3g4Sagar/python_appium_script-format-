@@ -1,4 +1,4 @@
-#!/usr/bin/python
+ #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -230,6 +230,24 @@ class findSpecificText():
 					return target[index]
 				else:
 					return True
+	def findTextInWholePage(self, targetText):
+		targetFind = False
+		sp = swipePage(self.driver)
+		while(targetFind!=True):
+			if(self.findText(targetText, mode = 1)):
+				targetFind = True
+			else:
+				sp.swipeUp()
+
+	def findItemByIdInWholePage(self, sourde_id):
+		targetFind = False
+		sp = swipePage(self.driver)
+		while(targetFind!=True):
+			if(self.findSpecificItemByResourceID(sourde_id, mode = 1)):
+				targetFind=True
+			else:
+				sp.swipeUp()
+				
 class getXYLocation():
 	def __init__(self, driver):
 		try:
@@ -272,3 +290,31 @@ class homePage():
 		print("Successuflly go back to dynaamic wall!!\n")
 
 	   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

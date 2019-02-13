@@ -74,7 +74,6 @@ class scriptForHelthForum_1_1():
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 		sleep(5)
-
 class scriptForHelthForum_1_2():
 	def __init__(self, driver, apkVersionIdName):
 		self.driver = driver
@@ -87,6 +86,7 @@ class scriptForHelthForum_1_2():
 		self.xy = getXYLocation(driver)
 		self.hp = homePage(driver, apkVersionIdName)
 		self.apkVersionIdName = apkVersionIdName
+		self.name = "test999"
 	def starter(self):
 		#self.Question()
 		#self.QuestionAnonymous()
@@ -95,11 +95,12 @@ class scriptForHelthForum_1_2():
 		#self.DeleteQuestion()
 		#self.ReplaySelfQuestion()
 		#self.QuestionWithPicture()
-		self.QuestionWithTakePhoto()
+		#self.QuestionWithTakePhoto()
 		#self.DeleteReplayMessage()
+		self.AnswerOtherPost()
 	def Question(self):
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
 		#self.ck.clickByResourceID(self.apkVersionIdName + "/tv_forumTopicTitle")
 		self.ck.clickByString("老人獨居")
@@ -119,7 +120,7 @@ class scriptForHelthForum_1_2():
 		self.gt.search4Toast("上傳完成")
 		self.driver.keyevent("4")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tv_forumTopicTitle")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)		
 	def QuestionAnonymous(self):
 		self.hp.goBackToHomePage()
@@ -166,10 +167,9 @@ class scriptForHelthForum_1_2():
 		sleep(5)
 	def EditQuestion(self):
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
-		#self.ck.clickByResourceID(self.apkVersionIdName + "/tv_forumTopicTitle")
-		self.ck.clickByString("老人獨居")
+		self.ck.clickByResourceID(self.apkVersionIdName + "/tv_forumTopicTitle")
 		self.ft.findTextInWholePage("test999")
 		self.ck.clickByString("test999")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_forumQuestionDot")
@@ -190,7 +190,7 @@ class scriptForHelthForum_1_2():
 		RBtn = returnBtn.find_element_by_class_name("android.widget.ImageButton")
 		RBtn.click()
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tv_forumTopicTitle")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
 	def DeleteQuestion(self):
 		self.hp.goBackToHomePage()
@@ -272,7 +272,7 @@ class scriptForHelthForum_1_2():
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 	def QuestionWithTakePhoto(self):
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumTopicTitle")
@@ -296,23 +296,42 @@ class scriptForHelthForum_1_2():
 		self.gt.search4Toast("上傳完成")
 		self.driver.keyevent("4")
 		sleep(5)
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 	def AnswerOtherPost(self):
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumTopicTitle")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_ask")
+		self.ft.findTextInWholePage("WaCare016")
+		self.ck.clickByString("WaCare016")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_forumQuestionBack")
+		self.ck.clickByString("回應...")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/cb_forumQuestionAnn")
+		replyNum = random.randint(1,1000)
+		message = str(replyNum)+" Test message"
+		self.ec.enterSelectByTextviewText(message, "回應...")
+		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_forumQuestionSend")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_forumQuestionBack")
+		self.ft.findTextInWholePage(message)
+		self.driver.keyevent("4")
+		sleep(1)
+		self.driver.keyevent("4")		
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+		sleep(5)
 
+	def CheckForPicture(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
 
 """
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 """
 
 
