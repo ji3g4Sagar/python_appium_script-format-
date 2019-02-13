@@ -98,7 +98,8 @@ class scriptForHelthForum_1_2():
 		#self.QuestionWithTakePhoto()
 		#self.DeleteReplayMessage()
 		#self.AnswerOtherPost()
-		self.CheckForPicture()
+		#self.CheckForPicture()
+		self.CheckForExpert()
 
 	def Question(self):
 		self.hp.goBackToHomePage()
@@ -345,11 +346,25 @@ class scriptForHelthForum_1_2():
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
 		sleep(5)
 
-	def CheckForExpert(self):/tv_expert_response2
+	def CheckForExpert(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
-		
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumTopicTitle")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_ask")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/tv_expert_response2")
+		self.ck.clickByString("專家回應")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_forumQuestionAsk")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_forumQuestionAsk")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_expert_status")
+		self.driver.keyevent("4")
+		sleep(1)
+		self.driver.keyevent("4")
+		sleep(1)
+		self.driver.keyevent("4")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+		sleep(5)
 
 
 """

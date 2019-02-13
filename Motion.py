@@ -246,8 +246,7 @@ class findSpecificText():
 			if(self.findSpecificItemByResourceID(sourde_id, mode = 1)):
 				targetFind=True
 			else:
-				sp.swipeUp()
-				
+				sp.swipeUp()				
 class getXYLocation():
 	def __init__(self, driver):
 		try:
