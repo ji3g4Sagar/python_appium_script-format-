@@ -268,7 +268,7 @@ class script():
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_toolbar")
 		self.sp.swipeDown()
 		self.sp.swipeUp()
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_title")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/cb_mission")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tvMissionMemo")#等待任務頁面下方的memo出現
 		self.driver.keyevent("4")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/deco_history_progress")
