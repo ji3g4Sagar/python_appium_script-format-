@@ -166,8 +166,7 @@ class script():
 		message = str(random.randint(1,1000))+" test message!!!"
 		self.ec.enter(message, self.apkVersionIdName + "/albumContentEdText")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/sendAlbumMsg")
-		if( self.ft.findText(message, mode=1)==False):
-			self.leftMessageInAlbum()
+		self.ft.findTextInWholePage(message)
 		self.driver.keyevent("4")
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
