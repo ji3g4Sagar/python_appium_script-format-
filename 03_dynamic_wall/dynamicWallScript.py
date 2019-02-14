@@ -246,11 +246,11 @@ class script():
 		self.ck.clickByResourceID(self.apkVersionIdName+"/ll_homeResultArticleItem")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_homeRecommendType")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊文章出處
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"android:id/title")
+		self.wf.explicitWaitByResourceID("android:id/title")
 		self.driver.keyevent("4")
 		self.driver.keyevent("4")
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView")
-		self.ck.clickByResourceID(self.apkVersionIdName+"youtube_playerView")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/youtube_playerView")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
 		self.driver.keyevent("4")
