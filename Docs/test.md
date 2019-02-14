@@ -32,7 +32,7 @@
 
 
 # 表格
-| Item     | Value | Qty   |
+| Item     | Value | Num   |
 | :------- | ----: | :---: |
 | Computer | $1600 |  5    |
 | Phone    | $12   |  12   |

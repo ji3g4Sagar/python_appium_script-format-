@@ -25,12 +25,12 @@ class script():
 		#self.swipeAroundInDynamicWall()
 		#self.hiFiveCheck()
 		#self.deleteFriendOfHiFive()
-		self.checkForAlbum()
+		#self.checkForAlbum()
 		self.leftMessageInAlbum()
 		#self.deleteFriendOfAlbum()
 		#self.checkForEmotion()
 		#self.deleteFriendOfEmotion()
-		self.leftApp()
+		#self.leftApp()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -38,16 +38,16 @@ class script():
 			2.印出動態牆上出現的文字
 		"""
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		print("Check for default announcement.....")
 		defaultKeyWord = self.driver.find_element_by_id(self.apkVersionIdName + "/tv_homeHealthKeywords").text
 		self.ft.findText(defaultKeyWord)
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
 	def swipeAroundInDynamicWall(self):
 		#檢測動態牆的滑動是否正常
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.sp.swipeUp()
 		self.sp.swipeDown()
 		self.sp.swipeUp()
@@ -55,7 +55,7 @@ class script():
 		self.sp.swipeLeft()
 		self.sp.swipeRight()
 		self.sp.swipeUp(n=2)
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
 	def hiFiveCheck(self):
 		#檢測在動態牆上是否有「為您擊掌」的互動訊息
@@ -65,7 +65,7 @@ class script():
 				->findHiFive == False: 下向滑動繼續尋找
 		"""
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		findHiFive = False
 		while(findHiFive != True):
 			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/likeTime", time=2, freuency=0.5)):
@@ -75,7 +75,7 @@ class script():
 			else:
 				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/likeTime"))
 				self.sp.swipeUp(n=2)
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")			
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")			
 		sleep(5)
 	def deleteFriendOfHiFive(self):
 		#找尋有擊掌互動的好友並將該位好友刪除
@@ -85,7 +85,7 @@ class script():
 			3.呼叫self.ft在好友頁面找尋該名好友是否還存在
 			4.返回動態牆,刷新動態牆訊息
 		"""
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.hiFiveCheck()
 		targetXpath = '//*[@text=\'為您擊掌\']/parent::android.widget.LinearLayout/preceding-sibling::android.widget.LinearLayout'
 		target = self.driver.find_element_by_xpath(targetXpath)
@@ -103,7 +103,7 @@ class script():
 			print("Successuflly delete friend!! %s" % nameOfFriendGoingToDelete)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName + "/home_tab_icon", 0)
 		self.sp.swipeDown(n=3, yStart=0.1)
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")		
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 		sleep(5)
 	def checkForAlbum(self):
 		#檢測動態牆上是否有相簿訊息
@@ -114,7 +114,7 @@ class script():
 			2.進到相簿,並印出相簿名稱
 		"""
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		findAlbum = False
 		while(findAlbum != True):
 			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/viewPagerImageView", time=2, freuency=0.5)):
@@ -125,7 +125,7 @@ class script():
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/titleNickName")
 		self.driver.keyevent("4")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
 	def deleteFriendOfAlbum(self):
 		#找尋動態牆上是否有相簿動態消息,並將發布相簿的好友刪除
@@ -136,7 +136,7 @@ class script():
 			4.返回動態牆,刷新動態牆訊息
 		"""
 		self.goBackToDynamicWall
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.checkForAlbum()
 		nameOfFriendGoingToDelete = self.driver.find_element_by_id(self.apkVersionIdName + "/homeAlbumName").text
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
@@ -150,7 +150,7 @@ class script():
 			print("Successuflly delete friend!! %s" % nameOfFriendGoingToDelete)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName + "/home_tab_icon", 0)
 		self.sp.swipeDown(n=3, yStart=0.1)
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
 	def leftMessageInAlbum(self):
 		#在動態牆中出現的相簿動態下留言測試
@@ -159,7 +159,7 @@ class script():
 			2.進到相簿中留言,並利用self.ft確認留言是否成功
 			3.返回動態牆
 		"""
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.checkForAlbum()
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/messageBoardTitleLayout")
@@ -170,11 +170,11 @@ class script():
 			self.leftMessageInAlbum()
 		self.driver.keyevent("4")
 		self.driver.keyevent("4")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(3)
 	def checkForEmotion(self):
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		findEmotion = False
 		emotionClickTarget =self.driver
 		nameOfFriendGoingToDelete=""
@@ -195,11 +195,11 @@ class script():
 				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/emotionFacePhoto"))
 			if(findEmotion==False):
 				self.sp.swipeUp()
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")		
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 		sleep(3)
 	def deleteFriendOfEmotion(self):
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.checkForEmotion()
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
@@ -210,10 +210,10 @@ class script():
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/addFriend")
 		if(self.ft.findText(nameOfFriendGoingToDelete, mode=1) == False):
 			print("Successuflly delete friend!! %s" % nameOfFriendGoingToDelete)
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")		
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 	def leftMessageInEmotion(self):
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.checkForEmotion()
 		self.driver.keyevent("4")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/emotionLayout4")
@@ -224,17 +224,45 @@ class script():
 		if( self.ft.findText(message, mode=1)==False):
 			self.leftMessageInAlbum()
 		self.driver.keyevent("4")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(3)	
 	def leftApp(self):
 		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.driver.keyevent("4")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")		
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
 
 
 """
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------\n")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
