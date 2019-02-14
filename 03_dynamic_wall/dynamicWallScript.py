@@ -31,7 +31,8 @@ class script():
 		#self.checkForEmotion()
 		#self.deleteFriendOfEmotion()
 		#self.leftApp()
-		self.swipeAndClickSearch()
+		#self.swipeAndClickSearch()
+		self.todayMession()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -232,7 +233,6 @@ class script():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
-
 	def swipeAndClickSearch(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
@@ -260,6 +260,24 @@ class script():
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
+
+	def todayMession(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickByResourceID(self.apkVersionIdName+"linFollowedMission")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_toolbar")
+		self.sp.swipeDown()
+		self.sp.swipeUp()
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_title")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tvMissionMemo")#等待任務頁面下方的memo出現
+		self.driver.keyevent("4")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/deco_history_progress")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/deco_history_progress")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/fra_scroll_body")
+		self.driver.keyevent("4")
+		self.wf.explicitWaitByResourceID(self.apk+"/tv_title")
+		self.driver.keyevent("4")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
 
 
