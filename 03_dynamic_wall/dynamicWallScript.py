@@ -254,9 +254,12 @@ class script():
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
 		self.driver.keyevent("4")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/home_recommendBack")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/home_recommendBack")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
 		self.driver.keyevent("4")
-		self.driver.keyevent("4") 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+		sleep(5)
 
 
 
