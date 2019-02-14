@@ -255,7 +255,7 @@ class script():
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
 		self.driver.keyevent("4")
 		self.driver.keyevent("4")
-		self.driver.keyevent("4")
+		self.driver.keyevent("4") 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 
 
