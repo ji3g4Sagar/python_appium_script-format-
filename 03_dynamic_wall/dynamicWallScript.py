@@ -26,11 +26,12 @@ class script():
 		#self.hiFiveCheck()
 		#self.deleteFriendOfHiFive()
 		#self.checkForAlbum()
-		self.leftMessageInAlbum()
+		#self.leftMessageInAlbum()
 		#self.deleteFriendOfAlbum()
 		#self.checkForEmotion()
 		#self.deleteFriendOfEmotion()
 		#self.leftApp()
+		self.swipeAndClickSearch()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -162,6 +163,7 @@ class script():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.checkForAlbum()
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/messageBoardTitleLayout")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/messageBoardTitleLayout")
 		message = str(random.randint(1,1000))+" test message!!!"
 		self.ec.enter(message, self.apkVersionIdName + "/albumContentEdText")
@@ -231,9 +233,23 @@ class script():
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
+	def swipeAndClickSearch(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.sp.swipeLeft()
+		self.sp.swipeLeft()
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/ll_homeResultArticleItem")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+
 
 
 """
+		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 """
