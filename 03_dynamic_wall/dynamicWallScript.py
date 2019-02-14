@@ -264,7 +264,7 @@ class script():
 	def todayMession(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
-		self.ck.clickByResourceID(self.apkVersionIdName+"linFollowedMission")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/linFollowedMission")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_toolbar")
 		self.sp.swipeDown()
 		self.sp.swipeUp()
@@ -275,7 +275,7 @@ class script():
 		self.ck.clickByResourceID(self.apkVersionIdName+"/deco_history_progress")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/fra_scroll_body")
 		self.driver.keyevent("4")
-		self.wf.explicitWaitByResourceID(self.apk+"/tv_title")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_title")
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
