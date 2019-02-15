@@ -44,7 +44,7 @@ class swipePage():
 			x1 = self.screenWidth * xStart
 			y1 = self.screenHeight * yStart
 			x2 = self.screenWidth * xEnd
-			for i in range(n):
+			for i in range(n): 
 				self.driver.swipe(x1, y1, x2, y1, t)
 		except:
 			print("SwipeLeft error!!\n")
