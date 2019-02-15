@@ -23,6 +23,7 @@ class scriptExpertAnswer():
 		self.gt = getToast(driver)
 		self.xy = getXYLocation(driver)
 		self.hp = homePage(driver, apkVersionIdName)
+		self.ft = findSpecificText(driver)
 		self.apkVersionIdName = apkVersionIdName
 	def starter(self):
 		self.clickExpert()
@@ -36,7 +37,8 @@ class scriptExpertAnswer():
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.ck.clickByString(" 快速搜尋 ")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_select_all")
-		self.ck.clickByResourceID(self.apkVersionIdName+"tv_select_all")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_select_all")
+		sleep(2)
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_sex")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
