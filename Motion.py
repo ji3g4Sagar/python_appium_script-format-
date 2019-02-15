@@ -232,22 +232,31 @@ class findSpecificText():
 					return True
 	def findTextInWholePage(self, targetText):
 		targetFind = False
+		swipeDown = False
 		sp = swipePage(self.driver)
 		while(targetFind!=True):
-			if(self.findText(targetText, mode = 1)):
+			if(swipeDown==True):
 				targetFind = True
-				
+				sp.swipeDown()
+			elif(self.findText(targetText, mode = 1)):
+				targetFind = True
 			else:
 				sp.swipeUp()
+				swipeDown = True
 
 	def findItemByIdInWholePage(self, sourde_id):
 		targetFind = False
+		swipeDown = False
 		sp = swipePage(self.driver)
 		while(targetFind!=True):
-			if(self.findSpecificItemByResourceID(sourde_id, mode = 1)):
+			if(swipeDown==True):
+				targetFind = True
+				sp.swipeDown()
+			elif(self.findSpecificItemByResourceID(sourde_id, mode = 1)):
 				targetFind=True
 			else:
-				sp.swipeUp()				
+				sp.swipeUp()	
+				swipeDown = True			
 class getXYLocation():
 	def __init__(self, driver):
 		try:
