@@ -26,9 +26,10 @@ class scriptExpertAnswer():
 		self.ft = findSpecificText(driver)
 		self.apkVersionIdName = apkVersionIdName
 	def starter(self):
-		self.clickExpert()
+		#self.clickExpert()
+		self.clickExpertDietitian()
 
-	def clickExpert(self):
+	def clickExpertMedic(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
@@ -56,6 +57,29 @@ class scriptExpertAnswer():
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.driver.keyevent("4")
 
+	def clickExpertDietitian(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
+		self.ck.clickByString("營養師")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
+		self.ck.clickByString(" 快速搜尋 ")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_sex")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/lin_content")#等待搜尋結果
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_expert_name")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_expert_subject")
+		self.ft.findTextInWholePage("性別")
+		self.ft.findTextInWholePage("關鍵字")
+		self.ft.findTextInWholePage("專長")
+		self.ft.findTextInWholePage("語言")
+		self.ft.findTextInWholePage("問答次數")
+		self.ft.findTextInWholePage("經歷")
+		self.ft.findTextInWholePage("專家認證")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_back")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
+		self.driver.keyevent("4")
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
