@@ -31,8 +31,8 @@ class script():
 		#self.checkForEmotion()
 		#self.deleteFriendOfEmotion()
 		#self.leftApp()
-		#self.swipeAndClickSearch()
-		self.todayMession()
+		self.swipeAndClickSearch()
+		#self.todayMession()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -248,19 +248,20 @@ class script():
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊文章出處
 		self.wf.explicitWaitByResourceID("android:id/title")
 		self.driver.keyevent("4")
+		sleep(1)
 		self.driver.keyevent("4")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView") #找尋有影片的文章
 		self.ck.clickByResourceID(self.apkVersionIdName+"/youtube_playerView")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊影片來源「查看出處」
+		sleep(1)
 		self.driver.keyevent("4")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/home_recommendBack")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/home_recommendBack") #找尋上一頁按鈕
 		self.ck.clickByResourceID(self.apkVersionIdName+"/home_recommendBack")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.driver.keyevent("4")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
-
 	def todayMession(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")

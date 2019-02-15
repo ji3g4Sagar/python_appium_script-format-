@@ -5,7 +5,7 @@ from appium import webdriver
 import os
 
 class Config():
-	def __init__(self, apkName="qaExternalWaCare-v1.0.3.1.7.apk", desired_caps_outer={}, port ="4723"):
+	def __init__(self, apkName="qaExternalWaCare-v1.0.4.1.6.apk", desired_caps_outer={}, port ="4723"):
 		if (len(desired_caps_outer)==0):
 			self.apkName = apkName
 			desired_caps = {} # Appium收到http Request後會解析這個key-value pair
@@ -29,14 +29,17 @@ class Config():
 		return self.driver
 
 	def getApkVersionIdName(self):
-		if(self.apkName.startswith("qaExternal")):
+		if(self.apkName.startswith("qaExternalWaCare")):
 			return ("com.lavidatec.wacareqaexternal:id")
-		elif(self.apkName.startswith("pro")):
-			return ("com.lavidatec.wacare:id")
+		elif(self.apkName.startswith("qaExternalWaPro")):
+			return ("com.lavidatec.waproqaexternal:id")
 		elif(self.apkName.startswith("dev")):
 			return ("com.lavidatec.wacaredev:id")
 		elif(self.apkName.startswith("pre")):
 			return ("com.lavidatec.wacareprealpha:id")
+
+
+			
 
 			
 

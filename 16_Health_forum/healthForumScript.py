@@ -74,6 +74,7 @@ class scriptForHelthForum_1_1():
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!\n")
 		sleep(5)
+
 class scriptForHelthForum_1_2():
 	def __init__(self, driver, apkVersionIdName):
 		self.driver = driver
@@ -88,7 +89,7 @@ class scriptForHelthForum_1_2():
 		self.apkVersionIdName = apkVersionIdName
 		self.name = "test999"
 	def starter(self):
-		#self.Question()
+		self.Question()
 		#self.QuestionAnonymous()
 		#self.QuestionNonAnonymous()
 		#self.EditQuestion()
@@ -97,7 +98,7 @@ class scriptForHelthForum_1_2():
 		#self.QuestionWithPicture()
 		#self.QuestionWithTakePhoto()
 		#self.DeleteReplayMessage()
-		self.AnswerOtherPost()
+		#self.AnswerOtherPost()
 		#self.CheckForPicture()
 		#self.CheckForExpert()
 
@@ -105,8 +106,8 @@ class scriptForHelthForum_1_2():
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
-		#self.ck.clickByResourceID(self.apkVersionIdName + "/tv_forumTopicTitle")
-		self.ck.clickByString("老人獨居")
+		self.ck.clickByResourceID(self.apkVersionIdName + "/tv_forumTopicTitle")
+		#self.ck.clickByString("老人獨居")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tv_ask")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/tv_ask")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_healthForumPostClose")
