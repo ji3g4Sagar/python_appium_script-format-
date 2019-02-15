@@ -15,7 +15,7 @@ class swipePage():
 			self.screenWidth = driver.get_window_size()['width']
 			self.screenHeight = driver.get_window_size()['height']
 		except:
-			prin("Swipe page init error!\n")
+			print("Swipe page init error!\n")
 
 	def swipeUp(self, t=400, n=1, xStart=0.5, yStart=0.75, yEnd=0.3):
 		try:
