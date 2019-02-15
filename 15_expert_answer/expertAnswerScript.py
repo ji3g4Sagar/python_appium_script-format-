@@ -37,6 +37,9 @@ class scriptExpertAnswer():
 		self.ck.clickByString(" 快速搜尋 ")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_select_all")
 		self.ck.clickByResourceID(self.apkVersionIdName+"tv_select_all")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_sex")
+		
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
