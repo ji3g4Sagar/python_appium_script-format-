@@ -40,7 +40,20 @@ class scriptExpertAnswer():
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_sex")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/lin_content")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/lin_content")#等待搜尋結果
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_expert_name")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_expert_subject")
+		self.ft.findTextInWholePage("性別")
+		self.ft.findTextInWholePage("關鍵字")
+		self.ft.findTextInWholePage("專長")
+		self.ft.findTextInWholePage("語言")
+		self.ft.findTextInWholePage("問答次數")
+		self.ft.findTextInWholePage("經歷")
+		self.ft.findTextInWholePage("專家認證")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_back")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
+		self.driver.keyevent("4")
+
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
