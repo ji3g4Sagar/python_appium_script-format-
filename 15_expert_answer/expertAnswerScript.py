@@ -39,7 +39,8 @@ class scriptExpertAnswer():
 		self.ck.clickByResourceID(self.apkVersionIdName+"tv_select_all")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_sex")
-		
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/lin_content")
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
