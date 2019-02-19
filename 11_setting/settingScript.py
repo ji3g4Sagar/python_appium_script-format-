@@ -27,7 +27,8 @@ class scriptSetting():
 		self.apkVersionIdName = apkVersionIdName
 	def starter(self):
 		#self.urgentCard()
-		self.editIll()
+		#self.editIll()
+		self.addEmergencyPerson()
 
 		
 	def urgentCard(self):
@@ -121,6 +122,8 @@ class scriptSetting():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",0)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",1)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",2)
+		self.ck.clickByString("藥品")
+		self.ec.enterSelectByTextviewText("測試藥品名藥品名", "請輸入藥物名稱")
 		self.ck.clickByString("下一步")
 		#------------------------------------#
 		#精神情緒狀況測試
@@ -136,9 +139,12 @@ class scriptSetting():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",0)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",1)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",2)
-		self.ck.click("其他")
+		self.ft.findTextInWholePage("失眠")
+		self.ck.clickByString("失眠")
+		self.ck.clickByString("其他")
 		self.ck.clickByString("完成")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_check_detail")
+		self.ck.clickByResourceID(self.apkVersionIdName+"iv_back")
 
 
 
@@ -173,7 +179,21 @@ class scriptSetting():
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_back")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.driver.keyevent("4")
-	
+	def addEmergencyPerson(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",4)
+		sleep(1)
+		self.ft.findTextInWholePage("＋新增緊急聯絡人")
+		self.ck.clickByString("＋新增緊急聯絡人")
+		self.ft.findTextInWholePage("＋新增緊急聯絡人")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_name")
+		self.ft.findTextInWholePage("關係")
+		self.ck.clickByString("聯絡人")
+		self.gt.search4Toast("新增完成")
+
+
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
 
 """
 		self.hp.goBackToHomePage()
