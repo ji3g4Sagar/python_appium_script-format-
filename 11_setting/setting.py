@@ -5,7 +5,7 @@ import sys
 import os
 import unittest
 from appium import webdriver
-from expertAnswerScript import *
+from settingScript import *
 from apkVersionAndCellConfig import Config
 
 
@@ -19,8 +19,8 @@ class WaCareTest(unittest.TestCase):
 	def tearDown(self):
 		self.driver.quit()
 
-	def test1_Topic(self):
-		testScript = scriptExpertAnswer(self.driver, self.apkVersionIdName)
+	def test_Topic(self):
+		testScript = scriptSetting(self.driver, self.apkVersionIdName)
 		testScript.starter()
 
 if __name__ == '__main__':

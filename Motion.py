@@ -104,12 +104,12 @@ class click():
 			target.click()
 
 	def clickFromManyThingsByResourceID(self, resources_id, index):
+		targets = self.driver.find_elements_by_id(resources_id)
 		try:
-			targets = self.driver.find_elements_by_id(resources_id)
+			targets[index].click()
 		except:
 			print("[clickFromManyThings]Cant not find the target %s" % resources_id)
-		else:
-			targets[index].click()
+			
 
 	def tap(self, driver):
 		actions = TouchAction(self.driver)
@@ -240,7 +240,7 @@ class findSpecificText():
 				targetFind = True
 				sp.swipeDown(n=3)
 			elif(swipeDown==True):
-				swipeDown = Flase
+				swipeDown = False
 				swipeTime = swipeTime + 1
 			elif(self.findText(targetText, mode = 1)):
 				targetFind = True
@@ -249,6 +249,7 @@ class findSpecificText():
 				swipeDown = True
 
 	def findItemByIdInWholePage(self, sourde_id):
+		sleep(1)
 		targetFind = False
 		swipeDown = False
 		swipeTime = 0

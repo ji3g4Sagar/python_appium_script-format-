@@ -30,6 +30,7 @@ class scriptExpertAnswer():
 		#self.clickExpertDietitian()
 		#self.clickExpertPharmacist()
 		self.clickExpertGym()
+		#self.search()
 
 	def clickExpertMedic(self):
 		self.hp.goBackToHomePage()
@@ -153,10 +154,12 @@ class scriptExpertAnswer():
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
-		
+		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
+		self.ec.enterSelectByTextviewText("1", "關鍵字搜尋")
+		self.driver.keyevent("66")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
-
+		sleep(5)
 
 """
 		self.hp.goBackToHomePage()
