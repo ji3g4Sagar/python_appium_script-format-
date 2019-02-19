@@ -28,7 +28,7 @@ class scriptSetting():
 	def starter(self):
 		#self.urgentCard()
 		#self.editIll()
-		self.addEmergencyPerson()
+		self.editEmergencyPerson()
 
 		
 	def urgentCard(self):
@@ -179,21 +179,29 @@ class scriptSetting():
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_back")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.driver.keyevent("4")
-	def addEmergencyPerson(self):
+	def editEmergencyPerson(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",4)
 		sleep(1)
+		self.ck.clickByString("急難卡設定")
 		self.ft.findTextInWholePage("＋新增緊急聯絡人")
+		sleep(1)
 		self.ck.clickByString("＋新增緊急聯絡人")
-		self.ft.findTextInWholePage("＋新增緊急聯絡人")
+		self.ft.findTextInWholePage("緊急聯絡人")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_name")
 		self.ft.findTextInWholePage("關係")
 		self.ck.clickByString("聯絡人")
-		self.gt.search4Toast("新增完成")
+		sleep(1)
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/tv_emergency_contact_edit")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_emergency_contact_edit")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_delete")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_delete")
+		sleep(1)
+		self.ck.clickByString("瀏覽")
 
-
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+		sleep(5)	
 
 """
 		self.hp.goBackToHomePage()
