@@ -239,7 +239,7 @@ class scriptSetting():
 		#targetName.send_keys(newName)
 
 		#self.ec.enter(newName, self.apkVersionIdName+"/et_name")
-		# 寫到更改姓名
+		# 寫到更改姓名 
 
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
