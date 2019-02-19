@@ -4,6 +4,8 @@
 from appium import webdriver
 import os
 
+
+
 class Config():
 	def __init__(self, apkName="qaExternalWaCare-v1.0.4.1.6.apk", desired_caps_outer={}, port ="4723"):
 		if (len(desired_caps_outer)==0):

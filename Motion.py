@@ -233,11 +233,15 @@ class findSpecificText():
 	def findTextInWholePage(self, targetText):
 		targetFind = False
 		swipeDown = False
+		swipeTime = 0
 		sp = swipePage(self.driver)
 		while(targetFind!=True):
-			if(swipeDown==True):
+			if(swipeTime ==3):
 				targetFind = True
-				sp.swipeDown()
+				sp.swipeDown(n=3)
+			elif(swipeDown==True):
+				swipeDown = Flase
+				swipeTime = swipeTime + 1
 			elif(self.findText(targetText, mode = 1)):
 				targetFind = True
 			else:
@@ -247,11 +251,15 @@ class findSpecificText():
 	def findItemByIdInWholePage(self, sourde_id):
 		targetFind = False
 		swipeDown = False
+		swipeTime = 0
 		sp = swipePage(self.driver)
 		while(targetFind!=True):
-			if(swipeDown==True):
-				targetFind = True
-				sp.swipeDown()
+			if(swipeTime == 3):
+				targetFind=True
+				sp.swipeDown(n=3)
+			elif(swipeDown==True):
+				swipeDown = False
+				swipeTime = swipeTime + 1
 			elif(self.findSpecificItemByResourceID(sourde_id, mode = 1)):
 				targetFind=True
 			else:

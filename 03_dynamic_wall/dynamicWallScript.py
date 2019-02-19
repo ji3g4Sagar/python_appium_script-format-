@@ -4,9 +4,11 @@
 import sys
 sys.path.append("..")
 from Motion import swipePage, enterContext, click, waittingFor, findSpecificText, getXYLocation, homePage
+#from logging import Log
 from time import sleep
 from appium.webdriver import Remote #for keyevent
 import random
+
 
 class script():
 	def __init__(self, driver, apkVersionIdName):
@@ -20,6 +22,7 @@ class script():
 		self.testCountName ="test999" #想辦法改成自動去取得該次測試帳號的使用者名稱
 		self.apkVersionIdName = apkVersionIdName
 		self.hp = homePage(driver, apkVersionIdName)
+		self.log = Log()
 	def starter(self):
 		#self.checkForDynamicWall()
 		#self.swipeAroundInDynamicWall()

@@ -118,7 +118,6 @@ class scriptExpertAnswer():
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
-
 	def clickExpertGym(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
@@ -150,6 +149,12 @@ class scriptExpertAnswer():
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
+	def search(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
+		
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
 
 
