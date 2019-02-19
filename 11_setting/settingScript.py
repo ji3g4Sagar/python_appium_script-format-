@@ -28,7 +28,8 @@ class scriptSetting():
 	def starter(self):
 		#self.urgentCard()
 		#self.editIll()
-		self.editEmergencyPerson()
+		#self.editEmergencyPerson()
+		self.helthInfo()
 
 		
 	def urgentCard(self):
@@ -198,10 +199,30 @@ class scriptSetting():
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_delete")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_delete")
 		sleep(1)
+		self.ft.findTextInWholePage("瀏覽")
 		self.ck.clickByString("瀏覽")
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)	
+	def helthInfo(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/home_tab_icon",4)
+		self.ft.findTextInWholePage("健康資訊")
+		self.ck.clickByString("健康資訊")
+		self.ft.findTextInWholePage("個人資訊")
+		self.ck.clickByString("個人資訊")
+		self.ft.findTextInWholePage("基本資料")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_edit")
+		sleep(1)
+		self.ck.clickByString("編輯")
+		self.ft.findTextInWholePage("相簿")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/order")
+		self.ck.clickByString("確認")
+
+
+
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
 """
 		self.hp.goBackToHomePage()
