@@ -231,6 +231,7 @@ class findSpecificText():
 				else:
 					return True
 	def findTextInWholePage(self, targetText):
+		sleep(1)
 		targetFind = False
 		swipeDown = False
 		swipeTime = 0
