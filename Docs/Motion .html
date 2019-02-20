@@ -1,0 +1,695 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>documentation for “Motion” &#8212; appium  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="documentation for “Hello”" href="Hello.html" />
+    <link rel="prev" title="Welcome to appium’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="documentation-for-motion">
+<h1>documentation for “Motion”<a class="headerlink" href="#documentation-for-motion" title="Permalink to this headline">¶</a></h1>
+<p>This is something I want to say that is not in the docstring.</p>
+<span class="target" id="module-Motion"></span><span class="target" id="module-Motion"></span><dl class="class">
+<dt id="Motion.swipePage">
+<em class="property">class </em><code class="descclassname">Motion.</code><code class="descname">swipePage</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.swipePage" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Motion.swipePage.swipeDown">
+<code class="descname">swipeDown</code><span class="sig-paren">(</span><em>t=400</em>, <em>n=1</em>, <em>xStart=0.5</em>, <em>yStart=0.3</em>, <em>yEnd=0.75</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.swipePage.swipeDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>這個函數會模擬手指向下滑動的操作</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>t <strong>(int)</strong> :預設值為400ms, 用來決定這個滑動所花費的時間</li>
+<li>n <strong>(int)</strong> :預設值為1, 用來決定這個滑動的次數</li>
+<li>xStart <strong>(int)</strong> :預設值為0.5, 表示起始滑動點為Ｘ軸的一半（0.5), 範圍為0.1 ~ 1</li>
+<li>yStart <strong>(int)</strong> :預設值為0.3, 表示起始滑動點為Y軸的0.75處開始, 範圍為0.1 ~ 1</li>
+<li>yEnd <strong>(int)</strong> :預設值為0.75, 滑動結束點為Ｙ軸的0.3處, 範圍為0.1 ~ 1</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>回傳值: </dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">swipeDown</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.swipePage.swipeLeft">
+<code class="descname">swipeLeft</code><span class="sig-paren">(</span><em>t=400</em>, <em>n=1</em>, <em>yStart=0.5</em>, <em>xStart=0.8</em>, <em>xEnd=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.swipePage.swipeLeft" title="Permalink to this definition">¶</a></dt>
+<dd><p>這個函數會模擬手指向下滑動的操作</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>t <strong>(int)</strong> :預設值為400ms, 用來決定這個滑動所花費的時間</li>
+<li>n <strong>(int)</strong> :預設值為1, 用來決定這個滑動的次數</li>
+<li>yStart <strong>(int)</strong> :預設值為0.5, 表示起始滑動點為Y軸的0.5處開始, 範圍為0.1 ~ 1</li>
+<li>xStart <strong>(int)</strong> :預設值為0.8, 表示起始滑動點為Ｘ軸的0.8處, 範圍為0.1 ~ 1</li>
+<li>xEnd <strong>(int)</strong> :預設值為0.05, 滑動結束點為X軸的0.05處, 範圍為0.1 ~ 1</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值:</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">swipeLeft</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.swipePage.swipeRight">
+<code class="descname">swipeRight</code><span class="sig-paren">(</span><em>t=400</em>, <em>n=1</em>, <em>yStart=0.5</em>, <em>xStart=0.1</em>, <em>xEnd=0.75</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.swipePage.swipeRight" title="Permalink to this definition">¶</a></dt>
+<dd><p>這個函數會模擬手指向下滑動的操作</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>t <strong>(int)</strong> :預設值為400ms, 用來決定這個滑動所花費的時間</li>
+<li>n <strong>(int)</strong> :預設值為1, 用來決定這個滑動的次數</li>
+<li>yStart <strong>(int)</strong> :預設值為0.5, 表示起始滑動為Ｙ軸的0,5處開始, 範圍為0.1 ~ 1</li>
+<li>xStart <strong>(int)</strong> :預設值為0.1, 表示起始滑動為Ｘ軸的0.1處開始, 範圍為0.1 ~ 1</li>
+<li>xEnd <strong>(int)</strong> :預設值為0.75, 表示滑動結束為Ｘ軸的0.75處, 範圍為0.1 ~ 1</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">swipeRight</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.swipePage.swipeUp">
+<code class="descname">swipeUp</code><span class="sig-paren">(</span><em>t=400</em>, <em>n=1</em>, <em>xStart=0.5</em>, <em>yStart=0.75</em>, <em>yEnd=0.3</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.swipePage.swipeUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>這個函數會模擬手指向下滑動的操作</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>t <strong>(int)</strong> :預設值為400ms, 用來決定這個滑動所花費的時間</li>
+<li>n <strong>(int)</strong> :預設值為1, 用來決定這個滑動的次數</li>
+<li>xStart <strong>(int)</strong> :預設值為0.5, 表示起始滑動點為Ｘ軸的一半（0.5), 範圍為0.1 ~ 1</li>
+<li>yStart <strong>(int)</strong> :預設值為0.75, 表示起始滑動點為Y軸的0.75處開始, 範圍為0.1 ~ 1</li>
+<li>yEnd <strong>(int)</strong> :預設值為0.3, 滑動結束點為Ｙ軸的0.3處, 範圍為0.1 ~ 1</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值: </dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">swipeUp</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Motion.enterContext">
+<em class="property">class </em><code class="descclassname">Motion.</code><code class="descname">enterContext</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.enterContext" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Motion.enterContext.enter">
+<code class="descname">enter</code><span class="sig-paren">(</span><em>context</em>, <em>resource_id</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.enterContext.enter" title="Permalink to this definition">¶</a></dt>
+<dd><p>這個函數會依據傳入的元件id以及字串，將字串輸入指定的元件中</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>context <strong>(str)</strong> :要輸入的文字內容</li>
+<li>resource_id <strong>(str)</strong> : 要選擇做輸入的元素id</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值: </dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">enter</span><span class="p">(</span><span class="s2">&quot;我是要輸入的文字&quot;</span><span class="p">,</span> <span class="s2">&quot;我是元素id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.enterContext.enterSelectByTextviewText">
+<code class="descname">enterSelectByTextviewText</code><span class="sig-paren">(</span><em>context</em>, <em>textviewText</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.enterContext.enterSelectByTextviewText" title="Permalink to this definition">¶</a></dt>
+<dd><p>利用Textview上預設顯示的文字當作為選擇依據,選擇到元件做輸入</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>context <strong>(str)</strong> :要輸入的文字內容</li>
+<li>textviewText <strong>(str)</strong> :Textview預設的文字內容</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">enterSelectByTextviewText</span><span class="p">(</span><span class="s2">&quot;我是要輸入的文字&quot;</span><span class="p">,</span> <span class="s2">&quot;我是Textview上預設文字&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Motion.click">
+<em class="property">class </em><code class="descclassname">Motion.</code><code class="descname">click</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.click" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Motion.click.clickByResourceID">
+<code class="descname">clickByResourceID</code><span class="sig-paren">(</span><em>resource_id</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.click.clickByResourceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>利用手機元件的id來點擊特定元件</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args: </dt>
+<dd><ol class="first last arabic">
+<li>resource_id <strong>(str)</strong> : 要被點擊的元件id</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clickByResourceID</span><span class="p">(</span><span class="s2">&quot;要點擊的元件id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.click.clickByString">
+<code class="descname">clickByString</code><span class="sig-paren">(</span><em>targetString</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.click.clickByString" title="Permalink to this definition">¶</a></dt>
+<dd><p>點擊含有特定文字的元件</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>targetString <strong>(str)</strong> : 被點擊的元件上所包含的文字內容</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clickByString</span><span class="p">(</span><span class="s2">&quot;要點擊的元件上含有的文字&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.click.clickFromManyThingsByResourceID">
+<code class="descname">clickFromManyThingsByResourceID</code><span class="sig-paren">(</span><em>resources_id</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.click.clickFromManyThingsByResourceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>點擊多個相同元件id中, 特定索引的元件</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args: </dt>
+<dd><ol class="first last arabic">
+<li>resources_id <strong>(str)</strong> : 要被點擊的元件id</li>
+<li>index <strong>(int)</strong> : 被點擊的元件索引, 索引值從0開始</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clickFromManyThingsByResourceID</span><span class="p">(</span><span class="s2">&quot;要點擊的元件id&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Motion.waittingFor">
+<em class="property">class </em><code class="descclassname">Motion.</code><code class="descname">waittingFor</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.waittingFor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Motion.waittingFor.explicitWaitByResourceID">
+<code class="descname">explicitWaitByResourceID</code><span class="sig-paren">(</span><em>resource_id</em>, <em>index=-1</em>, <em>time=30</em>, <em>freuency=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.waittingFor.explicitWaitByResourceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>讓程式暫停，等待畫面上特定元件出現</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic simple">
+<li>resource_id <strong>(int)</strong> : 要等待的特定元件id</li>
+<li><dl class="first docutils">
+<dt>index <strong>(int)</strong> <span class="classifier-delimiter">:</span> <span class="classifier">函數的模式設定，預設為-1</span></dt>
+<dd><ul class="first last">
+<li>-1：表示要等待的元件id為唯一</li>
+<li>其他任意數字表示要等待的元件id有多個元件相同，數字表示要等待的元素索引值</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>time <strong>(int)</strong> : 等待的時間，單位為秒，預設為30秒</li>
+<li>frequncy <strong>(int)</strong> : 檢查特定元素是否存在的頻率，單位為秒，預設為1秒</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd><p class="first">True: 有找到目標元件</p>
+<p class="last">False: 找尋時間超時，無法尋找到指定元件</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">explicitWaitByResourceID</span><span class="p">(</span><span class="s2">&quot;要等待的元件ID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.waittingFor.implicitWait">
+<code class="descname">implicitWait</code><span class="sig-paren">(</span><em>time=5</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.waittingFor.implicitWait" title="Permalink to this definition">¶</a></dt>
+<dd><p>讓程式暫停，等待特定時間</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>time <strong>(int)</strong> : 等待的時間,以秒為單位,預設為5秒</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值： </dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">implicitWait</span><span class="p">()</span>                      
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Motion.getToast">
+<em class="property">class </em><code class="descclassname">Motion.</code><code class="descname">getToast</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.getToast" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Motion.getToast.search4Toast">
+<code class="descname">search4Toast</code><span class="sig-paren">(</span><em>toastMessage</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.getToast.search4Toast" title="Permalink to this definition">¶</a></dt>
+<dd><p>找尋特定文字的Toast訊息</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args: </dt>
+<dd><ol class="first last arabic">
+<li>toastMessage <strong>(str)</strong> : 要找尋的Toast顯示的文字內容</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">search4Tost</span><span class="p">(</span><span class="s2">&quot;Toast的訊息&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Motion.findSpecificText">
+<em class="property">class </em><code class="descclassname">Motion.</code><code class="descname">findSpecificText</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.findSpecificText" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Motion.findSpecificText.findItemByIdInWholePage">
+<code class="descname">findItemByIdInWholePage</code><span class="sig-paren">(</span><em>sourde_id</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.findSpecificText.findItemByIdInWholePage" title="Permalink to this definition">¶</a></dt>
+<dd><p>在整個頁面中找尋含有特定元件id的元件</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args：</dt>
+<dd><ol class="first last arabic">
+<li>sourde_id <strong>(str)</strong> :要找尋的元件的id</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span>    <span class="n">findItemByIdInWholePage</span><span class="p">(</span><span class="s2">&quot;要找尋的元件的id&quot;</span><span class="p">)</span>    
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.findSpecificText.findSpecificItemByResourceID">
+<code class="descname">findSpecificItemByResourceID</code><span class="sig-paren">(</span><em>targetID</em>, <em>mode=0</em>, <em>index=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.findSpecificText.findSpecificItemByResourceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>利用元件id找尋特定物件</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ol class="first last arabic">
+<li>targetId <strong>(str)</strong> :要找尋的目標物件id</li>
+<li><dl class="first docutils">
+<dt>mode <strong>(int)</strong> :決定這個函數的回傳值，預設為0</dt>
+<dd><ul class="first last">
+<li>0：回傳值為找尋到的元件driver物件</li>
+<li>1：回傳值為True/False</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>index <strong>(int)</strong> :用以表示找尋的物件是否唯一，預設為-1</dt>
+<dd><ul class="first last">
+<li>-1：要等待的元件id為唯一</li>
+<li>其他任意數字表示要等待的元件id有多個相同元件, 數字表示要找尋的元素索引值</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>driver物件 或 True/False</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">findSpecificItemByResourceID</span><span class="p">(</span><span class="s2">&quot;要找尋的元件id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.findSpecificText.findText">
+<code class="descname">findText</code><span class="sig-paren">(</span><em>targetText</em>, <em>mode=0</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.findSpecificText.findText" title="Permalink to this definition">¶</a></dt>
+<dd><p>透過文字找尋特定元件是否存在</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>Args: </dt>
+<dd><ol class="first last arabic">
+<li><p class="first">targetText <strong>(str)</strong> : 所有找尋的文字內容</p>
+</li>
+<li><dl class="first docutils">
+<dt>mode <strong>(int)</strong> <span class="classifier-delimiter">:</span> <span class="classifier">用來決定這個函數的回傳值，預設為0</span></dt>
+<dd><ul class="first last">
+<li><p class="first">0：回傳值為找尋到的元件driver <strong>物件</strong></p>
+</li>
+<li><dl class="first docutils">
+<dt>1：</dt>
+<dd><p class="first">True：有找到指定元件</p>
+<p class="last">False：沒有找到指定元件</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值</dt>
+<dd><p class="first last">driver物件 或 True/False</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">findText</span><span class="p">(</span><span class="s2">&quot;被找尋的元件包含的文字&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Motion.findSpecificText.findTextInWholePage">
+<code class="descname">findTextInWholePage</code><span class="sig-paren">(</span><em>targetText</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.findSpecificText.findTextInWholePage" title="Permalink to this definition">¶</a></dt>
+<dd><p>在整個頁面中找尋含有特定文字的元件</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args：</dt>
+<dd><ol class="first last arabic">
+<li>targetText <strong>(str)</strong> :要找尋的元件包含的文字</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span>    <span class="n">findTextInWholePage</span><span class="p">(</span><span class="s2">&quot;要找尋的元件上的文字&quot;</span><span class="p">)</span>       
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Motion.getXYLocation">
+<em class="property">class </em><code class="descclassname">Motion.</code><code class="descname">getXYLocation</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.getXYLocation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Motion.getXYLocation.getXYByResourceID">
+<code class="descname">getXYByResourceID</code><span class="sig-paren">(</span><em>resource_id</em>, <em>index=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.getXYLocation.getXYByResourceID" title="Permalink to this definition">¶</a></dt>
+<dd><p>透過元件id取得特定的元件Ｘ、Ｙ座標</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Args：</dt>
+<dd><ol class="first last arabic">
+<li>resource_id <strong>(srt)</strong> :目標元件id</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>元件的座標</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getXYByResourceID</span><span class="p">(</span><span class="s2">&quot;元件id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Motion.homePage">
+<em class="property">class </em><code class="descclassname">Motion.</code><code class="descname">homePage</code><span class="sig-paren">(</span><em>driver</em>, <em>apkVersionIdName</em><span class="sig-paren">)</span><a class="headerlink" href="#Motion.homePage" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Motion.homePage.goBackToHomePage">
+<code class="descname">goBackToHomePage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Motion.homePage.goBackToHomePage" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>呼叫於每次操作前，返回動態牆畫面使用</dt>
+<dd><p class="first">1.檢查畫面最下方的home tab是否存在
+2.利用tap進到動態牆頁面
+3.檢查畫面中是否出現Notification元件,用以確認是否返回動態牆最上方</p>
+<ul class="last simple">
+<li><dl class="first docutils">
+<dt>Args：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>回傳值：</dt>
+<dd>None.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">goBackToHomePage</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">appium</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">documentation for “Motion”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hello.html">documentation for “Hello”</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to appium’s documentation!</a></li>
+      <li>Next: <a href="Hello.html" title="next chapter">documentation for “Hello”</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, sagar.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Motion.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
