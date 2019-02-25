@@ -22,7 +22,7 @@ class script():
 		self.testCountName ="test999" #想辦法改成自動去取得該次測試帳號的使用者名稱
 		self.apkVersionIdName = apkVersionIdName
 		self.hp = homePage(driver, apkVersionIdName)
-		self.log = Log()
+		#self.log = Log()
 	def starter(self):
 		#self.checkForDynamicWall()
 		#self.swipeAroundInDynamicWall()
