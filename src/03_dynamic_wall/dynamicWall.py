@@ -15,7 +15,7 @@ from apkVersionAndCellConfig import Config
 class WaCareTest(unittest.TestCase):
 	def setUp(self):
 		#configfile = Config(apkName = "proWaCare-v1.0.1.4.apk")# For 正式站
-		configfile = Config(apkName = "qaExternalWaPro-0.0.5.1.apk")
+		configfile = Config(apkName = "qaExternalWaCare-v1.0.6.0.6.apk")
 		self.driver = configfile.getDriver()
 		self.driver.implicitly_wait(10)#隱式等待
 		self.apkVersionIdName = configfile.getApkVersionIdName()
