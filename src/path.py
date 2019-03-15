@@ -1,2 +1,2 @@
-import sys
-print (sys.path)
+from appium import webdriver
+
