@@ -341,6 +341,7 @@ class findSpecificText():
 				driver物件 或 True/False
 		>>> findText("被找尋的元件包含的文字")
 		"""
+		sleep(1)
 		try:
 			message = '//*[@text=\'{}\']'.format(targetText)
 			target = self.driver.find_element_by_xpath(message)
@@ -398,6 +399,7 @@ class findSpecificText():
 				else:
 					return True
 	def findTextInWholePage(self, targetText):
+		sleep(1)
 		"""在整個頁面中找尋含有特定文字的元件 
 
 			* Args：
@@ -414,6 +416,7 @@ class findSpecificText():
 				targetFind = True
 			else:
 				sp.swipeUp()
+		sleep(1)
 
 	def findItemByIdInWholePage(self, sourde_id):
 		"""在整個頁面中找尋含有特定元件id的元件 
@@ -432,7 +435,8 @@ class findSpecificText():
 				targetFind=True
 				return self.findSpecificItemByResourceID(sourde_id)
 			else:
-				sp.swipeUp()				
+				sp.swipeUp()	
+		sleep(1)			
 class getXYLocation():
 	def __init__(self, driver):
 		try:

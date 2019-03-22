@@ -26,10 +26,11 @@ class scriptSetting():
 		self.ft = findSpecificText(driver)
 		self.apkVersionIdName = apkVersionIdName
 	def starter(self):
-		#self.urgentCard()
-		#self.editIll()
+		self.urgentCard()
+		self.editIll()
 		#self.editEmergencyPerson()
-		self.helthInfo()
+		#self.helthInfo()
+		self.clickExpertMedic()
 
 		
 	def urgentCard(self):
@@ -37,12 +38,14 @@ class scriptSetting():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",4)
 		sleep(1)
-		self.ck.clickByString("急難卡設定")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/sw_alert_forever")
+		self.ft.findTextInWholePage("急難卡")
+		self.ck.clickByString("急難卡")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/sw_alert_forever")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/sw_alert_forever") # 點擊switch 關閉通知
 		self.ck.clickByResourceID(self.apkVersionIdName+"/sw_alert_forever") # 點擊switch 開啟通知
-		self.wf.explicitWaitByResourceID("android:id/statusBarBackground") # 看通知是否有出現
+		#self.wf.explicitWaitByResourceID("android:id/statusBarBackground") # 看通知是否有出現
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
+		self.driver.keyevent("4")
 		sleep(3)
 
 	def editIll(self):
@@ -50,20 +53,21 @@ class scriptSetting():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",4)
 		sleep(1)
-		self.ck.clickByString("急難卡設定")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_check_detail")
+		self.ft.findTextInWholePage("急難卡")
+		self.ck.clickByString("急難卡")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_check_detail")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_health_status_edit")
 		self.ft.findTextInWholePage("疾病史")
 		self.ck.clickByString("取消")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_check_detail")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_check_detail")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_health_status_edit")
 		self.ft.findTextInWholePage("疾病史")
 		self.driver.keyevent("4")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_check_detail")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_check_detail")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_health_status_edit")
 		self.ft.findTextInWholePage("疾病史")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_back")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_check_detail")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_check_detail")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_health_status_edit")
 		self.ft.findTextInWholePage("疾病史")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",0)
@@ -79,7 +83,7 @@ class scriptSetting():
 		#家族疾病史測試
 		self.ft.findTextInWholePage("家族疾病史")
 		self.ck.clickByString("取消")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_check_detail")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_check_detail")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_health_status_edit")
 		self.ft.findTextInWholePage("疾病史")
 		self.ck.clickByString("下一步")
@@ -105,7 +109,7 @@ class scriptSetting():
 		#生活習慣測試
 		self.ft.findTextInWholePage("生活習慣")
 		self.ck.clickByString("取消")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_check_detail")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_check_detail")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_health_status_edit")
 		self.ft.findTextInWholePage("疾病史")
 		self.ck.clickByString("下一步")
@@ -124,7 +128,7 @@ class scriptSetting():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",1)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",2)
 		self.ck.clickByString("藥品")
-		self.ec.enterSelectByTextviewText("測試藥品名藥品名", "請輸入藥物名稱")
+		#self.ec.enterSelectByTextviewText("測試藥品名藥品名", "請輸入藥物名稱")
 		self.ck.clickByString("下一步")
 		#------------------------------------#
 		#精神情緒狀況測試
@@ -144,32 +148,31 @@ class scriptSetting():
 		self.ck.clickByString("失眠")
 		self.ck.clickByString("其他")
 		self.ck.clickByString("完成")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_check_detail")
-		self.ck.clickByResourceID(self.apkVersionIdName+"iv_back")
-
-
-
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
+		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_check_detail")
+		self.ft.findTextInWholePage("急難卡")
+		#self.ck.clickByResourceID(self.apkVersionIdName+"iv_back")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
+		self.driver.keyevent("4")	
 		sleep(3)
 	def clickExpertMedic(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/et_search_keyword")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/et_search_keyword")
 		self.ck.clickByString("醫護人員")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.ck.clickByString(" 快速搜尋 ")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_select_all")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_select_all")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_select_all")
 		sleep(2)
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_sex")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_sex")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/lin_content")#等待搜尋結果
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/lin_content")#等待搜尋結果
 		self.ck.clickByResourceID(self.apkVersionIdName+"/lav_favorite")
 		sleep(1)
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_expert_name")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_expert_subject")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_expert_subject")
 		self.ft.findTextInWholePage("性別")
 		self.ft.findTextInWholePage("關鍵字")
 		self.ft.findTextInWholePage("專長")
@@ -178,14 +181,15 @@ class scriptSetting():
 		self.ft.findTextInWholePage("經歷")
 		self.ft.findTextInWholePage("專家認證")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_back")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.driver.keyevent("4")
 	def editEmergencyPerson(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",4)
 		sleep(1)
-		self.ck.clickByString("急難卡設定")
+		self.ft.findTextInWholePage("急難卡")
+		self.ck.clickByString("急難卡")
 		self.ft.findTextInWholePage("＋新增緊急聯絡人")
 		sleep(1)
 		self.ck.clickByString("＋新增緊急聯絡人")
@@ -203,6 +207,7 @@ class scriptSetting():
 		self.ck.clickByString("瀏覽")
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+		self.driver.keyevent("4")
 		sleep(5)	
 	def helthInfo(self):
 		self.hp.goBackToHomePage()
