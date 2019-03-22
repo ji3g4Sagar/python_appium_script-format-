@@ -28,9 +28,9 @@ class scriptExpertAnswer():
 	def starter(self):
 		#self.clickExpert()
 		#self.clickExpertDietitian()
-		#self.clickExpertPharmacist()
+		self.clickExpertPharmacist()
 		self.clickExpertGym()
-		#self.search()
+		self.search()
 
 	def clickExpertMedic(self):
 		self.hp.goBackToHomePage()
@@ -98,7 +98,7 @@ class scriptExpertAnswer():
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.ck.clickByString(" 快速搜尋 ")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_sex")
-		self.ck.clickByString("中文(繁體)")
+		#self.ck.clickByString("中文(繁體)")
 		sleep(1)
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/lin_content")#等待搜尋結果
@@ -129,7 +129,7 @@ class scriptExpertAnswer():
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.ck.clickByString(" 快速搜尋 ")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_sex")
-		self.ck.clickByString("中文(繁體)")
+		#self.ck.clickByString("中文(繁體)")
 		sleep(1)
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
 		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/lin_content")#等待搜尋結果

@@ -23,7 +23,7 @@ class swipePage():
 			self.screenWidth = driver.get_window_size()['width']
 			self.screenHeight = driver.get_window_size()['height']
 		except:
-			prin("Swipe page init error!\n")
+			print("Swipe page init error!\n")
 
 	def swipeUp(self, t=400, n=1, xStart=0.5, yStart=0.75, yEnd=0.3):
 		"""這個函數會模擬手指向下滑動的操作
@@ -411,11 +411,16 @@ class findSpecificText():
 		"""
 		targetFind = False
 		sp = swipePage(self.driver)
+		time = 0 
 		while(targetFind!=True):
+			if(time == 3):
+				targetFind = True
+				sp.swipeDown(n=3)
 			if(self.findText(targetText, mode = 1)):
 				targetFind = True
 			else:
 				sp.swipeUp()
+				time = time +1
 		sleep(1)
 
 	def findItemByIdInWholePage(self, sourde_id):
