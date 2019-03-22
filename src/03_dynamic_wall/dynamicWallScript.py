@@ -19,23 +19,24 @@ class script():
 		self.wf = waittingFor(driver)
 		self.ft = findSpecificText(driver)
 		self.xy = getXYLocation(driver)
+		self.ft = findSpecificText(driver)
 		self.testCountName ="test999" #想辦法改成自動去取得該次測試帳號的使用者名稱
 		self.apkVersionIdName = apkVersionIdName
 		self.hp = homePage(driver, apkVersionIdName)
-		#self.log = Log()
+
 	def starter(self):
-		#self.checkForDynamicWall()
-		#self.swipeAroundInDynamicWall()
-		#self.hiFiveCheck()
+		self.checkForDynamicWall()
+		self.swipeAroundInDynamicWall()
+		self.hiFiveCheck()
 		#self.deleteFriendOfHiFive()
-		#self.checkForAlbum()
-		#self.leftMessageInAlbum()
+		self.checkForAlbum()
+		self.leftMessageInAlbum()
 		#self.deleteFriendOfAlbum()
-		#self.checkForEmotion()
+		self.checkForEmotion()
 		#self.deleteFriendOfEmotion()
-		#self.leftApp()
 		self.swipeAndClickSearch()
-		#self.todayMession()
+		#self.todayMession() #3/20發現有問題待修正 
+		self.leftApp()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -73,7 +74,8 @@ class script():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		findHiFive = False
 		while(findHiFive != True):
-			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/likeTime", time=2, freuency=0.5)):
+			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/likeTime", time=2, freuency=0.5)):
+			if(self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/likeTime")):
 				print(type(self))
 				self.ft.findText("為您擊掌")
 				findHiFive = True
@@ -97,13 +99,13 @@ class script():
 		T = target.find_element_by_id(self.apkVersionIdName + "/likeNickName")
 		nameOfFriendGoingToDelete = T.text
 		T.click()
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tvDelete")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/tvDelete")
 		self.ck.clickByString("刪除好友")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/alertTitle")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/alertTitle")
 		self.ck.clickByString("刪除")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/addFriend")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/addFriend")
 		if(self.ft.findText(nameOfFriendGoingToDelete, mode=1) == False):
 			print("Successuflly delete friend!! %s" % nameOfFriendGoingToDelete)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName + "/home_tab_icon", 0)
@@ -122,13 +124,14 @@ class script():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		findAlbum = False
 		while(findAlbum != True):
-			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/viewPagerImageView", time=2, freuency=0.5)):
+			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/viewPagerImageView", time=2, freuency=0.5)):
+			if(self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/viewPagerImageView")):
 				findAlbum = True
 			else:
 				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/viewPagerImageView"))
 				self.sp.swipeUp()		
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/titleNickName")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/titleNickName")
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
@@ -144,13 +147,13 @@ class script():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.checkForAlbum()
 		nameOfFriendGoingToDelete = self.driver.find_element_by_id(self.apkVersionIdName + "/homeAlbumName").text
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tvDelete")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/tvDelete")
 		self.ck.clickByString("刪除好友")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/alertTitle")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/alertTitle")
 		self.ck.clickByString("刪除")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/addFriend")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/addFriend")
 		if(self.ft.findText(nameOfFriendGoingToDelete, mode=1) == False):
 			print("Successuflly delete friend!! %s" % nameOfFriendGoingToDelete)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName + "/home_tab_icon", 0)
@@ -167,7 +170,7 @@ class script():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.checkForAlbum()
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/messageBoardTitleLayout")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/messageBoardTitleLayout")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/messageBoardTitleLayout")
 		message = str(random.randint(1,1000))+" test message!!!"
 		self.ec.enter(message, self.apkVersionIdName + "/albumContentEdText")
@@ -184,7 +187,8 @@ class script():
 		emotionClickTarget =self.driver
 		nameOfFriendGoingToDelete=""
 		while(findEmotion != True):
-			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/emotionFacePhoto", time=2, freuency=1)):
+			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/emotionFacePhoto", time=2, freuency=1)):
+			if(self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/emotionFacePhoto")):
 				targets = self.driver.find_elements_by_id(self.apkVersionIdName+"/emotionNickName")
 				for t in targets:
 					print(t.text)
@@ -200,19 +204,20 @@ class script():
 				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/emotionFacePhoto"))
 			if(findEmotion==False):
 				self.sp.swipeUp()
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
+		self.driver.keyevent("4")	
 		sleep(3)
 	def deleteFriendOfEmotion(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.checkForEmotion()
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
 		self.ck.clickByResourceID(self.apkVersionIdName + "/iv_ShareMainSetting")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/tvDelete")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/tvDelete")
 		self.ck.clickByString("刪除好友")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/alertTitle")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/alertTitle")
 		self.ck.clickByString("刪除")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/addFriend")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/addFriend")
 		if(self.ft.findText(nameOfFriendGoingToDelete, mode=1) == False):
 			print("Successuflly delete friend!! %s" % nameOfFriendGoingToDelete)
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
@@ -222,7 +227,7 @@ class script():
 		self.checkForEmotion()
 		self.driver.keyevent("4")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/emotionLayout4")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/emotionContentEdText")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/emotionContentEdText")
 		message = str(random.randint(1,1000)) + " message!!!"
 		self.ec.enter(message, self.apkVersionIdName+"/emotionContentEdText")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/sendEmotionMsg")
@@ -242,44 +247,45 @@ class script():
 		self.sp.swipeLeft()
 		self.sp.swipeLeft()
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/ll_homeResultArticleItem")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_homeRecommendType")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendType")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊文章出處
-		self.wf.explicitWaitByResourceID("android:id/title")
+		self.ft.findSpecificItemByResourceID("android:id/title")
 		self.driver.keyevent("4")
 		sleep(1)
 		self.driver.keyevent("4")
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView") #找尋有影片的文章
 		self.ck.clickByResourceID(self.apkVersionIdName+"/youtube_playerView")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊影片來源「查看出處」
 		sleep(1)
 		self.driver.keyevent("4")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/home_recommendBack") #找尋上一頁按鈕
+		self.driver.keyevent("4")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/home_recommendBack")
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+		self.driver.keyevent("4")
 		sleep(5)
 	def todayMession(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/linFollowedMission")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_toolbar")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_toolbar")
 		self.sp.swipeDown()
 		self.sp.swipeUp()
 		self.ck.clickByResourceID(self.apkVersionIdName+"/cb_mission")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tvMissionMemo")#等待任務頁面下方的memo出現
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tvMissionMemo")#等待任務頁面下方的memo出現
 		self.driver.keyevent("4")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/deco_history_progress")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/deco_history_progress")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/deco_history_progress")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/fra_scroll_body")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/fra_scroll_body")
 		self.driver.keyevent("4")
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName+"/tv_title")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_title")
 		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 
