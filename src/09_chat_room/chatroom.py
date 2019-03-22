@@ -11,7 +11,7 @@ from time import sleep
 
 class WaCareTest(unittest.TestCase):
 	def setUp(self):
-		configfile = Config(apkName = "qaExternalWaCare-v1.0.3.1.5.apk")
+		configfile = Config()
 		self.driver = configfile.getDriver()
 		sleep(5)
 		self.apkVersionIdName = configfile.getApkVersionIdName()
