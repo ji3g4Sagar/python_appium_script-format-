@@ -1,21 +1,20 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import sys 
-import os
+import sys
 import unittest
 from appium import webdriver
-from dynamicWallScript import script
+from testingScript import script
 from apkVersionAndCellConfig import Config
+from time import sleep
+from appium.webdriver import Remote #for keyevent
+import random
 
-#PATH = lambda p: os.path.abspath(
-#    os.path.join(os.path.dirname(__file__), p)
-#)
+
 
 class WaCareTest(unittest.TestCase):
 	def setUp(self):
-		#configfile = Config(apkName = "proWaCare-v1.0.1.4.apk")# For 正式站
-		configfile = Config()
+		configfile = Config(apkName="qaExternalWaCare-v1.0.6.0.6.apk")
 		self.driver = configfile.getDriver()
 		self.driver.implicitly_wait(10)#隱式等待
 		self.apkVersionIdName = configfile.getApkVersionIdName()

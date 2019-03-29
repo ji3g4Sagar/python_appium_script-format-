@@ -497,6 +497,14 @@ class homePage():
 			else:
 				self.sp.swipeDown()
 		print("Successuflly go back to dynaamic wall!!\n")
+class getContext():
+	def __init__(self, driver):
+		try:
+			self.driver = driver
+		except:
+			print("Init error!!\n")
+	def context(self):
+		return self.driver.page_source
 
 	   
 
