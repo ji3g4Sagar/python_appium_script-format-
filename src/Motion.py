@@ -472,6 +472,7 @@ class homePage():
 			self.wf = waittingFor(driver)
 			self.ck = click(driver)
 			self.sp = swipePage(driver)
+			self.ft = findSpecificText(driver)
 		except:
 			print("[checkForStartPage] Init error!\n")
 	def goBackToHomePage(self):
@@ -487,15 +488,17 @@ class homePage():
 				None.
 		>>> goBackToHomePage()
 		"""
-		self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/home_tab_icon")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+ "/home_tab_icon")
+		#self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/home_tab_icon")
 		target = self.driver.find_elements_by_id(self.apkVersionIdName+ "/home_tab_icon")
 		self.ck.tap(target[0])
 		findNotification = False
 		while (findNotification == False):
-			if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/home_notification", time=2, freuency=1)):
+			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/home_notification", time=2, freuency=1)):
+			if(self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/home_notification", mode =1)):
 				findNotification = True
 			else:
-				self.sp.swipeDown()
+				self.sp.swipeDown(n=3)
 		print("Successuflly go back to dynaamic wall!!\n")
 class getContext():
 	def __init__(self, driver):
