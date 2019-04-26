@@ -178,6 +178,7 @@ class script():
 		self.ft.findTextInWholePage(message)
 		self.driver.keyevent("4")
 		self.driver.keyevent("4")
+		self.driver.keyevent("4")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(3)
 	def checkForEmotion(self):
