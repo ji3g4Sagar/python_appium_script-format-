@@ -5,7 +5,7 @@ import sys
 import os
 import unittest
 from appium import webdriver
-from settingScript import *
+from settingScript import scriptSetting
 from apkVersionAndCellConfig import Config
 
 
@@ -13,7 +13,7 @@ class WaCareTest(unittest.TestCase):
 	def setUp(self):
 		configfile = Config()
 		self.driver = configfile.getDriver()
-		sleep(3)
+		self.driver.implicitly_wait(10)
 		self.apkVersionIdName = configfile.getApkVersionIdName()
 
 	def tearDown(self):
