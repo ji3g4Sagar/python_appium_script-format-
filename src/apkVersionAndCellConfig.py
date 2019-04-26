@@ -16,6 +16,7 @@ class Config():
 			desired_caps['automationName'] = 'uiautomator2'
 			#desired_caps['automationName'] = 'Espresso'
 			desired_caps['noReset'] = 'true'
+			desired_caps['noSign'] = 'true'
 			self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 		else:
 			self.apkName = apkName
