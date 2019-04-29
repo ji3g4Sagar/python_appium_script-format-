@@ -25,14 +25,15 @@ class script():
 		self.hp = homePage(driver, apkVersionIdName)
 
 	def starter(self):
-		self.checkForDynamicWall()
-		self.swipeAroundInDynamicWall()
-		self.hiFiveCheck()
+		#print("Activity!!!!! ", self.driver.current_activity)
+		#self.checkForDynamicWall()
+		#self.swipeAroundInDynamicWall()
+		#self.hiFiveCheck()
 		#self.deleteFriendOfHiFive()
-		self.checkForAlbum()
-		self.leftMessageInAlbum()
+		#self.checkForAlbum()
+		#self.leftMessageInAlbum()
 		#self.deleteFriendOfAlbum()
-		self.checkForEmotion()
+		#self.checkForEmotion()
 		#self.deleteFriendOfEmotion()
 		self.swipeAndClickSearch()
 		#self.todayMession() #3/20發現有問題待修正 
@@ -240,6 +241,7 @@ class script():
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("離開")
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 	def swipeAndClickSearch(self):
 		self.hp.goBackToHomePage()
@@ -260,18 +262,26 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView") #找尋有影片的文章
 		self.ck.clickByResourceID(self.apkVersionIdName+"/youtube_playerView")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊影片來源「查看出處」
-		sleep(1)
+		self.ft.findTextInWholePage("查看出處")
+		self.ck.clickByString("查看出處")
+		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
+		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊影片來源「查看出處」
+		sleep(3)
+		self.ft.findTextInWholePage("訂閱")
+		sleep(2)
 		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("查看出處")
+		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
 		self.driver.keyevent("4")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/home_recommendBack")
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+		#self.ck.clickByResourceID(self.apkVersionIdName+"/home_recommendBack")
 		self.driver.keyevent("4")
+		#self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
+		#self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/home_tab_icon")
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		sleep(5)
-	def todayMession(self):
+	def todayMession(self):  # 3/24列入無法測試項目，因為需要人工每日由其他帳號操錯，今日進度才有項目出現
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/linFollowedMission")
