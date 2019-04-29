@@ -24,6 +24,7 @@ class swipePage():
 			self.screenHeight = driver.get_window_size()['height']
 		except:
 			print("Swipe page init error!\n")
+			os._exit() 
 
 	def swipeUp(self, t=400, n=1, xStart=0.5, yStart=0.75, yEnd=0.3):
 		"""這個函數會模擬手指向下滑動的操作
@@ -49,6 +50,7 @@ class swipePage():
 				self.driver.swipe(x1, y1, x1, y2, t)
 		except():
 			print("SwipeUp error!!\n")
+			os._exit() 
 	def swipeDown(self, t=400, n=1, xStart=0.5, yStart=0.3, yEnd=0.75):
 		"""這個函數會模擬手指向下滑動的操作
 
@@ -71,6 +73,7 @@ class swipePage():
 				self.driver.swipe(x1, y1, x1, y2,t)
 		except:
 			print("SwipeDown error!!\n")
+			os._exit() 
 	def swipeLeft(self, t=400, n=1, yStart=0.5, xStart=0.8, xEnd=0.05):
 		"""這個函數會模擬手指向下滑動的操作
 
@@ -93,6 +96,7 @@ class swipePage():
 				self.driver.swipe(x1, y1, x2, y1, t)
 		except:
 			print("SwipeLeft error!!\n")
+			os._exit() 
 	def swipeRight(self, t=400, n=1, yStart=0.5, xStart=0.1, xEnd=0.75):
 		"""這個函數會模擬手指向下滑動的操作
 
@@ -115,12 +119,14 @@ class swipePage():
 				self.driver.swipe(x1, y1, x2, y1, t)    
 		except:
 			print("SwipeRight error!!\n")
+			os._exit() 
 class enterContext():
 	def __init__(self, driver):
 		try:
 			self.driver = driver
 		except:
 			print("EnterContext init error!!\n")
+			os._exit() 
 	def enter(self, context, resource_id):
 		"""這個函數會依據傳入的元件id以及字串，將字串輸入指定的元件中
 
@@ -137,6 +143,7 @@ class enterContext():
 			testfiled = self.driver.find_element_by_id(resource_id)
 		except:
 			print("[Enter string]Can not find the target %s" % resource_id)
+			os._exit() 
 		else:
 			testfiled.set_text(context)
 
@@ -156,6 +163,7 @@ class enterContext():
 			target = self.driver.find_element_by_xpath(message)
 		except:
 			print("[enterSelectByTextviewText] Selecting target  %s can not be locate!" % textviewText)
+			os._exit() 
 		else:
 			target.send_keys(context)		
 class click():
@@ -164,6 +172,7 @@ class click():
 			self.driver = driver
 		except:
 			print("Click init error!!\n")
+			os._exit() 
 
 	def clickByResourceID(self, resource_id):
 		"""利用手機元件的id來點擊特定元件
@@ -179,6 +188,7 @@ class click():
 			target = self.driver.find_element_by_id(resource_id)
 		except:
 			print("[click]Can not find the target %s " % resource_id)
+			os._exit() 
 		else:
 			target.click()
 	
@@ -197,6 +207,7 @@ class click():
 			target = self.driver.find_element_by_xpath(string)
 		except:
 			print("[click]Can not find the target %s " % targetString)
+			os._exit() 
 		else:
 			target.click()
 
@@ -215,6 +226,7 @@ class click():
 			targets = self.driver.find_elements_by_id(resources_id)
 		except:
 			print("[clickFromManyThings]Cant not find the target %s" % resources_id)
+			os._exit() 
 		else:
 			targets[index].click()
 
@@ -322,6 +334,7 @@ class getToast():
 			print("Toast does not exist!!!" )
 		else:
 			print("FInd toast!!!!")
+			os._exit() 
 class findSpecificText():
 	def __init__(self, driver):
 		self.driver = driver
