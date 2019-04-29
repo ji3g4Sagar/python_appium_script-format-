@@ -25,18 +25,12 @@ class script():
 		self.hp = homePage(driver, apkVersionIdName)
 
 	def starter(self):
-		#print("Activity!!!!! ", self.driver.current_activity)
-		#self.checkForDynamicWall()
-		#self.swipeAroundInDynamicWall()
-		#self.hiFiveCheck()
-		#self.deleteFriendOfHiFive()
-		#self.checkForAlbum()
-		#self.leftMessageInAlbum()
-		#self.deleteFriendOfAlbum()
-		#self.checkForEmotion()
-		#self.deleteFriendOfEmotion()
+		self.checkForDynamicWall()
+		self.swipeAroundInDynamicWall()
+		self.hiFiveCheck()
+		self.leftMessageInAlbum()
+		self.checkForEmotion()
 		self.swipeAndClickSearch()
-		#self.todayMession() #3/20發現有問題待修正 
 		self.leftApp()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
