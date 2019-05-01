@@ -118,7 +118,7 @@ def auto_login():
  image.show()
  result = pytesseract.image_to_string(image)
  # 畢竟提供的庫識別能力有限，不一定能完整得到結果，需要對結果進行篩選
- result = re.sub('[a-zA-Z’!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result.replace(' ', ''), re.S)
+ result = re.sub('[a-zA-Z]’!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result.replace(' ', ''), re.S)
  print(result)
  # 判斷識別是否成功
  if len(result) == 4:

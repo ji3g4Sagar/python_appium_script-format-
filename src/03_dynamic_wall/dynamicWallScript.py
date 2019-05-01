@@ -38,6 +38,7 @@ class script():
 			1.利用self.hp.goBackToHomePage()返回動態牆
 			2.印出動態牆上出現的文字
 		"""
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_bankLoginRefresh")
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		print("Check for default announcement.....")

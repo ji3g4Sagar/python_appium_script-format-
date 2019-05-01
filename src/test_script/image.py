@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import re
 from PIL import Image
 import cv2
 import numpy as np
@@ -8,8 +9,8 @@ import pytesseract
 
 
 def handle_verification_code(self, img):
-	img1 = self.inverse_color(img, (0, 160))
-	img2 = self.clear_noise(img1)
+	img1 = inverse_color(img, (0, 160))
+	img2 = clear_noise(img1)
 	return img2
 def inverse_color(self, image, col_range):
 	# 讀取圖片，0意味著圖片變為灰度圖
@@ -96,6 +97,7 @@ if __name__ == '__main__':
 	# 對處理後的驗證碼圖片進行識別
 	image = Image.open('handle_two.png')
 	result = pytesseract.image_to_string(image)
+	print(result)
 	# 畢竟提供的庫識別能力有限，不一定能完整得到結果，需要對結果進行篩選
 	result = re.sub('[a-zA-Z’!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result.replace(' ', ''), re.S)
 	print(result)

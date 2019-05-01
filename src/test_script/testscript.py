@@ -7,9 +7,10 @@ import cv2
 import numpy as np
 import pytesseract
 sys.path.append("..")
-from Motion import swipePage, enterContext, click, waittingFor, findSpecificText, getXYLocation, homePage
+from Motion import *
 #from logging import Log
 from time import sleep
+import time
 from appium.webdriver import Remote #for keyevent
 import random
 
@@ -27,6 +28,7 @@ class script():
 		self.ft = findSpecificText(driver)
 		self.apkVersionIdName = apkVersionIdName
 		self.hp = homePage(driver, apkVersionIdName)
+		self.gt = getToast(driver)
 
 	def starter(self):
 		self.tester()
@@ -46,9 +48,58 @@ class script():
 		self.ec.enter("6191", self.apkVersionIdName+"/et_healthIdMiddleNumber")
 		self.ec.enter("5732", self.apkVersionIdName+"/et_healthIdEndNumber")
 		self.ec.enter("ji3g4wj6", self.apkVersionIdName+"/et_healthIdPassword")
+		sleep(10)
 		self.driver.get_screenshot_as_file("screenImg.png")
+		result = self.imgageToString()
+		getverification = false
+		while(getverification != True):
+			print("Resutl under while: "+result)
+			if(len(result) != 3):
+				self.ck.clickByResourceID(self.apkVersionIdName+"/iv_bankLoginRefresh")
+				sleep(10)
+				result = self.imgageToString()
+				print("Resutl in if: "+ result)
+			else:
+				self.ec.enter(result, self.apkVersionIdName+"/et_loginBankCaptcha")
+				self.ck.clickByResourceID(self.apkVersionIdName+"/tv_loginBankDownload")
+				if(self.gt.search4Toast("檔案將於數分鐘後自動完成下載並通知您，請確保網路連線", mode=True)):
+					getverification = True
+		self.ft.findTextInWholePage("健康存摺")
+		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("設定")
+		self.driver.keyevent("4")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/home_notification")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/home_notification")
+		self.ft.findTextInWholePage("通知")
+		findDownloadsuccess = False
+		date = time.strftime("%m/%d %H", time.localtime())
+		limitStartTime = time.strftime("%M", time.localtime())
+		while(findDownloadsuccess!=True):
+			limitEndTime = time.strftime("%M", time.localtime())
+			if(int(limitEndTime) - int(limitStartTime)>5):
+				print("Time out!!")
+				os._exit()
+			if (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
+				print("Download failed!!")
+				os._exit() 
+			if(self.ft.findText("健康存摺下載完成", mode=1)):
+				targetXpath = '//*[@text=\'健康存摺下載完成\']/preceding-sibling::android.widget.TextView'
+				target = self.driver.find_element_by_xpath(targetXpath)
+				timeStampObj = target.find_element_by_id(self.apkVersionIdName + "/tv_notifyTime")
+				downloadTime = timeStampObj.text
+				if(date in downloadTime):
+					print("Successfully download!")
+					findDownloadsuccess = True
+				else:
+					self.sp.swipeUp()
+					sleep(10)				
+
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+
+	def imgageToString(self):
 		photo = Image.open('screenImg.png')
- 		box = (45, 1102, 439, 1236)
+		box = (30, 1110, 429, 1260)
 		photo.crop(box).save('Verification.png')
 		Image.open('Verification.png').show()
 		# 對驗證碼進行灰度，二值化處理，而後降噪處理
@@ -56,16 +107,14 @@ class script():
 		#self.handle_verification_code(newphoto)
 		# 對處理後的驗證碼圖片進行識別
 		image = Image.open('handle_two.png')
-		result = pytesseract.image_to_string(image)
- 		# 畢竟提供的庫識別能力有限，不一定能完整得到結果，需要對結果進行篩選
- 		result = re.sub('[a-zA-Z’!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result.replace(' ', ''), re.S)
- 		print(result)
-
- 		sleep(10)
-
+		result = pytesseract.image_to_string(image, config='-psm 6')
+		print(result)
+		# 畢竟提供的庫識別能力有限，不一定能完整得到結果，需要對結果進行篩選
+		#result = re.sub('[a-zA-Z’!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result.replace(' ', ''), re.S)
+		result = re.sub('[!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result)
+		print(result)
+		return result
 		
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
-
 	def handle_verification_code(self, img):
 		img1 = self.inverse_color(img, (0, 160))
 		img2 = self.clear_noise(img1)
@@ -74,7 +123,7 @@ class script():
 		# 讀取圖片，0意味著圖片變為灰度圖
 		image = cv2.imread(image, 0)
 		# 圖片二值化，100為設定閥值，255為最大閥值，1為閥值型別，當前點值大於閥值，設定為0，否則設定為255。ret是return value縮寫，代表當前的閥值
-		ret, image = cv2.threshold(image, 110, 255, 1)
+		ret, image = cv2.threshold(image, 100, 255, 1)
 		# 圖片的高度和寬度
 		height, width = image.shape
 		print(height, width)
@@ -202,6 +251,7 @@ class script():
 		#fp = open("log.txt", "a")
 		#fp.write(str(logs))
 		#print(logs)
+
 
 
 

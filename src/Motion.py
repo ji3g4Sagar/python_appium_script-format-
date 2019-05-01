@@ -315,7 +315,7 @@ class getToast():
 	def __init__(self, driver):
 		self.driver = driver
 
-	def search4Toast(self, toastMessage):
+	def search4Toast(self, toastMessage, mode = False):
 		"""找尋特定文字的Toast訊息
 
 			* Args: 
@@ -332,9 +332,12 @@ class getToast():
 			element = wait.until(EC.invisibility_of_element_located(target))
 		except:
 			print("Toast does not exist!!!" )
+			if(mode):	
+				return True	
 		else:
 			print("FInd toast!!!!")
-			os._exit() 
+			if(mode):
+				return False
 class findSpecificText():
 	def __init__(self, driver):
 		self.driver = driver
