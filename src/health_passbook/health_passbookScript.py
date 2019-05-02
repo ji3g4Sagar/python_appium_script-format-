@@ -85,10 +85,10 @@ class script():
 			limitEndTime = time.strftime("%M", time.localtime())
 			if(int(limitEndTime) - int(limitStartTime)>5):
 				print("Time out!!")
-				os._exit()
+				exit()
 			if (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
 				print("Download failed!!")
-				os._exit() 
+				sys.exit() 
 			if(self.ft.findText("健康存摺下載完成", mode=1)):
 				targetXpath = '//*[@text=\'健康存摺下載完成\']/preceding-sibling::android.widget.TextView'
 				target = self.driver.find_element_by_xpath(targetXpath)
