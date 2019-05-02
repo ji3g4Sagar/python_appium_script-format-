@@ -96,6 +96,7 @@ class script():
 				downloadTime = timeStampObj.text
 				if(date in downloadTime):
 					print("Successfully download!")
+					os._exit()
 					findDownloadsuccess = True
 				else:
 					self.sp.swipeUp()
