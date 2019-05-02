@@ -109,7 +109,7 @@ class script():
 		photo = Image.open('screenImg.png')
 		box = (30, 1110, 429, 1260)
 		photo.crop(box).save('Verification.png')
-		Image.open('Verification.png').show()
+		#Image.open('Verification.png').show()
 		# 對驗證碼進行灰度，二值化處理，而後降噪處理
 		self.handle_verification_code('Verification.png')
 		#self.handle_verification_code(newphoto)
@@ -161,7 +161,7 @@ class script():
 		img = np.array(img)
 		cv2.imwrite('handle_two.png', img)
 		img = Image.open('handle_two.png')
-		img.show()
+		#img.show()
 		return img
 	def sum_9_region(self, img, x, y):
 		"""
