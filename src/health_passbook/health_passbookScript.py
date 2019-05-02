@@ -84,19 +84,18 @@ class script():
 		while(findDownloadsuccess!=True):
 			limitEndTime = time.strftime("%M", time.localtime())
 			if(int(limitEndTime) - int(limitStartTime)>5):
-				print("Time out!!")
+				print("[FAIL]-Time out!!")
 				exit()
 			if (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
-				print("Download failed!!")
-				sys.exit(0) 
+				print("[FAIL]-Download failed!!")
+				sys.exit() 
 			if(self.ft.findText("健康存摺下載完成", mode=1)):
 				targetXpath = '//*[@text=\'健康存摺下載完成\']/preceding-sibling::android.widget.TextView'
 				target = self.driver.find_element_by_xpath(targetXpath)
 				timeStampObj = target.find_element_by_id(self.apkVersionIdName + "/tv_notifyTime")
 				downloadTime = timeStampObj.text
 				if(date in downloadTime):
-					print("Successfully download!")
-					sys.exit(0)
+					print("[PASS]-Successfully download!")
 					findDownloadsuccess = True
 				else:
 					self.sp.swipeUp()
