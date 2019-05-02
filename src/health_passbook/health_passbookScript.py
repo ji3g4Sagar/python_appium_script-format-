@@ -88,7 +88,7 @@ class script():
 				exit()
 			if (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
 				print("Download failed!!")
-				sys.exit(1) 
+				sys.exit(0) 
 			if(self.ft.findText("健康存摺下載完成", mode=1)):
 				targetXpath = '//*[@text=\'健康存摺下載完成\']/preceding-sibling::android.widget.TextView'
 				target = self.driver.find_element_by_xpath(targetXpath)
@@ -96,7 +96,7 @@ class script():
 				downloadTime = timeStampObj.text
 				if(date in downloadTime):
 					print("Successfully download!")
-					sys.exit(1)
+					sys.exit(0)
 					findDownloadsuccess = True
 				else:
 					self.sp.swipeUp()
