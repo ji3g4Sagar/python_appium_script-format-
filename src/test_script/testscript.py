@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import re
 import sys
 from PIL import Image
 import cv2
@@ -51,7 +52,7 @@ class script():
 		sleep(10)
 		self.driver.get_screenshot_as_file("screenImg.png")
 		result = self.imgageToString()
-		getverification = false
+		getverification = False
 		while(getverification != True):
 			print("Resutl under while: "+result)
 			if(len(result) != 3):
@@ -62,8 +63,14 @@ class script():
 			else:
 				self.ec.enter(result, self.apkVersionIdName+"/et_loginBankCaptcha")
 				self.ck.clickByResourceID(self.apkVersionIdName+"/tv_loginBankDownload")
-				if(self.gt.search4Toast("檔案將於數分鐘後自動完成下載並通知您，請確保網路連線", mode=True)):
+				#if(self.gt.search4Toast("檔案將於數分鐘後自動完成下載並通知您，請確保網路連線", mode=True)):
+				sleep(2)
+				if(self.ft.findText("更新時間", mode=1)):
 					getverification = True
+				else:
+					sleep(5)
+					result = self.imgageToString()
+					print("Result in else: "+result)
 		self.ft.findTextInWholePage("健康存摺")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("設定")
@@ -98,6 +105,7 @@ class script():
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 
 	def imgageToString(self):
+		self.driver.get_screenshot_as_file("screenImg.png")
 		photo = Image.open('screenImg.png')
 		box = (30, 1110, 429, 1260)
 		photo.crop(box).save('Verification.png')
@@ -112,7 +120,9 @@ class script():
 		# 畢竟提供的庫識別能力有限，不一定能完整得到結果，需要對結果進行篩選
 		#result = re.sub('[a-zA-Z’!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result.replace(' ', ''), re.S)
 		result = re.sub('[!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result)
-		print(result)
+		result.replace(' ', '')
+		
+		print(result, len(result))
 		return result
 		
 	def handle_verification_code(self, img):
@@ -123,7 +133,7 @@ class script():
 		# 讀取圖片，0意味著圖片變為灰度圖
 		image = cv2.imread(image, 0)
 		# 圖片二值化，100為設定閥值，255為最大閥值，1為閥值型別，當前點值大於閥值，設定為0，否則設定為255。ret是return value縮寫，代表當前的閥值
-		ret, image = cv2.threshold(image, 100, 255, 1)
+		ret, image = cv2.threshold(image, 190, 255, 1)
 		# 圖片的高度和寬度
 		height, width = image.shape
 		print(height, width)

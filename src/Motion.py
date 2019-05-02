@@ -333,11 +333,11 @@ class getToast():
 		except:
 			print("Toast does not exist!!!" )
 			if(mode):	
-				return True	
+				return False	
 		else:
 			print("FInd toast!!!!")
 			if(mode):
-				return False
+				return True
 class findSpecificText():
 	def __init__(self, driver):
 		self.driver = driver
