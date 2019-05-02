@@ -95,7 +95,7 @@ class script():
 				timeStampObj = target.find_element_by_id(self.apkVersionIdName + "/tv_notifyTime")
 				downloadTime = timeStampObj.text
 				if(date in downloadTime):
-					print("[FAIL]-Successfully download!")
+					print("[PASS]-Successfully download!")
 					findDownloadsuccess = True
 				else:
 					self.sp.swipeUp()
