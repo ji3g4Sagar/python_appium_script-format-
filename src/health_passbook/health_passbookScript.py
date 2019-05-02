@@ -88,7 +88,7 @@ class script():
 				exit()
 			if (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
 				print("Download failed!!")
-				sys.exit() 
+				sys.exit(1) 
 			if(self.ft.findText("健康存摺下載完成", mode=1)):
 				targetXpath = '//*[@text=\'健康存摺下載完成\']/preceding-sibling::android.widget.TextView'
 				target = self.driver.find_element_by_xpath(targetXpath)
@@ -96,7 +96,7 @@ class script():
 				downloadTime = timeStampObj.text
 				if(date in downloadTime):
 					print("Successfully download!")
-					os._exit()
+					sys.exit(1)
 					findDownloadsuccess = True
 				else:
 					self.sp.swipeUp()
@@ -120,7 +120,8 @@ class script():
 		print(result)
 		# 畢竟提供的庫識別能力有限，不一定能完整得到結果，需要對結果進行篩選
 		#result = re.sub('[a-zA-Z’!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result.replace(' ', ''), re.S)
-		result = re.sub('[!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result)
+		#result = re.sub('[!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result)
+		result = re.sub("\W", "", result)
 		result.replace(' ', '')
 		
 		print(result, len(result))
