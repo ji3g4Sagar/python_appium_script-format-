@@ -193,16 +193,14 @@ class script():
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 		findEmotion = False
 		emotionClickTarget = self.driver
-		nameOfFriendGoingToDelete=""
 		while(findEmotion != True):
 			if(self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/emotionFacePhoto")):
 				targets = self.driver.find_elements_by_id(self.apkVersionIdName+"/emotionNickName")
 				for t in targets:
 					print(t.text)
-					if (t.text == self.testCountName):
+					if (t.text != self.testCountName):
 						continue
 					else:
-						nameOfFriendGoingToDelete = t.text
 						t.click()
 						findEmotion = True
 						break
