@@ -397,7 +397,7 @@ class findSpecificText():
 					return False
 			else:
 				print("Successfully find the target with sourceID %s \n" % targetID)
-				if(mode==0):
+				if(mode == 0):
 					return target
 				else:
 					return True
@@ -406,15 +406,15 @@ class findSpecificText():
 				targets = self.driver.find_elements_by_id(targetID)
 			except:
 				print("[findSpecificItemByResourceID]Can not locate!")
-				if(mode==1):
+				if(mode == 1):
 					return False
 			else:
 				print("Successfully find the target with sourceID %s \n" % targetID)
-				if(mode==0):
+				if(mode == 0):
 					return target[index]
 				else:
 					return True
-	def findTextInWholePage(self, targetText):
+	def findTextInWholePage(self, targetText, mode=0):
 		sleep(1)
 		"""在整個頁面中找尋含有特定文字的元件 
 
@@ -428,12 +428,16 @@ class findSpecificText():
 		targetFind = False
 		sp = swipePage(self.driver)
 		time = 0 
-		while(targetFind!=True):
+		while(targetFind != True):
 			if(time == 3):
 				targetFind = True
 				sp.swipeDown(n=3)
-			if(self.findText(targetText, mode = 1)):
+				if(mode == 1):
+					return False
+			elif(self.findText(targetText, mode = 1)):
 				targetFind = True
+				if(mode == 1):
+					return True
 			else:
 				sp.swipeUp()
 				time = time +1
