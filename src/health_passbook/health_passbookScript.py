@@ -83,7 +83,7 @@ class script():
 		limitStartTime = time.strftime("%M", time.localtime())
 		while(findDownloadsuccess!=True):
 			limitEndTime = time.strftime("%M", time.localtime())
-			if(int(limitEndTime) - int(limitStartTime)>5):
+			if(int(limitEndTime) - int(limitStartTime)>7):
 				print("[FAIL]-Time out!!")
 				exit()
 			if(self.ft.findText("健康存摺下載完成", mode=1)):
