@@ -28,7 +28,6 @@ class scriptSetting():
 	def starter(self):
 		#self.urgentCard()
 		#self.editIll()
-		#self.editEmergencyPerson()
 		#self.helthInfo()
 		self.clickExpertMedic()
 
@@ -43,7 +42,6 @@ class scriptSetting():
 		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/sw_alert_forever")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/sw_alert_forever") # 點擊switch 關閉通知
 		self.ck.clickByResourceID(self.apkVersionIdName+"/sw_alert_forever") # 點擊switch 開啟通知
-		#self.wf.explicitWaitByResourceID("android:id/statusBarBackground") # 看通知是否有出現
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 		self.driver.keyevent("4")
 		sleep(3)

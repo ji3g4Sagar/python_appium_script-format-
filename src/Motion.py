@@ -15,6 +15,8 @@ from appium.webdriver.common.touch_action import TouchAction
 from time import sleep
 import os
 import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class swipePage():
 	def __init__(self, driver):
@@ -346,11 +348,15 @@ class findSpecificText():
 		>>> findText("被找尋的元件包含的文字")
 		"""
 		sleep(1)
+		message = '//*[@text=\'{}\']'.format(targetText)
+		print("xpath message: " + message)
 		try:
-			message = '//*[@text=\'{}\']'.format(targetText)
+			
+
+			#message = '//*[@text=\'targetText\']'
 			target = self.driver.find_element_by_xpath(message)
 		except:
-			print("[findSpecificText]Can not locate target text [%s} \n" % targetText)
+			print("[findSpecificText]Can not locate target text [%s] \n" % targetText)
 			if(mode==1):
 				return False
 		else:

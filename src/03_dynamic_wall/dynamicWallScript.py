@@ -26,12 +26,12 @@ class script():
 
 	def starter(self):
 		self.checkForDynamicWall()
-		self.swipeAroundInDynamicWall()
-		self.hiFiveCheck()
-		self.leftMessageInAlbum()
-		self.checkForEmotion()
-		self.swipeAndClickSearch()
-		self.leftApp()
+		#self.swipeAroundInDynamicWall()
+		#self.hiFiveCheck()
+		#self.leftMessageInAlbum()
+		#self.checkForEmotion()
+		#self.swipeAndClickSearch()
+		#self.leftApp()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -41,7 +41,7 @@ class script():
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_bankLoginRefresh")
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		print("Check for default announcement.....")
+		print("Check for default announcement.....")  #待修
 		defaultKeyWord = self.driver.find_element_by_id(self.apkVersionIdName + "/tv_homeHealthKeywords").text
 		if(self.ft.findText(defaultKeyWord, mode=1)):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
