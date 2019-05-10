@@ -26,12 +26,12 @@ class script():
 
 	def starter(self):
 		self.checkForDynamicWall()
-		#self.swipeAroundInDynamicWall()
-		#self.hiFiveCheck()
-		#self.leftMessageInAlbum()
-		#self.checkForEmotion()
-		#self.swipeAndClickSearch()
-		#self.leftApp()
+		self.swipeAroundInDynamicWall()
+		self.hiFiveCheck()
+		self.leftMessageInAlbum()
+		self.checkForEmotion()
+		self.swipeAndClickSearch()
+		self.leftApp()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
