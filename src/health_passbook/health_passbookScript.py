@@ -98,7 +98,7 @@ class script():
 					print("[PASS]-Successfully download!")
 					findDownloadsuccess = True
 				else:
-					self.sp.swipeUp()
+					self.sp.swipeDown()
 					sleep(10)				
 
 		sleep(5)
