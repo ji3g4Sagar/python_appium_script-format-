@@ -348,12 +348,8 @@ class findSpecificText():
 		>>> findText("被找尋的元件包含的文字")
 		"""
 		sleep(1)
-		message = '//*[@text=\'{}\']'.format(targetText)
-		print("xpath message: " + message)
 		try:
-			
-
-			#message = '//*[@text=\'targetText\']'
+			message = '//*[@text=\'{}\']'.format(targetText)
 			target = self.driver.find_element_by_xpath(message)
 		except:
 			print("[findSpecificText]Can not locate target text [%s] \n" % targetText)

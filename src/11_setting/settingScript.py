@@ -28,8 +28,8 @@ class scriptSetting():
 	def starter(self):
 		#self.urgentCard()
 		#self.editIll()
-		#self.helthInfo()
-		self.clickExpertMedic()
+		self.helthInfo()
+		#self.clickExpertMedic()
 
 		
 	def urgentCard(self):
@@ -214,47 +214,6 @@ class scriptSetting():
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 		self.driver.keyevent("4")
 		sleep(5)	
-	def helthInfo(self):
-		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",4)
-		sleep(1)
-		self.ft.findTextInWholePage("健康資訊")
-		self.ck.clickByString("健康資訊")
-		self.ft.findTextInWholePage("個人資訊")
-		self.ck.clickByString("個人資訊")
-		self.ft.findTextInWholePage("基本資料")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_edit")
-		sleep(1)
-		self.ck.clickByString("編輯")
-		self.ft.findTextInWholePage("相簿")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/order")
-		self.ck.clickByString("確認")
-		sleep(10)
-		newName = str(random.randint(1,1000))+" test name"
-		targetName = self.driver.find_element_by_id(self.apkVersionIdName+"/et_name")
-		"""targetName = self.driver.find_element_by_id(self.apkVersionIdName+"/et_name")
-		defaultName = targetName.get_attribute("text")
-		print("Name !!!!!!", defaultName)
-		sleep(3)
-		
-		print("new name ", newName)
-		self.ec.enterSelectByTextviewText(newName, defaultName)
-		"""
-		#print (len(targetName.get_attribute("text")))
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_edit")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/et_name")
-		#for _ in range(len(targetName.get_attribute("text"))):
-		#	self.driver.keyevent("67")
-		#targetName.send_keys(newName)
-
-		#self.ec.enter(newName, self.apkVersionIdName+"/et_name")
-		# 寫到更改姓名
-
-
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
-		sleep(5)		
-
 """
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
