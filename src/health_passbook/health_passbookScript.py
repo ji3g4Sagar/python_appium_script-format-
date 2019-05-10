@@ -84,22 +84,23 @@ class script():
 		while(findDownloadsuccess!=True):
 			limitEndTime = time.strftime("%M", time.localtime())
 			if(int(limitEndTime) - int(limitStartTime)>5):
-				print("Time out!!")
-				os._exit()
-			if (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
-				print("Download failed!!")
-				os._exit() 
+				print("[FAIL]-Time out!!")
+				exit()
 			if(self.ft.findText("健康存摺下載完成", mode=1)):
 				targetXpath = '//*[@text=\'健康存摺下載完成\']/preceding-sibling::android.widget.TextView'
 				target = self.driver.find_element_by_xpath(targetXpath)
 				timeStampObj = target.find_element_by_id(self.apkVersionIdName + "/tv_notifyTime")
 				downloadTime = timeStampObj.text
 				if(date in downloadTime):
-					print("Successfully download!")
+					print("[PASS]-Successfully download!")
 					findDownloadsuccess = True
 				else:
-					self.sp.swipeUp()
-					sleep(10)				
+					self.sp.swipeDown()
+					sleep(10)
+			elif (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
+				print("[FAIL]-Download failed!!")
+				sys.exit() 
+							
 
 		sleep(5)
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
@@ -119,7 +120,8 @@ class script():
 		print(result)
 		# 畢竟提供的庫識別能力有限，不一定能完整得到結果，需要對結果進行篩選
 		#result = re.sub('[a-zA-Z’!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result.replace(' ', ''), re.S)
-		result = re.sub('[!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result)
+		#result = re.sub('[!"#$%&()*+,-./:;<=>，。?★、…【】《》？“”‘’！[]^_`{|}~]+', '', result)
+		result = re.sub("\W", "", result)
 		result.replace(' ', '')
 		
 		print(result, len(result))
