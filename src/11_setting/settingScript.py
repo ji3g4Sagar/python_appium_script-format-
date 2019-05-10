@@ -26,10 +26,10 @@ class scriptSetting():
 		self.ft = findSpecificText(driver)
 		self.apkVersionIdName = apkVersionIdName
 	def starter(self):
-		#self.urgentCard()
-		#self.editIll()
+		self.urgentCard()
+		self.editIll()
 		self.helthInfo()
-		#self.clickExpertMedic()
+		self.clickExpertMedic()
 
 		
 	def urgentCard(self):
@@ -45,7 +45,6 @@ class scriptSetting():
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")		
 		self.driver.keyevent("4")
 		sleep(3)
-
 	def editIll(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
@@ -158,20 +157,13 @@ class scriptSetting():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
 		self.ft.findTextInWholePage("找專家")
 		self.ck.clickByString("找專家")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/et_search_keyword")
 		self.ck.clickByString("醫護人員")
 		self.ck.clickByString(" 快速搜尋 ")
 		self.ft.findTextInWholePage("選擇專家條件")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_quick_search")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_select_all")
 		self.ck.clickByString(" 全部選取 ")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_select_all")
 		sleep(2)
 		self.ck.clickByString("完成") #搜尋結束後，回到專家搜尋頁面
 		self.ft.findTextInWholePage("醫護人員")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_sex")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_submit")
 		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/lin_content")#等待搜尋結果
 		self.ck.clickByResourceID(self.apkVersionIdName+"/lav_favorite")
 		sleep(1)
@@ -186,34 +178,8 @@ class scriptSetting():
 		self.ft.findTextInWholePage("專家認證")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage(" 快速搜尋 ")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_quick_search")
 		self.driver.keyevent("4")
-	def editEmergencyPerson(self):
-		self.hp.goBackToHomePage()
-		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",4)
-		sleep(1)
-		self.ft.findTextInWholePage("急難卡")
-		self.ck.clickByString("急難卡")
-		self.ft.findTextInWholePage("＋新增緊急聯絡人")
-		sleep(1)
-		self.ck.clickByString("＋新增緊急聯絡人")
-		self.ft.findTextInWholePage("緊急聯絡人")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_name")
-		self.ft.findTextInWholePage("關係")
-		self.ck.clickByString("聯絡人")
-		sleep(1)
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/tv_emergency_contact_edit")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_emergency_contact_edit")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_delete")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_delete")
-		sleep(1)
-		self.ft.findTextInWholePage("瀏覽")
-		self.ck.clickByString("瀏覽")
-
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
-		self.driver.keyevent("4")
-		sleep(5)	
+	
 """
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
