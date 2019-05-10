@@ -86,9 +86,6 @@ class script():
 			if(int(limitEndTime) - int(limitStartTime)>5):
 				print("[FAIL]-Time out!!")
 				exit()
-			if (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
-				print("[FAIL]-Download failed!!")
-				sys.exit() 
 			if(self.ft.findText("健康存摺下載完成", mode=1)):
 				targetXpath = '//*[@text=\'健康存摺下載完成\']/preceding-sibling::android.widget.TextView'
 				target = self.driver.find_element_by_xpath(targetXpath)
@@ -99,7 +96,11 @@ class script():
 					findDownloadsuccess = True
 				else:
 					self.sp.swipeDown()
-					sleep(10)				
+					sleep(10)
+			elif (self.ft.findText("健康存摺下載失敗，請再次嘗試。", mode=1)):
+				print("[FAIL]-Download failed!!")
+				sys.exit() 
+							
 
 		sleep(5)
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
