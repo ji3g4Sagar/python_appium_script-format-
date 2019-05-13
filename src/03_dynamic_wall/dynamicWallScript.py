@@ -25,6 +25,7 @@ class script():
 		self.hp = homePage(driver, apkVersionIdName)
 
 	def starter(self):
+		self.addNewAlbum()
 		self.checkForDynamicWall()
 		self.swipeAroundInDynamicWall()
 		self.hiFiveCheck()
@@ -32,6 +33,63 @@ class script():
 		self.checkForEmotion()
 		self.swipeAndClickSearch()
 		self.leftApp()
+
+	def addNewAlbum(self):
+		actionSuccessfully = False
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		sleep(3)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("新增健康燈")
+		self.ck.clickByString("相簿")
+		self.ft.findTextInWholePage("健康動態")
+		self.ck.clickByString("＋新增相簿")
+		self.ft.findTextInWholePage("設定相簿")
+		albumName = str(random.randint(1,1000))+" testing album"
+		self.ec.enter(albumName, self.apkVersionIdName + "/albumName")
+		self.ck.clickByString("完成")
+		self.ft.findTextInWholePage("健康動態")
+		self.ck.clickByString(albumName)
+		self.ft.findTextInWholePage("分享")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistoryAdd")
+		self.ft.findTextInWholePage("相簿")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order",0)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order",1)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order",2)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order",3)
+		self.ck.clickByString("確認")
+		self.ft.findTextInWholePage("分享")
+		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("健康動態")
+		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("新增健康燈")
+		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("親友健康")
+		self.driver.keyevent("4")
+		self.sp.swipeDown(n=2)
+		if(self.ft.findTextInWholePage("在"+albumName+"新增了相片", mode=1)):
+			actionSuccessfully = True
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("新增健康燈")
+		self.ck.clickByString("相簿")
+		self.ft.findTextInWholePage("健康動態")
+		self.ck.clickByString(albumName)
+		self.ft.findTextInWholePage("分享")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistorySetting")
+		self.ck.clickByString("刪除")
+		self.ft.findTextInWholePage("提醒")
+		self.ck.clickByString("刪除")
+		if(actionSuccessfully):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -40,7 +98,7 @@ class script():
 		"""
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_bankLoginRefresh")
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		print("Check for default announcement.....")  #待修
 		defaultKeyWord = self.driver.find_element_by_id(self.apkVersionIdName + "/tv_homeHealthKeywords").text
 		if(self.ft.findText(defaultKeyWord, mode=1)):
@@ -52,7 +110,7 @@ class script():
 	def swipeAroundInDynamicWall(self):
 		#檢測動態牆的滑動是否正常
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.sp.swipeUp()
 		self.sp.swipeDown()
 		self.sp.swipeUp()
@@ -70,7 +128,7 @@ class script():
 				->findHiFive == False: 下向滑動繼續尋找
 		"""
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		findHiFive = False
 		while(findHiFive != True):
 			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/likeTime", time=2, freuency=0.5)):
@@ -95,7 +153,7 @@ class script():
 			2.進到相簿,並印出相簿名稱
 		"""
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		findAlbum = False
 		while(findAlbum != True):
 			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/viewPagerImageView", time=2, freuency=0.5)):
@@ -117,7 +175,7 @@ class script():
 			2.進到相簿中留言,並利用self.ft確認留言是否成功
 			3.返回動態牆
 		"""
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.checkForAlbum()
 		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
 		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/messageBoardTitleLayout")
@@ -135,7 +193,7 @@ class script():
 		sleep(3)
 	def checkForEmotion(self):
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		findEmotion = False
 		emotionClickTarget = self.driver
 		while(findEmotion != True):
@@ -159,7 +217,7 @@ class script():
 		sleep(3)		
 	def leftMessageInEmotion(self):
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.checkForEmotion()
 		self.driver.keyevent("4")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/emotionLayout4")
@@ -177,13 +235,13 @@ class script():
 		sleep(3)	
 	def leftApp(self):
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("離開")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")		
 	def swipeAndClickSearch(self):
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.sp.swipeLeft()
 		self.sp.swipeLeft()
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
@@ -222,7 +280,7 @@ class script():
 
 """
 		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 """
 
