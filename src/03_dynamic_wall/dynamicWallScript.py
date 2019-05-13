@@ -87,6 +87,7 @@ class script():
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 
 
