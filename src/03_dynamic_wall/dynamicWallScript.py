@@ -98,6 +98,9 @@ class script():
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		sleep(5)
+		self.driver.keyevent("4")
+		sleep(5)
+		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
