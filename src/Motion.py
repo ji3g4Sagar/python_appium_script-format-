@@ -503,7 +503,8 @@ class homePage():
 		#target = self.driver.find_elements_by_id(self.apkVersionIdName+ "/home_tab_icon")
 		#sleep(2)
 		#self.ck.tap(target[0])
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 0)
+		#self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 0)
+		self.ck.clickByResourceID(self.apkVersionIdName+"home_tab_icon")
 		findNotification = False
 		while (findNotification == False):
 			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/home_notification", time=2, freuency=1)):
