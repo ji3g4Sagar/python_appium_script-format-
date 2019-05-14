@@ -501,6 +501,7 @@ class homePage():
 		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+ "/home_tab_icon")
 		#self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/home_tab_icon")
 		target = self.driver.find_elements_by_id(self.apkVersionIdName+ "/home_tab_icon")
+		sleep(2)
 		self.ck.tap(target[0])
 		findNotification = False
 		while (findNotification == False):

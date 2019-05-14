@@ -80,6 +80,18 @@ class script():
 		self.ck.clickByString(albumName)
 		self.ft.findTextInWholePage("分享")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistorySetting")
+		self.ck.clickByString("編輯")
+		self.ft.findTextInWholePage("設定相簿")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/albumName")
+		for i in range(len(albumName)):
+			self.driver.keyevent("67")
+		newAlbumName = "New "+str(random.randint(1,1000))+" testing album"
+		self.ec.enter(albumName, self.apkVersionIdName + "/albumName")
+		self.ck.clickByString("完成")
+		self.ft.findTextInWholePage("分享")
+
+
+		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistorySetting")
 		self.ck.clickByString("刪除")
 		self.ft.findTextInWholePage("提醒")
 		self.ck.clickByString("刪除")
@@ -89,8 +101,6 @@ class script():
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
-
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
