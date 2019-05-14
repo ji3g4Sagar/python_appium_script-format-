@@ -89,8 +89,6 @@ class script():
 		self.ec.enter(albumName, self.apkVersionIdName + "/albumName")
 		self.ck.clickByString("完成")
 		self.ft.findTextInWholePage("分享")
-
-
 		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistorySetting")
 		self.ck.clickByString("刪除")
 		self.ft.findTextInWholePage("提醒")
