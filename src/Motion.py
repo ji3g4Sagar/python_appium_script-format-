@@ -305,7 +305,7 @@ class getToast():
 	def __init__(self, driver):
 		self.driver = driver
 
-	def search4Toast(self, toastMessage, mode = False):
+	def search4Toast(self, toastMessage, mode=0):
 		"""找尋特定文字的Toast訊息
 
 			* Args: 
@@ -322,11 +322,11 @@ class getToast():
 			element = wait.until(EC.invisibility_of_element_located(target))
 		except:
 			print("Toast does not exist!!!" )
-			if(mode):	
+			if(mode == 1):	
 				return False	
 		else:
 			print("FInd toast!!!!")
-			if(mode):
+			if(mode == 1):
 				return True
 class findSpecificText():
 	def __init__(self, driver):
@@ -445,12 +445,17 @@ class findSpecificText():
 		"""
 		targetFind = False
 		sp = swipePage(self.driver)
+		time = 0 
 		while(targetFind!=True):
-			if(self.findSpecificItemByResourceID(sourde_id, mode = 1)):
+			if(time == 3 ):
+				targetFind = True
+				sp.swipeDown(n=3)
+			elif(self.findSpecificItemByResourceID(sourde_id, mode = 1)):
 				targetFind=True
 				return self.findSpecificItemByResourceID(sourde_id)
 			else:
-				sp.swipeUp()	
+				sp.swipeUp()
+				time = time +1	
 		sleep(1)			
 class getXYLocation():
 	def __init__(self, driver):
