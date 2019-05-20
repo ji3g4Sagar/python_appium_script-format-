@@ -42,10 +42,9 @@ class script():
 		self.swipeAroundInDynamicWall()
 		self.hiFiveCheck()
 		self.leftMessageInAlbum()
-		self.checkForEmotion()
+		#self.checkForEmotion()
 		self.swipeAndClickSearch()
 		self.leftApp()
-
 	def createAlbum(self):
 
 		actionSuccessfully = False
