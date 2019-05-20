@@ -39,9 +39,9 @@ class script():
 		#self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
-		self.swipeAroundInDynamicWall()
-		self.hiFiveCheck()
-		self.leftMessageInAlbum()
+		#self.swipeAroundInDynamicWall()
+		#self.hiFiveCheck()
+		#self.leftMessageInAlbum()
 		#self.checkForEmotion()
 		self.swipeAndClickSearch()
 		self.leftApp()
@@ -224,7 +224,8 @@ class script():
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 		sleep(5)
 	def swipeAroundInDynamicWall(self):
-		#檢測動態牆的滑動是否正常
+		#檢測動態牆的滑動是否正常 
+		#5/20移除測試
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.sp.swipeUp()
