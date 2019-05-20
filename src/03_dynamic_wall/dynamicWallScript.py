@@ -36,10 +36,10 @@ class script():
 		self.deleteEmotion()
 		self.checkForDynamicWall()
 		self.createAlbum()
-		self.leftMessageInMyselfAlbum()
+		#self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
-		self.hiFiveCheck()
+		#self.hiFiveCheck()
 		self.swipeAndClickSearch()
 		self.leftApp()
 
@@ -116,7 +116,7 @@ class script():
 		self.driver.keyevent("4")
 		self.sp.swipeDown()
 		sleep(4)
-
+		#Xpath 在jenkins 似乎會crash 待修
 		#self.ft.findTextInWholePage("在"+self.albumName+"新增了相片")
 		#self.ft.findTextInWholePage("在01新增了相片")
 		#xpath = "//android.widget.TextView[@resource-id='"+ self.apkVersionIdName + "/order" + "']/parent::android.widget.FrameLayout/preceding-sibling::android.widget.ImageView"
