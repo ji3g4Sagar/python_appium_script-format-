@@ -32,19 +32,17 @@ class script():
 
 	def starter(self):
 		self.addEmotion()
-		#self.checkForEmotion()
-		#self.leftMessageInEmotion()
+		self.leftMessageInEmotion()
+		self.deleteEmotion()
 		self.checkForDynamicWall()
 		self.createAlbum()
-		#self.leftMessageInMyselfAlbum()
+		self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
-		#self.swipeAroundInDynamicWall()
-		#self.hiFiveCheck()
-		#self.leftMessageInAlbum()
-		#self.checkForEmotion()
+		self.hiFiveCheck()
 		self.swipeAndClickSearch()
 		self.leftApp()
+
 	def createAlbum(self):
 
 		actionSuccessfully = False
@@ -313,6 +311,8 @@ class script():
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("離開")
+		self.ck.click("離開")
+		sleeP(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")		
 	def swipeAndClickSearch(self):
 		self.hp.goBackToHomePage()
@@ -377,7 +377,6 @@ class script():
 		sleep(3)
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def checkForEmotion(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -392,15 +391,63 @@ class script():
 		self.driver.keyevent("4")	
 		sleep(1)		
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def leftMessageInEmotion(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		targetText = self.testCountName + self.emotionLeveltoString()
-		self.ft.findTextInWholePage(targetText)
-		self.ck.clickByString(targetText)
-
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		sleep(3)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("心情")
+		self.ck.clickByString("心情")
 		sleep(5)
+		self.ck.clickByString("留言")
+		self.ft.findTextInWholePage("回覆...")
+		self.ck.clickByString("回覆...")
+		message = "Testing message "+str(random.randint(1,1000))
+		self.ec.enter(message, self.apkVersionIdName + "/emotionContentEdText")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/sendEmotionMsg")
+		if(self.ft.findTextInWholePage(message, mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		sleep(5)
+		self.driver.keyevent("4")
+		sleep(5)
+		self.driver.keyevent("4")
+		sleep(5)
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def deleteEmotion(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		sleep(3)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("心情")
+		self.ck.clickByString("心情")
+		sleep(5)
+		emotionContent = self.driver.find_element_by_id(self.apkVersionIdName+"/emotionContent").text
+		self.ck.clickByResourceID(self.apkVersionIdName+"/myEmotionSetting")
+		print(emotionContent)
+
+		self.ft.findTextInWholePage("刪除")
+		self.ck.clickByString("刪除")
+		self.ft.findTextInWholePage("提醒")
+		self.ck.clickByString("刪除")
+		if(self.ft.findText(emotionContent, mode=1)):
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[PASS]-"+sys._getframe().f_code.co_name)	
+		sleep(5)
+		self.driver.keyevent("4")
+		sleep(5)
+		self.driver.keyevent("4")
+		sleep(3)
+
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 
