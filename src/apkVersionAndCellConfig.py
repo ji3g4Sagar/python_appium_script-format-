@@ -20,7 +20,7 @@ class Config():
 			self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 		else:
 			self.apkName = apkName
-			appiumAddressv1.0.9.0.8.apk = 'http://localhost:'+port+'/wd/hub'
+			appiumAddress = 'http://localhost:'+port+'/wd/hub'
 			print(appiumAddress)
 			self.driver = webdriver.Remote(appiumAddress, desired_caps_outer)
 
