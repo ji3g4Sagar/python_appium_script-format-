@@ -117,7 +117,9 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("親友健康")
 		self.driver.keyevent("4")
-		self.sp.swipeDown(n=3)
+		self.sp.swipeDown()
+		sleep(4)
+
 		#self.ft.findTextInWholePage("在"+self.albumName+"新增了相片")
 		#self.ft.findTextInWholePage("在01新增了相片")
 		#xpath = "//android.widget.TextView[@resource-id='"+ self.apkVersionIdName + "/order" + "']/parent::android.widget.FrameLayout/preceding-sibling::android.widget.ImageView"
