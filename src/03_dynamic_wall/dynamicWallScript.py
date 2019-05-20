@@ -36,7 +36,7 @@ class script():
 		#self.leftMessageInEmotion()
 		self.checkForDynamicWall()
 		self.createAlbum()
-		self.leftMessageInMyselfAlbum()
+		#self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
 		self.swipeAroundInDynamicWall()
