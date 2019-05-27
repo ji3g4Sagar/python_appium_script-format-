@@ -74,7 +74,7 @@ class script():
 		self.ft.findTextInWholePage("健康存摺")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("設定")
-		self.driver.keyevent("4")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 0)
 		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/home_notification")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/home_notification")
 		self.ft.findTextInWholePage("通知")
