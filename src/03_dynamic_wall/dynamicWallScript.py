@@ -31,16 +31,16 @@ class script():
 
 
 	def starter(self):
-		self.addEmotion()
-		self.leftMessageInEmotion()
-		self.deleteEmotion()
-		self.checkForDynamicWall()
+		#self.addEmotion()
+		#self.leftMessageInEmotion()
+		#self.deleteEmotion()
+		#self.checkForDynamicWall()
 		self.createAlbum()
 		self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
 		#self.hiFiveCheck()
-		self.swipeAndClickSearch()
+		#self.swipeAndClickSearch()
 		#self.leftApp()
 
 	def createAlbum(self):
