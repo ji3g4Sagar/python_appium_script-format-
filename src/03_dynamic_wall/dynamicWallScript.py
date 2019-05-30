@@ -24,24 +24,24 @@ class script():
 		self.hp = homePage(driver, apkVersionIdName)
 		self.gt = getToast(driver)
 
-		self.testCountName ="0011" #想辦法改成自動去取得該次測試帳號的使用者名稱
+		self.testCountName ="test999" #想辦法改成自動去取得該次測試帳號的使用者名稱
 		self.albumName = ""
 		self.message = ""
 		self.emotionLevel = 0
 
 
 	def starter(self):
-		self.addEmotion()
-		self.leftMessageInEmotion()
-		self.deleteEmotion()
-		self.checkForDynamicWall()
+		#self.addEmotion()
+		#self.leftMessageInEmotion()
+		#self.deleteEmotion()
+		#self.checkForDynamicWall()
 		self.createAlbum()
 		#self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
 		#self.hiFiveCheck()
-		self.swipeAndClickSearch()
-		self.leftApp()
+		#self.swipeAndClickSearch()
+		#self.leftApp()
 
 	def createAlbum(self):
 
@@ -64,12 +64,12 @@ class script():
 		self.ck.clickByString(self.albumName)
 		self.ft.findTextInWholePage("分享")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistoryAdd")
-		self.ft.findTextInWholePage("相簿")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order",0)
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order",1)
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order",2)
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/order",3)
-		self.ck.clickByString("確認")
+		self.ft.findTextInWholePage("選擇照片")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",1)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",2)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",3)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",4)
+		self.ck.clickByString("傳送")
 		self.ft.findTextInWholePage("分享")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("健康動態")
@@ -77,7 +77,7 @@ class script():
 		self.ft.findTextInWholePage("新增健康燈")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("親友健康")
-		self.driver.keyevent("4")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
 		self.sp.swipeDown(n=2)
 		if(self.ft.findTextInWholePage("在"+self.albumName+"新增了相片", mode=1)):
 			actionSuccessfully = True
@@ -176,7 +176,7 @@ class script():
 		self.ft.findTextInWholePage("新增健康燈")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("親友健康")
-		self.driver.keyevent("4")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
 		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def deleteAlbum(self):
@@ -203,6 +203,7 @@ class script():
 		sleep(5)
 		self.driver.keyevent("4")
 		sleep(3)
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
