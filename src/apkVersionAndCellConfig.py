@@ -14,9 +14,9 @@ class Config():
 			desired_caps['platformVersion'] = '8.0' #定義版本
 			desired_caps['deviceName'] = 'TestDevices' #定義裝置名稱
 			desired_caps['automationName'] = 'uiautomator2'
-			#desired_caps['disableAndroidWatchers'] = 'true'
 			desired_caps['noReset'] = 'true'
 			desired_caps['noSign'] = 'true'
+			desired_caps['autoAcceptAlerts'] = 'true'
 			self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 		else:
 			self.apkName = apkName
