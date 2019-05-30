@@ -113,7 +113,7 @@ class script():
 		self.ft.findTextInWholePage("新增健康燈")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("親友健康")
-		self.driver.keyevent("4")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
 		self.sp.swipeDown()
 		sleep(4)
 		#Xpath 在jenkins 似乎會crash 待修
