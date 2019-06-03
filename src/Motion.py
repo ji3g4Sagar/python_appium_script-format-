@@ -271,7 +271,7 @@ class waittingFor():
 				sleep(3)
 				return True
 		else:
-			locator = self.driver.find_elements_by_id(resource_id)# 抓取全部擁有相同ID的元素
+			locator = self.driver.find_elements_by_id(resource_id)# 選取全部擁有相同ID的元素
 			target = locator[index]#利用index 辨別要選取的
 			try:
 				wait = WebDriverWait(self.driver, timeout = time, poll_frequency = freuency)

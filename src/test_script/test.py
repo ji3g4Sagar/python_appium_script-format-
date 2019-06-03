@@ -7,14 +7,10 @@ import unittest
 from appium import webdriver
 from testscript import script
 from apkVersionAndCellConfig import Config
-
-#PATH = lambda p: os.path.abspath(
-#    os.path.join(os.path.dirname(__file__), p)
-#)
+\
 
 class WaCareTest(unittest.TestCase):
 	def setUp(self):
-		#configfile = Config(apkName = "proWaCare-v1.0.1.4.apk")# For 正式站
 		configfile = Config()
 		self.driver = configfile.getDriver()
 		self.driver.implicitly_wait(10)#隱式等待

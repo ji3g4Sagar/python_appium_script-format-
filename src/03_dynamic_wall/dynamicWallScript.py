@@ -31,17 +31,35 @@ class script():
 
 
 	def starter(self):
+		self.checkForDynamicWall()
 		self.addEmotion()
 		self.leftMessageInEmotion()
+		self.editEmotion()
 		self.deleteEmotion()
-		self.checkForDynamicWall()
 		self.createAlbum()
 		#self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
+		self.clickSearch()
 		#self.hiFiveCheck()
-		self.swipeAndClickSearch()
-		#self.leftApp()
+		self.clickSearch()
+	def checkForDynamicWall(self):
+		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
+		"""
+			1.利用self.hp.goBackToHomePage()返回動態牆
+			2.印出動態牆上出現的文字
+		"""
+		#self.ck.clickByResourceID(self.apkVersionIdName+"/iv_bankLoginRefresh")
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		print("Check for default announcement.....")  
+		defaultKeyWord = self.driver.find_element_by_id(self.apkVersionIdName + "/tv_homeHealthKeywords").text
+		if(self.ft.findText(defaultKeyWord, mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		sleep(5)
 
 	def createAlbum(self):
 
@@ -52,7 +70,7 @@ class script():
 		sleep(3)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.ck.clickByString("相簿")
 		self.ft.findTextInWholePage("健康動態")
 		self.ck.clickByString("＋新增相簿")
@@ -74,7 +92,7 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("健康動態")
 		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
@@ -94,7 +112,7 @@ class script():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.ck.clickByString("相簿")
 		self.ft.findTextInWholePage("健康動態")
 		self.ck.clickByString(self.albumName)
@@ -110,7 +128,7 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("健康動態")
 		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
@@ -151,7 +169,7 @@ class script():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.ck.clickByString("相簿")
 		self.ft.findTextInWholePage("健康動態")
 		self.ck.clickByString(self.albumName)
@@ -173,7 +191,7 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("健康動態")
 		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
@@ -185,7 +203,7 @@ class script():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.ck.clickByString("相簿")
 		self.ft.findTextInWholePage("健康動態")
 		self.ck.clickByString(self.albumName)
@@ -205,37 +223,7 @@ class script():
 		sleep(3)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def checkForDynamicWall(self):
-		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
-		"""
-			1.利用self.hp.goBackToHomePage()返回動態牆
-			2.印出動態牆上出現的文字
-		"""
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/iv_bankLoginRefresh")
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		print("Check for default announcement.....")  
-		defaultKeyWord = self.driver.find_element_by_id(self.apkVersionIdName + "/tv_homeHealthKeywords").text
-		if(self.ft.findText(defaultKeyWord, mode=1)):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		sleep(5)
-	def swipeAroundInDynamicWall(self):
-		#檢測動態牆的滑動是否正常 
-		#5/20移除測試
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.sp.swipeUp()
-		self.sp.swipeDown()
-		self.sp.swipeUp()
-		self.sp.swipeDown()
-		self.sp.swipeLeft()
-		self.sp.swipeRight()
-		self.sp.swipeUp(n=2)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		sleep(5)
+
 	def hiFiveCheck(self):
 		#檢測在動態牆上是否有「為您擊掌」的互動訊息
 		"""
@@ -260,99 +248,9 @@ class script():
 				self.sp.swipeUp(n=2)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")			
 		sleep(5)
-	def checkForAlbum(self):
-		#檢測動態牆上是否有相簿訊息
-		"""
-			1.利用顯式等待,找尋相簿的sourceID(viewPageImageView)出現
-				->findAlbum == True: 結束while loop
-				->findAlbum == False: 向下滑動頁面繼續尋找
-			2.進到相簿,並印出相簿名稱
-		"""
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		findAlbum = False
-		while(findAlbum != True):
-			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/viewPagerImageView", time=2, freuency=0.5)):
-			if(self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/viewPagerImageView")):
-				findAlbum = True
-				print("[PASS]-"+sys._getframe().f_code.co_name)
-			else:
-				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/viewPagerImageView"))
-				self.sp.swipeUp()		
-		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName + "/titleNickName")
-		self.driver.keyevent("4")
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		sleep(5)
-	def leftMessageInAlbum(self):
-		#在動態牆中出現的相簿動態下留言測試
-		"""
-			1.利用self.checkForAlbum()找尋是否有相簿動態
-			2.進到相簿中留言,並利用self.ft確認留言是否成功
-			3.返回動態牆
-		"""
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.checkForAlbum()
-		self.ck.clickByResourceID(self.apkVersionIdName + "/viewPagerImageView")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/messageBoardTitleLayout")
-		self.ck.clickByResourceID(self.apkVersionIdName + "/messageBoardTitleLayout")
-		message = str(random.randint(1,1000))+" test message!!!"
-		self.ec.enter(message, self.apkVersionIdName + "/albumContentEdText")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/sendAlbumMsg")
-		if(self.ft.findTextInWholePage(message, mode=1)):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		self.driver.keyevent("4")
-		self.driver.keyevent("4")
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		sleep(3)	
-	def leftApp(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("離開")
-		self.ck.click("離開")
-		sleeP(5)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")		
-	def swipeAndClickSearch(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.sp.swipeLeft()
-		self.sp.swipeLeft()
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/ll_homeResultArticleItem")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendType")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊文章出處
-		self.ft.findSpecificItemByResourceID("android:id/title")
-		self.driver.keyevent("4")
-		sleep(1)
-		self.driver.keyevent("4")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView") #找尋有影片的文章
-		self.ck.clickByResourceID(self.apkVersionIdName+"/youtube_playerView")
-		self.ft.findTextInWholePage("查看出處")
-		self.ck.clickByString("查看出處")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊影片來源「查看出處」
-		sleep(3)
-		self.ft.findTextInWholePage("訂閱")
-		sleep(2)
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("查看出處")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
-		self.driver.keyevent("4")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/home_recommendBack")
-		self.driver.keyevent("4")
-		#self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/home_tab_icon")
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		sleep(5)
+
+	
+
 	def addEmotion(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -360,14 +258,13 @@ class script():
 		sleep(3)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.ft.findTextInWholePage("心情")
 		self.ck.clickByString("心情")
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/emotionCalender")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/addEmotion")
 		self.ft.findTextInWholePage("選擇您的心情")
 		self.emotionLevel = str(random.randint(1,5))
-		print(self.emotionLevel)
 		self.ck.clickByResourceID(self.apkVersionIdName+"/faceImage"+self.emotionLevel)
 		emotionMessage = ''.join(random.choice(string.ascii_letters) for x in range(256))
 		self.ec.enter(emotionMessage, self.apkVersionIdName + "/emotionContent")
@@ -378,20 +275,6 @@ class script():
 		sleep(3)
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def checkForEmotion(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.sp.swipeDown(n=2)
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/emotionFaceContent")
-		self.ck.clickByResourceID("/emotionFaceContent")
-		if(self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/emotionContent", mode=1)):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		sleep(2)
-		self.driver.keyevent("4")	
-		sleep(1)		
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def leftMessageInEmotion(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -399,7 +282,7 @@ class script():
 		sleep(3)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.ft.findTextInWholePage("心情")
 		self.ck.clickByString("心情")
 		sleep(5)
@@ -420,6 +303,38 @@ class script():
 		self.driver.keyevent("4")
 		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def editEmotion(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		sleep(3)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("健康燈設定")
+		self.ft.findTextInWholePage("心情")
+		self.ck.clickByString("心情")
+		sleep(5)
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/myEmotionSetting")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/myEmotionSetting")
+		self.ft.findTextInWholePage("編輯")
+		self.ck.clickByString("編輯")
+		self.ft.findTextInWholePage("發佈")
+		self.emotionLevel = str(random.randint(1,5))
+		self.ck.clickByResourceID(self.apkVersionIdName+"/faceImage"+self.emotionLevel)
+		self.ck.clickByString("發佈")
+		sleep(3)
+		emotionString = self.testCountName+self.emotionLeveltoString()
+		if(self.ft.findTextInWholePage(emotionString, mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("健康燈設定")
+		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def deleteEmotion(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -427,13 +342,12 @@ class script():
 		sleep(3)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("新增健康燈")
+		self.ft.findTextInWholePage("健康燈設定")
 		self.ft.findTextInWholePage("心情")
 		self.ck.clickByString("心情")
 		sleep(5)
 		emotionContent = self.driver.find_element_by_id(self.apkVersionIdName+"/emotionContent").text
 		self.ck.clickByResourceID(self.apkVersionIdName+"/myEmotionSetting")
-		print(emotionContent)
 
 		self.ft.findTextInWholePage("刪除")
 		self.ck.clickByString("刪除")
@@ -450,10 +364,7 @@ class script():
 		sleep(3)
 
 
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
-
-
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")	
 	def emotionLeveltoString(self):
 		if(self.emotionLevel == "1"):
 			return "心情很差！"
@@ -465,6 +376,63 @@ class script():
 			return "心情不錯！"
 		elif(self.emotionLevel == "5"):
 			return "心情棒透了！"
+
+	def clickSearch(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		articleTitle = self.driver.find_element_by_id(self.apkVersionIdName+"/tv_homeResultArticleItemTitle").text
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		if(self.ft.findText(articleTitle, mode=1)):
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		sleep(3)
+		self.driver.keyevent("4")
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def clickSearch(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.sp.swipeLeft()
+		self.sp.swipeLeft()
+		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/ll_homeResultArticleItem")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendType")
+		self.ck.clickByString("查看出處")
+		self.ft.findSpecificItemByResourceID("android:id/title")
+		self.driver.keyevent("4")
+		sleep(1)
+		self.driver.keyevent("4")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView") #找尋有影片的文章
+		self.ck.clickByResourceID(self.apkVersionIdName+"/youtube_playerView")
+		self.ft.findTextInWholePage("查看出處")
+		self.ck.clickByString("查看出處")
+		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
+		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊影片來源「查看出處」
+		sleep(3)
+		self.ft.findTextInWholePage("訂閱")
+		sleep(3)
+		self.driver.keyevent("4")
+		self.ft.findTextInWholePage("查看出處")
+		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
+		self.driver.keyevent("4")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
+		#self.ck.clickByResourceID(self.apkVersionIdName+"/home_recommendBack")
+		self.driver.keyevent("4")
+		#self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
+		#self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/home_tab_icon")
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		sleep(5)	
+
+
+
+
+
+
+
 """
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
