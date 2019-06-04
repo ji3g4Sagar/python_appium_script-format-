@@ -5,7 +5,7 @@ import sys
 import os
 import unittest
 from appium import webdriver
-from dynamicWallScript import script
+from healthBulbScript import script
 from apkVersionAndCellConfig import Config
 
 

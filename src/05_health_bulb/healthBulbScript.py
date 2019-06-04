@@ -6,6 +6,7 @@ sys.path.append("..")
 from Motion import *
 #from logging import Log
 from time import sleep
+import time
 from appium.webdriver import Remote #for keyevent
 import random, string
 
@@ -26,9 +27,13 @@ class script():
 
 
 	def starter(self):
-		self.
+		#self.addBP_TW()
+		#self.addBP_US()
+		#self.addBP_EU()
+		#self.editBP()
+		self.deleteBP()
 
-	def setBPStandardTW(self):
+	def setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
@@ -38,397 +43,243 @@ class script():
 		self.ck.clickByString(" 設定標準 ")
 		self.ft.findText("設定個人化標準")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/spn_bp_standard")
-		self.ck.clickByString(self.apkVersionIdName+"2017 中華民國心臟學會標準")
+		if(standardCode == 1):
+			self.ft.findText("2017 中華民國心臟學會標準")
+			self.ck.clickByString("2017 中華民國心臟學會標準")
+		elif (standardCode == 2):
+			self.ft.findText("2017 美國心臟醫學會標準")
+			self.ck.clickByString("2017 美國心臟醫學會標準")
+		elif (standardCode == 3):
+			self.ft.findText("2018 歐洲心臟/高血壓學會標準")
+			self.ck.clickByString("2018 歐洲心臟/高血壓學會標準")
 		self.ck.clickByString("確認")
-
-	def addBP_TW(self, level):
+	def addBP_TW(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self._setBPStandard(1)
+		for i in range (4):
+			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
+			self.ft.findText("如何量血壓")
+			systolic, diastolic, bpLevelText = self.bpStandard_TW(i)
+			print(systolic, diastolic, bpLevelText)
+			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
+			systolicFiled.set_text(systolic)
 
-		self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
-		self.ft.findText("如何量血壓")
-
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
-
-
-	def checkForDynamicWall(self):
-		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
-		"""
-			1.利用self.hp.goBackToHomePage()返回動態牆
-			2.印出動態牆上出現的文字
-		"""
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/iv_bankLoginRefresh")
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		print("Check for default announcement.....")  
-		defaultKeyWord = self.driver.find_element_by_id(self.apkVersionIdName + "/tv_homeHealthKeywords").text
-		if(self.ft.findText(defaultKeyWord, mode=1)):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		sleep(5)
-	def createAlbum(self):
-
-		actionSuccessfully = False
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		sleep(3)
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
-		self.ck.clickByString("相簿")
-		self.ft.findTextInWholePage("健康動態")
-		self.ck.clickByString("＋新增相簿")
-		self.ft.findTextInWholePage("設定相簿")
-		self.albumName = str(random.randint(1,1000))+" testing album"
-		self.ec.enter(self.albumName, self.apkVersionIdName + "/albumName")
-		self.ck.clickByString("完成")
-		self.ft.findTextInWholePage("健康動態")
-		self.ck.clickByString(self.albumName)
-		self.ft.findTextInWholePage("分享")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistoryAdd")
-		self.ft.findTextInWholePage("選擇照片")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",1)
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",2)
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",3)
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",4)
-		self.ck.clickByString("傳送")
-		self.ft.findTextInWholePage("分享")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("健康動態")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("健康燈設定")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
-		self.sp.swipeDown(n=2)
-		if(self.ft.findTextInWholePage("在"+self.albumName+"新增了相片", mode=1)):
-			actionSuccessfully = True
-		if(actionSuccessfully):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		sleep(5)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def leftMessageInMyselfAlbum(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		""""""
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
-		self.ck.clickByString("相簿")
-		self.ft.findTextInWholePage("健康動態")
-		self.ck.clickByString(self.albumName)
-		self.ft.findTextInWholePage("分享")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/leaveMessageCount")
-		sleep(5)
-		self.message = "Testing message "+str(random.randint(1,1000))
-		self.ec.enter(self.message, self.apkVersionIdName + "/albumContentEdText")
-		self.ft.findTextInWholePage(self.message)
-		self.ck.clickByResourceID(self.apkVersionIdName+"/sendAlbumMsg")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("分享")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("健康動態")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("健康燈設定")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
-		self.sp.swipeDown()
-		sleep(4)
-		#Xpath 在jenkins 似乎會crash 待修
-		#self.ft.findTextInWholePage("在"+self.albumName+"新增了相片")
-		#self.ft.findTextInWholePage("在01新增了相片")
-		#xpath = "//android.widget.TextView[@resource-id='"+ self.apkVersionIdName + "/order" + "']/parent::android.widget.FrameLayout/preceding-sibling::android.widget.ImageView"
-		#message = '//*[@text=\'{}\']/parent::android.widget.LinearLayout/parent::android.widget.LinearLayout/following-sibing::android.widget.FrameLayout/following-sibing::android.widget.FrameLayout/following-sibing::android.widget.FrameLayout/child::android.widget.LinearLayout/child::android.widget.TextView'.format("在01新增了相片")
-		self.ft.findTextInWholePage("在"+self.albumName+"新增了相片")
-		targetXpath = '//*[@text=\'{}\']/parent::android.widget.LinearLayout/\
-									parent::android.widget.LinearLayout\
-									/parent::android.widget.LinearLayout\
-									/following-sibling::android.widget.FrameLayout\
-									/following-sibling::android.widget.FrameLayout\
-									/following-sibling::android.widget.FrameLayout\
-									/child::android.widget.LinearLayout\
-									/child::android.widget.TextView'.format("在"+self.albumName+"新增了相片")
-		target = self.driver.find_element_by_xpath(targetXpath)
-		print(target.text)
-		target.click()
-		self.ck.clickByResourceID(self.apkVersionIdName+"/leaveMessageCount")
-		if(self.ft.findTextInWholePage(self.message, mode=1)):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		self.driver.keyevent("4")
-		sleep(3)
-		self.driver.keyevent("4")
-		sleep(3)
-	
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def editAlbumName(self):
-
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
-		self.ck.clickByString("相簿")
-		self.ft.findTextInWholePage("健康動態")
-		self.ck.clickByString(self.albumName)
-		self.ft.findTextInWholePage("分享")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistorySetting")
-		self.ck.clickByString("編輯")
-		self.ft.findTextInWholePage("設定相簿")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/albumName")
-		for i in range(len(self.albumName)):
-			self.driver.keyevent("67")
-		self.albumName = "New "+str(random.randint(1,1000))+" name"
-		self.ec.enter(self.albumName, self.apkVersionIdName + "/albumName")
-		self.ck.clickByString("完成")
-		self.ft.findTextInWholePage("分享")
-		if(self.ft.findTextInWholePage(self.albumName, mode=1)):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("健康動態")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("健康燈設定")
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
-		sleep(5)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def deleteAlbum(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
-		self.ck.clickByString("相簿")
-		self.ft.findTextInWholePage("健康動態")
-		self.ck.clickByString(self.albumName)
-		self.ft.findTextInWholePage("分享")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/familyPhotoAlbumHistorySetting")
-		self.ck.clickByString("刪除")
-		self.ft.findTextInWholePage("提醒")
-		self.ck.clickByString("刪除")
-		if(self.gt.search4Toast("刪除完成", mode=1)):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		sleep(5)
-		self.driver.keyevent("4")
-		sleep(5)
-		self.driver.keyevent("4")
-		sleep(3)
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def hiFiveCheck(self):
-		#檢測在動態牆上是否有「為您擊掌」的互動訊息
-		"""
-			1.利用顯式(explicit)等待,尋找擊掌的sourceID(/likeTime)出現
-				->findHiFive == True: 利用self.ft確認「為您擊掌」文字是否存在
-				->findHiFive == False: 下向滑動繼續尋找
-		"""
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		findHiFive = False
-		while(findHiFive != True):
-			#if(self.wf.explicitWaitByResourceID(self.apkVersionIdName + "/likeTime", time=2, freuency=0.5)):
-			if(self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/likeTime")):
-				print(type(self))
-				if(self.ft.findText("為您擊掌", mode=1)):
-					findHiFive = True		
-					print("[PASS]-"+sys._getframe().f_code.co_name)
-				else:
-					print("[FAIL]-"+sys._getframe().f_code.co_name)
+			diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText\
+											/following-sibling::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
+			diastolicFiled.set_text(diastolic)
+			self.ck.clickByString("完成")
+			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+											/preceding-sibling::android.view.View\
+											/following-sibling::android.view.View'.format(bpLevelText)
+			target = self.driver.find_element_by_xpath(targetXpath)
+			bpTime =  time.strftime("%H", time.localtime())
+			print(target.text)
+			print(bpTime)
+			if(bpTime in target.text):
+				print("[PASS]-"+sys._getframe().f_code.co_name)
 			else:
-				print("Keep serarching for the element %s !!!" % (self.apkVersionIdName+"/likeTime"))
-				self.sp.swipeUp(n=2)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")			
-		sleep(5)
-	def addEmotion(self):
+				print("[FAIL]-"+sys._getframe().f_code.co_name)
+			sleep(2)
+
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def addBP_EU(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self._setBPStandard(3)
+		for i in range (4):
+			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
+			self.ft.findText("如何量血壓")
+			systolic, diastolic, bpLevelText = self.bpStandard_EU(i)
+			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
+			systolicFiled.set_text(systolic)
+
+			diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText\
+											/following-sibling::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
+			diastolicFiled.set_text(diastolic)
+			self.ck.clickByString("完成")
+			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+											/preceding-sibling::android.view.View\
+											/following-sibling::android.view.View'.format(bpLevelText)
+			target = self.driver.find_element_by_xpath(targetXpath)
+			bpTime =  time.strftime("%H", time.localtime())
+			print(target.text)
+			print(bpTime)
+			if(bpTime in target.text):
+				print("[PASS]-"+sys._getframe().f_code.co_name)
+			else:
+				print("[FAIL]-"+sys._getframe().f_code.co_name)
+			sleep(2)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def addBP_US(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self._setBPStandard(2)
+		for i in range (3):
+			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
+			self.ft.findText("如何量血壓")
+			systolic, diastolic, bpLevelText = self.bpStandard_US(i)
+			print(systolic, diastolic, bpLevelText)
+			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
+			systolicFiled.set_text(systolic)
+
+			diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText\
+											/following-sibling::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
+			diastolicFiled.set_text(diastolic)
+			self.ck.clickByString("完成")
+			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+											/preceding-sibling::android.view.View\
+											/following-sibling::android.view.View'.format(bpLevelText)
+			target = self.driver.find_element_by_xpath(targetXpath)
+			bpTime =  time.strftime("%H", time.localtime())
+			print(target.text)
+			print(bpTime)
+			if(bpTime in target.text):
+				print("[PASS]-"+sys._getframe().f_code.co_name)
+			else:
+				print("[FAIL]-"+sys._getframe().f_code.co_name)
+			sleep(2)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def _bpStandard_TW(self, bpLevel):
+		if(bpLevel == 0): #緊急
+			return "180", "110", "緊急"
+		elif(bpLevel == 1):#正常
+			return "111", "79", "正常"
+		elif(bpLevel == 2):#留意
+			return "131", "89", "留意"
+		elif(bpLevel == 3):#注意
+			return "131", "90", "注意"
+	def _bpStandard_EU(self, bpLevel):
+		if(bpLevel == 0):
+			return "181", "110", "緊急"
+		elif(bpLevel == 1):
+			return "178", "109", "注意"
+		elif(bpLevel == 2):
+			return "139", "89", "留意"
+		elif(bpLevel == 3):
+			return "111", "79", "正常"
+	def _bpStandard_US(self, bpLevel):
+		if(bpLevel == 0):
+			return "130", "80", "注意"
+		elif(bpLevel == 1):
+			return "129", "79", "留意"
+		elif(bpLevel == 2):
+			return "119", "79", "正常"
+	def editBP(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		sleep(3)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
-		self.ft.findTextInWholePage("心情")
-		self.ck.clickByString("心情")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/emotionCalender")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/addEmotion")
-		self.ft.findTextInWholePage("選擇您的心情")
-		self.emotionLevel = str(random.randint(1,5))
-		self.ck.clickByResourceID(self.apkVersionIdName+"/faceImage"+self.emotionLevel)
-		emotionMessage = ''.join(random.choice(string.ascii_letters) for x in range(256))
-		self.ec.enter(emotionMessage, self.apkVersionIdName + "/emotionContent")
+		self.ft.findTextInWholePage("血壓")
+		self.ck.clickByString("血壓")
+		self.ft.findText("今日")
+		self.ck.clickByString("今日")
 		sleep(1)
-		self.ck.clickByString("發佈")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/emotionCalender")
-		self.driver.keyevent("4")
-		sleep(3)
-		self.driver.keyevent("4")
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def leftMessageInEmotion(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		sleep(3)
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
-		self.ft.findTextInWholePage("心情")
-		self.ck.clickByString("心情")
-		sleep(5)
-		self.ck.clickByString("留言")
-		self.ft.findTextInWholePage("回覆...")
-		self.ck.clickByString("回覆...")
-		message = "Testing message "+str(random.randint(1,1000))
-		self.ec.enter(message, self.apkVersionIdName + "/emotionContentEdText")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/sendEmotionMsg")
-		if(self.ft.findTextInWholePage(message, mode=1)):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		self.driver.keyevent("4")
-		sleep(5)
-		self.driver.keyevent("4")
-		sleep(5)
-		self.driver.keyevent("4")
-		sleep(5)
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def editEmotion(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		sleep(3)
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
-		self.ft.findTextInWholePage("心情")
-		self.ck.clickByString("心情")
-		sleep(5)
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/myEmotionSetting")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/myEmotionSetting")
-		self.ft.findTextInWholePage("編輯")
+		self.ft.findText("今日")
+		self.ck.clickByString("今日")
+		self.ft.findText("編輯")
 		self.ck.clickByString("編輯")
-		self.ft.findTextInWholePage("發佈")
-		self.emotionLevel = str(random.randint(1,5))
-		self.ck.clickByResourceID(self.apkVersionIdName+"/faceImage"+self.emotionLevel)
-		self.ck.clickByString("發佈")
-		sleep(3)
-		emotionString = self.testCountName+self.emotionLeveltoString()
-		if(self.ft.findTextInWholePage(emotionString, mode=1)):
+		self.ft.findText("儲存")
+		editSystolic = str(random.randint(1,299))
+		editDiastolic = str(random.randint(1,299))
+		print(editDiastolic, editSystolic)
+		systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+		systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
+		systolicFiled.click()
+		for i in range(len(systolicFiled.text)):
+			self.driver.keyevent("67")
+		systolicFiled.set_text(editSystolic)
+		diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText\
+											/following-sibling::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+		diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
+		diastolicFiled.click()
+		for i in range(len(diastolicFiled.text)):
+			self.driver.keyevent("67")
+		diastolicFiled.set_text(editDiastolic)
+		self.ck.clickByString("儲存")
+		if(self.ft.findText(editSystolic, mode=1) and self.ft.findText(editDiastolic, mode=1)):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(3)
 		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("健康燈設定")
+		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("親友健康")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
-
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def deleteEmotion(self):
+	def deleteBP(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		sleep(3)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
-		self.ft.findTextInWholePage("心情")
-		self.ck.clickByString("心情")
-		sleep(5)
-		emotionContent = self.driver.find_element_by_id(self.apkVersionIdName+"/emotionContent").text
-		self.ck.clickByResourceID(self.apkVersionIdName+"/myEmotionSetting")
-
-		self.ft.findTextInWholePage("刪除")
+		self.ft.findTextInWholePage("血壓")
+		self.ck.clickByString("血壓")
+		self.ft.findText("今日")
+		self.ck.clickByString("今日")
+		sleep(1)
+		self.ft.findText("今日")
+		self.ck.clickByString("今日")
+		self.ft.findText("編輯")
+		self.ck.clickByString("編輯")
+		systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+		systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
+		systolic = systolicFiled.text
+		diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/following-sibling::android.widget.EditText\
+											/following-sibling::android.view.View\
+											/following-sibling::android.widget.EditText'.format("晚上")
+		diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
+		diastolic = diastolicFiled.text
+		self.ft.findText("刪除")
 		self.ck.clickByString("刪除")
-		self.ft.findTextInWholePage("提醒")
-		self.ck.clickByString("刪除")
-		if(self.ft.findText(emotionContent, mode=1)):
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[PASS]-"+sys._getframe().f_code.co_name)	
-		sleep(5)
-		self.driver.keyevent("4")
-		sleep(5)
-		self.driver.keyevent("4")
-		sleep(3)
-
-
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")	
-	def emotionLeveltoString(self):
-		if(self.emotionLevel == "1"):
-			return "心情很差！"
-		elif(self.emotionLevel == "2"):
-			return "心情不太好！"
-		elif(self.emotionLevel == "3"):
-			return "心情普通！"
-		elif(self.emotionLevel == "4"):
-			return "心情不錯！"
-		elif(self.emotionLevel == "5"):
-			return "心情棒透了！"
-	def clickSearch(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		articleTitle = self.driver.find_element_by_id(self.apkVersionIdName+"/tv_homeResultArticleItemTitle").text
-		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		if(self.ft.findText(articleTitle, mode=1)):
+		
+		self.ft.findText("確認")
+		self.ck.clickByString("確認")
+		if(self.ft.findText(systolic, mode=1) and self.ft.findText(diastolic, mode=1)):
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		else:
 			print("[PASS]-"+sys._getframe().f_code.co_name)
+
 		sleep(3)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def clickSearch(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.sp.swipeLeft()
-		self.sp.swipeLeft()
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/ll_homeResultArticleItem")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendType")
-		self.ck.clickByString("查看出處")
-		self.ft.findSpecificItemByResourceID("android:id/title")
-		self.driver.keyevent("4")
-		sleep(1)
-		self.driver.keyevent("4")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView") #找尋有影片的文章
-		self.ck.clickByResourceID(self.apkVersionIdName+"/youtube_playerView")
-		self.ft.findTextInWholePage("查看出處")
-		self.ck.clickByString("查看出處")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊影片來源「查看出處」
-		sleep(3)
-		self.ft.findTextInWholePage("訂閱")
-		sleep(3)
-		self.driver.keyevent("4")
-		self.ft.findTextInWholePage("查看出處")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
-		self.driver.keyevent("4")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/home_recommendBack")
-		self.driver.keyevent("4")
-		#self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/iv_homeResultSearch")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/home_tab_icon")
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		sleep(5)	
+
+
+
 
 """
 		self.hp.goBackToHomePage()
