@@ -9,7 +9,6 @@ from dynamicWallScript import script
 from apkVersionAndCellConfig import Config
 
 
-
 class WaCareTest(unittest.TestCase):
 	def setUp(self):
 		configfile = Config()
@@ -23,7 +22,6 @@ class WaCareTest(unittest.TestCase):
 	def test(self):
 		test = script(self.driver, self.apkVersionIdName)
 		test.starter()
-
 
 
 if __name__ == '__main__':

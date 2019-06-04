@@ -24,25 +24,34 @@ class script():
 		self.hp = homePage(driver, apkVersionIdName)
 		self.gt = getToast(driver)
 
-		self.testCountName ="0011" #想辦法改成自動去取得該次測試帳號的使用者名稱
-		self.albumName = ""
-		self.message = ""
-		self.emotionLevel = 0
-
 
 	def starter(self):
-		self.checkForDynamicWall()
-		self.addEmotion()
-		self.leftMessageInEmotion()
-		self.editEmotion()
-		self.deleteEmotion()
-		self.createAlbum()
-		#self.leftMessageInMyselfAlbum()
-		self.editAlbumName()
-		self.deleteAlbum()
-		self.clickSearch()
-		#self.hiFiveCheck()
-		self.clickSearch()
+		self.
+
+	def setBPStandardTW(self):
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("血壓")
+		self.ck.clickByString("血壓")
+		self.ft.findTextInWholePage(" 設定標準 ")
+		self.ck.clickByString(" 設定標準 ")
+		self.ft.findText("設定個人化標準")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/spn_bp_standard")
+		self.ck.clickByString(self.apkVersionIdName+"2017 中華民國心臟學會標準")
+		self.ck.clickByString("確認")
+
+	def addBP_TW(self, level):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+
+		self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
+		self.ft.findText("如何量血壓")
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+
+
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -60,7 +69,6 @@ class script():
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 		sleep(5)
-
 	def createAlbum(self):
 
 		actionSuccessfully = False
@@ -223,7 +231,6 @@ class script():
 		sleep(3)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def hiFiveCheck(self):
 		#檢測在動態牆上是否有「為您擊掌」的互動訊息
 		"""
@@ -248,9 +255,6 @@ class script():
 				self.sp.swipeUp(n=2)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")			
 		sleep(5)
-
-	
-
 	def addEmotion(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -376,7 +380,6 @@ class script():
 			return "心情不錯！"
 		elif(self.emotionLevel == "5"):
 			return "心情棒透了！"
-
 	def clickSearch(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -426,12 +429,6 @@ class script():
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/home_tab_icon")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 		sleep(5)	
-
-
-
-
-
-
 
 """
 		self.hp.goBackToHomePage()
