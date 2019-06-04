@@ -491,6 +491,7 @@ class homePage():
 		except:
 			print("[checkForStartPage] Init error!\n")
 	def goBackToHomePage(self):
+		sleep(3)
 		"""呼叫於每次操作前，返回動態牆畫面使用
 			1.檢查畫面最下方的home tab是否存在
 			2.利用tap進到動態牆頁面
