@@ -63,7 +63,7 @@ class script():
 		for i in range (4):
 			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
 			self.ft.findText("如何量血壓")
-			systolic, diastolic, bpLevelText = self.bpStandard_TW(i)
+			systolic, diastolic, bpLevelText = self._bpStandard_TW(i)
 			print(systolic, diastolic, bpLevelText)
 			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
 											/following-sibling::android.widget.EditText'.format("晚上")
@@ -102,7 +102,7 @@ class script():
 		for i in range (4):
 			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
 			self.ft.findText("如何量血壓")
-			systolic, diastolic, bpLevelText = self.bpStandard_EU(i)
+			systolic, diastolic, bpLevelText = self._bpStandard_EU(i)
 			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
 											/following-sibling::android.widget.EditText'.format("晚上")
 			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
@@ -139,7 +139,7 @@ class script():
 		for i in range (3):
 			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
 			self.ft.findText("如何量血壓")
-			systolic, diastolic, bpLevelText = self.bpStandard_US(i)
+			systolic, diastolic, bpLevelText = self._bpStandard_US(i)
 			print(systolic, diastolic, bpLevelText)
 			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
 											/following-sibling::android.widget.EditText'.format("晚上")
