@@ -36,7 +36,7 @@ class script():
 		self.addBG()
 		#self.addICDatd()
 
-	def setBPStandard(self, standardCode):
+	def _setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
