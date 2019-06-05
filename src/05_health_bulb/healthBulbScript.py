@@ -65,6 +65,7 @@ class script():
 			self.ft.findText("如何量血壓")
 			systolic, diastolic, bpLevelText = self._bpStandard_TW(i)
 			print(systolic, diastolic, bpLevelText)
+			self.ft.findText("晚上")
 			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
 											/following-sibling::android.widget.EditText'.format("晚上")
 			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
