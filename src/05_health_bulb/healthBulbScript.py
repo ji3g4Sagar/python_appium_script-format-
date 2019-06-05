@@ -301,6 +301,8 @@ class script():
 		self.ck.clickByString("恢復")
 		sleep(3)
 		self.driver.keyevent("4")
+		self.ft.findText("今日")
+		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
