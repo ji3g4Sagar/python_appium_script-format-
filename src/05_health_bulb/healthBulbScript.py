@@ -27,12 +27,14 @@ class script():
 
 
 	def starter(self):
-		#self.addBP_TW()
-		#self.addBP_US()
-		#self.addBP_EU()
-		#self.editBP()
-		#self.deleteBP()
+		self.addBP_TW()
+		self.addBP_US()
+		self.addBP_EU()
+		self.editBP()
+		self.deleteBP()
 		self.failBP()
+		self.addBG()
+		#self.addICDatd()
 
 	def setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -278,7 +280,6 @@ class script():
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def failBP(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -299,6 +300,84 @@ class script():
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+	def addBG(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("血糖")
+		self.ck.clickByString("血糖")
+		self.ft.findText("WHO標準")
+		for i in range(4):
+			self.ck.clickByResourceID(self.apkVersionIdName+"/iv_mybloodSugar_Plus")
+			self.ft.findText("早餐前")
+			self.ck.clickByString("早餐前")
+			self.ck.clickByString("下一步")
+			self.ft.findText("請輸入血糖值")
+			bloodGlucose, bloodGlucoseLevel = self._bloodGlucoseValueAndLevel(i)
+			self.ck.clickByString("請輸入血糖值")
+			self.ec.enter(bloodGlucose, self.apkVersionIdName+"/et_blood_sugar")
+			self.ck.clickByString("確認")
+			sleep(3)
+			bloodGlucoseDateXpath = '//*[@text=\'{}\']/parent::android.widget.LinearLayout\
+												  /preceding-sibling::android.widget.LinearLayout\
+												  /preceding-sibling::android.widget.FrameLayout\
+												  /child::android.widget.TextView'.format(bloodGlucose+" 	mg/dL")
+			bloodGlucoseDateObj = self.driver.find_element_by_xpath(bloodGlucoseDateXpath)
+			print(bloodGlucoseDateObj.text)
+
+			bloodGlucoseLevelXpath = '//*[@text=\'{}\']/parent::android.widget.LinearLayout\
+												  /following-sibling::android.widget.FrameLayout\
+												  /child::android.widget.TextView'.format(bloodGlucose+" 	mg/dL")
+			bloodGlucoseLevelObj = self.driver.find_element_by_xpath(bloodGlucoseLevelXpath)
+			print(bloodGlucoseLevelObj.text)
+
+			if(bloodGlucoseDateObj.text == "今日" and bloodGlucoseLevelObj.text == bloodGlucoseLevel):
+				print("[PASS]-"+sys._getframe().f_code.co_name)
+			else:
+				print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(3)		
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		sleep(5)
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def _bloodGlucoseValueAndLevel(self, bGLevel):
+		if(bGLevel == 0):		
+			return str(random.randint(70,99)), "正常"
+		elif(bGLevel == 1):
+			return str(random.randint(100,125)), "留意"
+		elif(bGLevel == 2):
+			return str(random.randint(126,200)), "注意"
+		elif(bGLevel == 3):
+			return str(random.randint(600,999)), "緊急"
+
+	def addICDatd(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("IC")
+		self.ck.clickByString("IC")
+		self.ft.findText("IC_TICA")
+		painXY = self.xy.getXYByResourceID("slider-pain")
+		print(painXY)
+
+
+
+
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+
+
+
+
+
 
 
 
