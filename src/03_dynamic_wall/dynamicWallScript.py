@@ -359,10 +359,9 @@ class script():
 			print("[PASS]-"+sys._getframe().f_code.co_name)	
 		sleep(5)
 		self.driver.keyevent("4")
-		sleep(5)
+		self.ft.findTextInWholePage("健康燈設定")
 		self.driver.keyevent("4")
-		sleep(3)
-
+		self.ft.findTextInWholePage("親友健康")
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")	
 	def emotionLeveltoString(self):

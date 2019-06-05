@@ -27,14 +27,14 @@ class script():
 
 
 	def starter(self):
-		self.addBP_TW()
-		self.addBP_US()
-		self.addBP_EU()
-		self.editBP()
-		self.deleteBP()
-		self.failBP()
-		self.addBG()
-		#self.addICDatd()
+		#self.addBP_TW()
+		#self.addBP_US()
+		#self.addBP_EU()
+		#self.editBP()
+		#self.deleteBP()
+		#self.failBP()
+		#self.addBG()
+		self.addICDatd()
 
 	def _setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -370,10 +370,14 @@ class script():
 		self.ft.findTextInWholePage("IC")
 		self.ck.clickByString("IC")
 		self.ft.findText("IC_TICA")
-		painXY = self.xy.getXYByResourceID("slider-pain")
-		print(painXY)
+		self.ft.findText("疼痛程度")
 
+		painBarXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+												  /child::android.view.View\
+												  /child::android.view.View'.format("疼痛程度")
 
+		painBarObj = self.driver.find_element_by_xpath(painBarXpath)
+		print(painBarObj.location[2])
 
 
 
