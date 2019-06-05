@@ -37,7 +37,7 @@ class script():
 		self.editEmotion()
 		self.deleteEmotion()
 		self.createAlbum()
-		#self.leftMessageInMyselfAlbum()
+		self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
 		self.clickSearch()
