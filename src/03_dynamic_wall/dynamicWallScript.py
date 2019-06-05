@@ -31,18 +31,18 @@ class script():
 
 
 	def starter(self):
-		self.checkForDynamicWall()
-		self.addEmotion()
-		self.leftMessageInEmotion()
-		self.editEmotion()
-		self.deleteEmotion()
+		#self.checkForDynamicWall()
+		#self.addEmotion()
+		#self.leftMessageInEmotion()
+		#self.editEmotion()
+		#self.deleteEmotion()
 		self.createAlbum()
 		self.leftMessageInMyselfAlbum()
-		self.editAlbumName()
-		self.deleteAlbum()
-		self.clickSearch()
+		#self.editAlbumName()
+		#self.deleteAlbum()
+		#self.clickSearch()
 		#self.hiFiveCheck()
-		self.clickSearch()
+		#self.clickSearch()
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
@@ -60,7 +60,6 @@ class script():
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 		sleep(5)
-
 	def createAlbum(self):
 
 		actionSuccessfully = False
@@ -134,20 +133,19 @@ class script():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
 		self.sp.swipeDown()
 		sleep(4)
-		#Xpath 在jenkins 似乎會crash 待修
+
+		
+		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/homeAlmumLayout5")
+
 		#self.ft.findTextInWholePage("在"+self.albumName+"新增了相片")
-		#self.ft.findTextInWholePage("在01新增了相片")
-		#xpath = "//android.widget.TextView[@resource-id='"+ self.apkVersionIdName + "/order" + "']/parent::android.widget.FrameLayout/preceding-sibling::android.widget.ImageView"
-		#message = '//*[@text=\'{}\']/parent::android.widget.LinearLayout/parent::android.widget.LinearLayout/following-sibing::android.widget.FrameLayout/following-sibing::android.widget.FrameLayout/following-sibing::android.widget.FrameLayout/child::android.widget.LinearLayout/child::android.widget.TextView'.format("在01新增了相片")
-		self.ft.findTextInWholePage("在"+self.albumName+"新增了相片")
-		targetXpath = '//*[@text=\'{}\']/parent::android.widget.LinearLayout/\
-									parent::android.widget.LinearLayout\
+		targetXpath = '//*[@text=\'{}\']/parent::android.widget.LinearLayout\
+									/parent::android.widget.LinearLayout\
 									/parent::android.widget.LinearLayout\
 									/following-sibling::android.widget.FrameLayout\
 									/following-sibling::android.widget.FrameLayout\
 									/following-sibling::android.widget.FrameLayout\
 									/child::android.widget.LinearLayout\
-									/child::android.widget.TextView'.format("在"+self.albumName+"新增了相片")
+									/child::android.widget.ImageView'.format("在"+self.albumName+"新增了相片")
 		target = self.driver.find_element_by_xpath(targetXpath)
 		print(target.text)
 		target.click()
@@ -223,7 +221,6 @@ class script():
 		sleep(3)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",0)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def hiFiveCheck(self):
 		#檢測在動態牆上是否有「為您擊掌」的互動訊息
 		"""
@@ -248,9 +245,6 @@ class script():
 				self.sp.swipeUp(n=2)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")			
 		sleep(5)
-
-	
-
 	def addEmotion(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -375,7 +369,6 @@ class script():
 			return "心情不錯！"
 		elif(self.emotionLevel == "5"):
 			return "心情棒透了！"
-
 	def clickSearch(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
