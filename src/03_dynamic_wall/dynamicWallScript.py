@@ -380,20 +380,6 @@ class script():
 	def clickSearch(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		articleTitle = self.driver.find_element_by_id(self.apkVersionIdName+"/tv_homeResultArticleItemTitle").text
-		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_homeResultSearch")
-		if(self.ft.findText(articleTitle, mode=1)):
-			print("[FAIL]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		sleep(3)
-		self.driver.keyevent("4")
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def clickSearch(self):
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.sp.swipeLeft()
 		self.sp.swipeLeft()
 		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeHealthKeywords")
@@ -407,14 +393,6 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/youtube_playerView") #找尋有影片的文章
 		self.ck.clickByResourceID(self.apkVersionIdName+"/youtube_playerView")
-		self.ft.findTextInWholePage("查看出處")
-		self.ck.clickByString("查看出處")
-		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
-		#self.ck.clickByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")#點擊影片來源「查看出處」
-		sleep(3)
-		self.ft.findTextInWholePage("訂閱")
-		sleep(3)
-		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("查看出處")
 		#self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_homeRecommendWeb")
 		self.driver.keyevent("4")

@@ -31,7 +31,8 @@ class script():
 		#self.addBP_US()
 		#self.addBP_EU()
 		#self.editBP()
-		self.deleteBP()
+		#self.deleteBP()
+		self.failBP()
 
 	def setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -277,6 +278,29 @@ class script():
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+	def failBP(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("血壓")
+		self.ck.clickByString("血壓")
+		self.ft.findText("今日")
+		self.ck.clickByString("今日")
+		sleep(1)
+		self.ft.findText("作廢")
+		self.ck.clickByString("作廢")
+		self.ft.findText("恢復")
+		self.ck.clickByString("恢復")
+		sleep(3)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+
 
 
 
