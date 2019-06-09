@@ -325,7 +325,7 @@ class getToast():
 			if(mode == 1):	
 				return False	
 		else:
-			print("FInd toast!!!!")
+			print("Find toast!!!!")
 			if(mode == 1):
 				return True
 class findSpecificText():

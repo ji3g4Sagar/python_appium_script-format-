@@ -20,7 +20,6 @@ class script():
 		self.wf = waittingFor(driver)
 		self.ft = findSpecificText(driver)
 		self.xy = getXYLocation(driver)
-		self.ft = findSpecificText(driver)
 		self.apkVersionIdName = apkVersionIdName
 		self.hp = homePage(driver, apkVersionIdName)
 		self.gt = getToast(driver)
@@ -34,7 +33,9 @@ class script():
 		#self.deleteBP()
 		#self.failBP()
 		#self.addBG()
-		self.addICDatd()
+		#self.addICDatda()
+		#self.addICNodata()
+		self.icLevels()
 
 	def _setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -306,7 +307,6 @@ class script():
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def addBG(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -361,7 +361,7 @@ class script():
 		elif(bGLevel == 3):
 			return str(random.randint(600,999)), "緊急"
 
-	def addICDatd(self):
+	def addICData(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -371,17 +371,148 @@ class script():
 		self.ck.clickByString("IC")
 		self.ft.findText("IC_TICA")
 		self.ft.findText("疼痛程度")
-
 		painBarXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
-												  /child::android.view.View\
-												  /child::android.view.View'.format("疼痛程度")
+										/child::android.view.View\
+										/child::android.view.View'.format("疼痛程度")
 
 		painBarObj = self.driver.find_element_by_xpath(painBarXpath)
-		print(painBarObj.location[2])
+		painBarX = painBarObj.location['x']
+		painBarY = painBarObj.location['y']
+		self.driver.tap([(painBarX+float(380), painBarY)])
+		urgencyBarXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+											/child::android.view.View\
+											/child::android.view.View'.format("尿急程度")
+		urgencyBarObj = self.driver.find_element_by_xpath(urgencyBarXpath)
+		urgencyBarX = urgencyBarObj.location['x']
+		urgencyBarY = urgencyBarObj.location['y']
+		self.driver.tap([(urgencyBarX+float(380), urgencyBarY)])
+		self.ft.findTextInWholePage("查看月曆")
+		urinaryVolume = str(random.randint(1,70))
+		urinaryVolumeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+												  /child::android.widget.EditText'.format("紀錄您現在的排尿量(單位:c.c.)")
+		urinaryVolumeFiled = self.driver.find_element_by_xpath(urinaryVolumeXpath)
+		urinaryVolumeFiled.click()
+		urinaryVolumeFiled.set_text(urinaryVolume)
+		self.ck.clickByString("上傳")
+		self.gt.search4Toast("新增成功")
+		if(self.ft.findText(urinaryVolume+"c.c", mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("IC_TICA")
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		sleep(3)
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 
+	def addICNodata(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("IC")
+		self.ck.clickByString("IC")
+		self.ft.findText("IC_TICA")
+		self.ft.findText("疼痛程度")
+		self.ck.clickByString("上傳")
+		if(self.gt.search4Toast("疼痛、尿急程度為必填", mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		sleep(3)
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 
+	def icLevels(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("IC")
+		self.ck.clickByString("IC")
+		actionSuccess = False
+		for i in range(11):
+			self.ft.findText("IC_TICA")
+			painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume = self._icLevelToLocation(i)
+			print(painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume)
+			self.ft.findText("疼痛程度")
+			sleep(2)
+			self.driver.tap([(painBarX, painBarY)])
+			sleep(2)
+			self.driver.tap([(urgencyBarX, urgencyBarY)])
+			sleep(2)
+			self.ft.findTextInWholePage("查看月曆")
+			urinaryVolumeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+												  /child::android.widget.EditText'.format("紀錄您現在的排尿量(單位:c.c.)")
+			urinaryVolumeFiled = self.driver.find_element_by_xpath(urinaryVolumeXpath)
+			urinaryVolumeFiled.click()
+			urinaryVolumeFiled.set_text(urinaryVolume)
+			self.ck.clickByString("上傳")
+			self.ft.findText("日常紀錄")
+			self.ft.findText(urinaryVolume+"c.c")
+			painXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/child::android.view.View\
+											/following-sibling::android.view.View\
+											/following-sibling::android.view.View\
+											/following-sibling::android.view.View'.format(urinaryVolume+"c.c")
+			urgencyXpath = '//*[@text=\'{}\']/parent::android.view.View\
+											/child::android.view.View\
+											/following-sibling::android.view.View\
+											/following-sibling::android.view.View\
+											/following-sibling::android.view.View\
+											/following-sibling::android.view.View\
+											/following-sibling::android.view.View'.format(urinaryVolume+"c.c")
+			painTextObj = self.driver.find_element_by_xpath(painXpath)
+			urgencyTextObj = self.driver.find_element_by_xpath(urgencyXpath)
+			if(painTextObj.text == levelText and urgencyTextObj.text == levelText):
+				print("find")
+				actionSuccess = True
+			else:
+				print("not found")
+				actionSuccess = False
+			sleep(4)
+			self.driver.keyevent("4")
+
+		if(actionSuccess):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+
+	def _icLevelToLocation(self, icLevel):
+		urinaryVolume = str(random.randint(1,9999)) #利用尿量作為唯一代碼，找尋輸入的等級
+		if(icLevel == 0):
+			return 229, 788, 229, 1287, "正常", urinaryVolume
+		elif(icLevel == 1):
+			return 298, 788, 298, 1287, "輕微", urinaryVolume
+		elif(icLevel == 2):
+			return 367, 788, 367, 1287, "輕微", urinaryVolume
+		elif(icLevel == 3):
+			return 436, 788, 436, 1287, "輕微", urinaryVolume
+		elif(icLevel == 4):
+			return 505, 788, 505, 1287, "中度", urinaryVolume
+		elif(icLevel == 5):
+			return 574, 788, 574, 1287, "中度", urinaryVolume
+		elif(icLevel == 6):
+			return 643, 788, 643, 1287, "高度", urinaryVolume
+		elif(icLevel == 7):
+			return 712, 788, 712, 1287, "高度", urinaryVolume
+		elif(icLevel == 8):
+			return 781, 788, 781, 1287, "劇烈", urinaryVolume
+		elif(icLevel == 9):
+			return 850, 788, 850, 1287, "劇烈", urinaryVolume
+		elif(icLevel == 10):
+			return 919, 788, 919, 1287, "劇烈", urinaryVolume
+
+
 
 
 
