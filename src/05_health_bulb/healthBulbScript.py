@@ -360,7 +360,6 @@ class script():
 			return str(random.randint(126,200)), "注意"
 		elif(bGLevel == 3):
 			return str(random.randint(600,999)), "緊急"
-
 	def addICData(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -406,7 +405,6 @@ class script():
 		self.driver.keyevent("4")
 		sleep(3)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def addICNodata(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -427,7 +425,6 @@ class script():
 		self.driver.keyevent("4")
 		sleep(3)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def icLevels(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -485,8 +482,6 @@ class script():
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
-
 	def _icLevelToLocation(self, icLevel):
 		urinaryVolume = str(random.randint(1,9999)) #利用尿量作為唯一代碼，找尋輸入的等級
 		if(icLevel == 0):
@@ -511,6 +506,23 @@ class script():
 			return 850, 788, 850, 1287, "劇烈", urinaryVolume
 		elif(icLevel == 10):
 			return 919, 788, 919, 1287, "劇烈", urinaryVolume
+
+	def takeMedicine(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("用藥")
+		self.ck.clickByString("用藥")
+		self.ft.findText("今日藥物")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_MedicineListAdd")
+		self.ft.findText("新增用藥")
+		
+
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
 
 
 
