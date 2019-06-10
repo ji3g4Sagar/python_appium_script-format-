@@ -31,18 +31,18 @@ class script():
 
 
 	def starter(self):
-		#self.checkForDynamicWall()
-		#self.addEmotion()
-		#self.leftMessageInEmotion()
-		#self.editEmotion()
-		#self.deleteEmotion()
+		self.checkForDynamicWall()
+		self.addEmotion()
+		self.leftMessageInEmotion()
+		self.editEmotion()
+		self.deleteEmotion()
 		self.createAlbum()
 		self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
 		self.deleteAlbum()
 		self.clickSearch()
 		#self.hiFiveCheck()
-		self.clickSearch()
+		
 	def checkForDynamicWall(self):
 		#用以檢查動態牆是否存在以及當次動態牆上出現的文字
 		"""
