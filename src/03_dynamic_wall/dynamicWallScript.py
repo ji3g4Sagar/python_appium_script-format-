@@ -31,11 +31,11 @@ class script():
 
 
 	def starter(self):
-		self.checkForDynamicWall()
-		self.addEmotion()
-		self.leftMessageInEmotion()
-		self.editEmotion()
-		self.deleteEmotion()
+		#self.checkForDynamicWall()
+		#self.addEmotion()
+		#self.leftMessageInEmotion()
+		#self.editEmotion()
+		#self.deleteEmotion()
 		self.createAlbum()
 		self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
