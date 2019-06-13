@@ -35,7 +35,9 @@ class script():
 		#self.addBG()
 		#self.addICDatda()
 		#self.addICNodata()
-		self.icLevels()
+
+		#self.icLevels()
+		self.takeMedicine()
 
 	def _setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -517,10 +519,53 @@ class script():
 		self.ck.clickByString("用藥")
 		self.ft.findText("今日藥物")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_MedicineListAdd")
+		self.ft.findText("*新增藥物照片")
+		self.ck.clickByString("*新增藥物照片")
+		self.ft.findText("選擇照片")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail",1)
+		self.ck.clickByString("傳送")
 		self.ft.findText("新增用藥")
-		
+		self.ck.clickByString("新增用藥")
+		medicineNameXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+											/child::android.widget.EditText'.format("*用藥時間")
+		medicineNameObj = self.driver.find_element_by_xpath(medicineNameXpath)
+		medicineNameObj.click()
+		medicienceNmae = time.strftime("%m/%d", time.localtime()) + " No." + str(random.randint(1,1000))
+		medicineNameObj.set_text(medicienceNmae)
 
+		takeMedicineTimeXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+												  /preceding-sibling::android.view.View\
+												  /child::android.view.View\
+												  /child::android.view.View'.format("早上")
+		takeMedicineTimeObj = self.driver.find_element_by_xpath(takeMedicineTimeXpath)
+		takeMedicineTimeObj.click()
+		self.sp.swipeUp()
+		startDateXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+ 										   /child::android.widget.EditText'.format("用藥規則")
 
+ 		endDateXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+ 										 /child::android.widget.EditText\
+ 										 /following-sibling::android.widget.EditText'.format("用藥規則")
+ 		startDateObj = self.driver.find_element_by_xpath(startDateXpath)  # 抓不到 物件
+ 		endDateObj = self.driver.find_element_by_xpath(endDateXpath)
+
+ 		startDateObj.click()
+ 		self.ft.findText("確定")
+ 		self.ck.clickByString("確定")
+ 		endDateObj.click()
+ 		self.ft.findText("確定")
+ 		self.ck.clickByString("確定")
+ 		self.ft.findText("新增")
+ 		self.ck.clickByString("新增")
+ 		if(self.ft.findText(medicienceNmae, mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+ 		self.driver.keyevent("4")
+ 		self.ft.findText("健康燈設定")
+ 		self.driver.keyevent("4")
+
+		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 
 
