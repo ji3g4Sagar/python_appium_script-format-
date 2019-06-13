@@ -30,13 +30,15 @@ class script():
 		self.addBP_US()
 		self.addBP_EU()
 		self.editBP()
+		self.failBP()
 		self.deleteBP()
-		#self.failBP()
 		self.addBG()
 		self.addICDatda()
-		#self.addICNodata()
+		self.addICNodata()
 		self.icLevels()
 		self.takeMedicine()
+		self.addRankintable()
+		self.addCigarette()
 
 	def _setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -287,6 +289,7 @@ class script():
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def failBP(self):
+		actionSuccess = False
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -299,9 +302,29 @@ class script():
 		sleep(1)
 		self.ft.findText("作廢")
 		self.ck.clickByString("作廢")
+		self.ck.clickByString("今日")
+		self.ft.findText("編輯")
+		if(self.ft.findText("此筆資料作廢", mode=1)):
+			actionSuccess = True
+		else:
+			actionSuccess = False
+		self.driver.keyevent("4")
 		self.ft.findText("恢復")
 		self.ck.clickByString("恢復")
+		self.ck.clickByString("今日")
+		self.ft.findText("編輯")
+		if(self.ft.findText("此筆資料作廢", mode=1)):
+			actionSuccess = False
+		else:
+			actionSuccess = True
 		sleep(3)
+		if(actionSuccess):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+
+		self.driver.keyevent("4")
+		self.ft.findText("今日")
 		self.driver.keyevent("4")
 		self.ft.findText("今日")
 		self.driver.keyevent("4")
@@ -508,7 +531,7 @@ class script():
 		elif(icLevel == 10):
 			return 919, 788, 919, 1287, "劇烈", urinaryVolume
 
-	def takeMedicine(self):
+	def takeMedicine(self): #無法測試，因為web vierw 的XML跑版，選擇不到元件
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -525,6 +548,7 @@ class script():
 		self.ck.clickByString("傳送")
 		self.ft.findText("新增用藥")
 		self.ck.clickByString("新增用藥")
+
 		medicineNameXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 											/child::android.widget.EditText'.format("*用藥時間")
 		medicineNameObj = self.driver.find_element_by_xpath(medicineNameXpath)
@@ -539,13 +563,16 @@ class script():
 		takeMedicineTimeObj = self.driver.find_element_by_xpath(takeMedicineTimeXpath)
 		takeMedicineTimeObj.click()
 		self.sp.swipeUp()
-		startDateXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
- 										   /child::android.widget.EditText'.format("用藥規則")
+		startDateXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+										   /following-sibling::android.view.View'.format("*用藥時間")
 
- 		endDateXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
- 										 /child::android.widget.EditText\
- 										 /following-sibling::android.widget.EditText'.format("用藥規則")
+ 		endDateXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+										   /following-sibling::android.view.View\
+										   /following-sibling::android.view.View\
+ 										   /child::android.widget.EditText\
+ 										   /following-sibling::android.widget.EditText'.format("*用藥時間")
  		startDateObj = self.driver.find_element_by_xpath(startDateXpath)  # 抓不到 物件
+ 		print(startDateObj.text)
  		endDateObj = self.driver.find_element_by_xpath(endDateXpath)
 
  		startDateObj.click()
@@ -566,6 +593,110 @@ class script():
 
 		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def addRankintable(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findText("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("中風")
+		self.ck.clickByString("中風")
+		self.ft.findText("請選擇欲新增項目")
+		self.ck.clickByString("Rankin量表")
+		levels = random.randint(0,5)
+		self.ft.findText("下一頁")
+		self.ck.clickByString("下一頁")
+		targetText = self._rankinLevels(levels)
+		self.ck.clickByString(targetText)
+		self.ck.clickByString("送出")
+		self.ft.findText("中風")
+		timeStampXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("今日")
+		timeStampObj = self.driver.find_element_by_xpath(timeStampXpath)
+		levelXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+									   /following-sibling::android.view.View'.format("今日")
+		levelObj = self.driver.find_element_by_xpath(levelXpath)
+		print(timeStampObj.text, ": ", levelObj.text)
+		nowTime = time.strftime("%H", time.localtime())
+		if(nowTime in timeStampObj.text and str(levels) == levelObj.text):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+
+		sleep(5)
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def _rankinLevels(self, innerLevels):
+		if(innerLevels == 0):
+			return "完全無症狀"
+		elif(innerLevels == 1):
+			return "儘管有症狀，但無明顯功能障礙，能完成所有日常工作和生活"
+		elif(innerLevels == 2):
+			return "輕度殘疾，不能完成病前所有活動，但不需幫助能照料自己的日常事務"
+		elif(innerLevels == 3):
+			return "中度殘疾，需部分説明，但能獨立行走"
+		elif(innerLevels == 4):
+			return "中重度殘疾，不能獨立行走，日常生活需別人幫助"
+		elif(innerLevels == 5):
+			return "重度殘疾，臥床，二便失禁，日常生活完全依賴他人"
+
+
+
+
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def addCigarette(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findText("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("中風")
+		self.ck.clickByString("中風")
+		self.ft.findText("請選擇欲新增項目")
+		self.ck.clickByString("抽菸數量")
+		self.ft.findText("新增抽菸紀錄")
+		cigaretteNum = str(random.randint(1, 99))
+		cigaretteNumEditTextXpath = '//*[@text=\'{}\']/preceding-sibling::android.widget.EditText'.format("根")
+		cigaretteNumEditTextObj = self.driver.find_element_by_xpath(cigaretteNumEditTextXpath)
+		cigaretteNumEditTextObj.click()
+		cigaretteNumEditTextObj.set_text(cigaretteNum)
+		self.ck.clickByString("上傳")
+		self.ft.findText("中風")
+		if(self.ft.findText(cigaretteNum, mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		sleep(5)
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+	def addNewSituation(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findText("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("中風")
+		self.ck.clickByString("中風")
+		self.ft.findText("請選擇欲新增項目")
+		self.ck.clickByString("新發現狀況")
+
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+
+
+
+
+
+
+
+
+
 
 
 

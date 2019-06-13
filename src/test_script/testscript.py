@@ -38,7 +38,12 @@ class script():
 		self.hp.goBackToHomePage()
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!")
-		
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findTextInWholePage("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("健康燈設定")
+		self.ck.clickByString("相簿")
+		self.ft.findTextInWholePage("健康動態")
 		activity = self.driver.current_activity;
 		print("Tpye: ", type(activity))
 		print(activity)
