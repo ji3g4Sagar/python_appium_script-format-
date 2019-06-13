@@ -24,7 +24,7 @@ class script():
 		self.hp = homePage(driver, apkVersionIdName)
 		self.gt = getToast(driver)
 
-		self.testCountName ="0011" #想辦法改成自動去取得該次測試帳號的使用者名稱
+		self.testCountName ="測試零伍零" #想辦法改成自動去取得該次測試帳號的使用者名稱
 		self.albumName = ""
 		self.message = ""
 		self.emotionLevel = 0
