@@ -26,17 +26,16 @@ class script():
 
 
 	def starter(self):
-		#self.addBP_TW()
-		#self.addBP_US()
-		#self.addBP_EU()
-		#self.editBP()
-		#self.deleteBP()
+		self.addBP_TW()
+		self.addBP_US()
+		self.addBP_EU()
+		self.editBP()
+		self.deleteBP()
 		#self.failBP()
-		#self.addBG()
-		#self.addICDatda()
+		self.addBG()
+		self.addICDatda()
 		#self.addICNodata()
-
-		#self.icLevels()
+		self.icLevels()
 		self.takeMedicine()
 
 	def _setBPStandard(self, standardCode):
