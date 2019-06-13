@@ -26,6 +26,7 @@ class script():
 
 
 	def starter(self):
+		""""""
 		self.addBP_TW()
 		self.addBP_US()
 		self.addBP_EU()
@@ -39,6 +40,8 @@ class script():
 		self.takeMedicine()
 		self.addRankintable()
 		self.addCigarette()
+		self.addNewSituationEmergency()
+		self.addNewSituationNotice()
 
 	def _setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -530,7 +533,6 @@ class script():
 			return 850, 788, 850, 1287, "劇烈", urinaryVolume
 		elif(icLevel == 10):
 			return 919, 788, 919, 1287, "劇烈", urinaryVolume
-
 	def takeMedicine(self): #無法測試，因為web vierw 的XML跑版，選擇不到元件
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -624,6 +626,7 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
 
 		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
@@ -640,12 +643,6 @@ class script():
 			return "中重度殘疾，不能獨立行走，日常生活需別人幫助"
 		elif(innerLevels == 5):
 			return "重度殘疾，臥床，二便失禁，日常生活完全依賴他人"
-
-
-
-
-
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def addCigarette(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -673,8 +670,7 @@ class script():
 		self.driver.keyevent("4")
 		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
-	def addNewSituation(self):
+	def addNewSituationEmergency(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -684,9 +680,102 @@ class script():
 		self.ck.clickByString("中風")
 		self.ft.findText("請選擇欲新增項目")
 		self.ck.clickByString("新發現狀況")
+		emergencyStatement = self._newSituationLevel(random.randint(0, 2))
+		self.ft.findText(emergencyStatement)
+		emergencyCheckBoxXpath = '//*[@text=\'{}\']'.format(emergencyStatement)
+		emergencyCheckBoxObj = self.driver.find_element_by_xpath(emergencyCheckBoxXpath)
 
+		checkBoxX = emergencyCheckBoxObj.location['x']
+		checkBoxY = emergencyCheckBoxObj.location['y']
+		print(checkBoxX, checkBoxY)
+		self.driver.tap([(checkBoxX-float(55), checkBoxY+float(30))])
+		emergencyCheckBoxObj.click()
+		self.ck.clickByString("上傳")
+		self.ft.findText("建議撥打119電話或儘速就醫！")
+		self.ck.clickByString("關閉")
+		nowTime = time.strftime("%H", time.localtime())
+		emergencyTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("今日")
+		emergencyStatementXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+													/following-sibling::android.view.View'.format("今日")
+		emergencyTimeObj = self.driver.find_element_by_xpath(emergencyTimeXpath)
+		emergencyStatementObj = self.driver.find_element_by_xpath(emergencyStatementXpath)
+		print(emergencyStatementObj.text)
+		print("\n")
+		print(emergencyStatement)
 
+		if (nowTime in emergencyTimeObj.text and emergencyStatement == emergencyStatementObj.text):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
+
+		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def addNewSituationNotice(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
+		self.ft.findText("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
+		self.ft.findTextInWholePage("中風")
+		self.ck.clickByString("中風")
+		self.ft.findText("請選擇欲新增項目")
+		self.ck.clickByString("新發現狀況")
+		emergencyStatement = self._newSituationLevel(random.randint(3, 7))
+		self.ft.findText(emergencyStatement)
+		emergencyCheckBoxXpath = '//*[@text=\'{}\']'.format(emergencyStatement)
+		emergencyCheckBoxObj = self.driver.find_element_by_xpath(emergencyCheckBoxXpath)
+
+		checkBoxX = emergencyCheckBoxObj.location['x']
+		checkBoxY = emergencyCheckBoxObj.location['y']
+		print(checkBoxX, checkBoxY)
+		self.driver.tap([(checkBoxX-float(55), checkBoxY+float(30))])
+		emergencyCheckBoxObj.click()
+		self.ck.clickByString("上傳")
+		self.ft.findText("建議您提早回診")
+		self.ck.clickByString("確認")
+		nowTime = time.strftime("%H", time.localtime())
+		emergencyTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("今日")
+		emergencyStatementXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+													/following-sibling::android.view.View'.format("今日")
+		emergencyTimeObj = self.driver.find_element_by_xpath(emergencyTimeXpath)
+		emergencyStatementObj = self.driver.find_element_by_xpath(emergencyStatementXpath)
+		print(emergencyStatementObj.text)
+		print("\n")
+		print(emergencyStatement)
+
+		if (nowTime in emergencyTimeObj.text and emergencyStatement == emergencyStatementObj.text):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
+
+		sleep(5)
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+	def _newSituationLevel(self, innerLevels):
+		if(innerLevels == 0):
+			return "新發現臉部表情不對稱"
+		elif(innerLevels == 1):
+			return "新發現一隻手臂無力下垂"
+		elif(innerLevels == 2):
+			return "新發現說話含糊不清"
+		elif(innerLevels == 3):
+			return "流鼻血"
+		elif(innerLevels == 4):
+			return "牙齦出血"
+		elif(innerLevels == 5):
+			return "血尿"
+		elif(innerLevels == 6):
+			return "血便"
+		elif(innerLevels == 7):
+			return "身上不明血點/瘀青"
 
 
 
