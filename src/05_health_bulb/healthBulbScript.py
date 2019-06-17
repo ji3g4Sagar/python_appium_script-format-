@@ -26,7 +26,7 @@ class script():
 
 
 	def starter(self):
-		"""
+		""""""
 		self.addBP_TW()
 		self.addBP_US()
 		self.addBP_EU()
@@ -41,9 +41,11 @@ class script():
 		self.addRankintable()
 		self.addCigarette()
 		self.addNewSituationEmergency()
-		self.addNewSituationNotice()"""
+		self.addNewSituationNotice()
 
 		self.addReVisit()
+		self.checkReVisitData()
+		self.addReVisitEmpty()
 
 	def _setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -775,7 +777,6 @@ class script():
 			return "血便"
 		elif(innerLevels == 7):
 			return "身上不明血點/瘀青"
-
 	def addReVisit(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -811,51 +812,152 @@ class script():
 										   /child::android.view.View\
 										   /following-sibling::android.view.View'.format("今天")
 		nameXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
-									  /child::android.view.View'.format("今天")
+									  /child::android.view.View\
+									  /parent::android.view.View\
+									  /following-sibling::android.view.View\
+									  /child::android.view.View'.format("今天")   #找不到原因，會選到錯的元件，已修正。
 		timeStampObj = self.driver.find_element_by_xpath(timeStampXpath)
 		nameObj = self.driver.find_element_by_xpath(nameXpath)
 		currentTimeStamp = time.strftime("%Y/%m/%d %H:", time.localtime())
 		print(currentTimeStamp)
 		print(timeStampObj.text)
 		print(revisitName)
-		print(nameObj.get_attribute("className"))
-		if(currentTimeStamp in timeStampObj.text and revisitName == nameObj.text):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)	
+		print(nameObj.text)
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		self.ft.findText("親友健康")
+		if(currentTimeStamp in timeStampObj.text and revisitName == nameObj.text):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(5)	
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def checkReVisitData(self):
+		self.hp.goBackToHomePage()
+		actionSuccess = False
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 1)
+		self.ft.findText("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic", 0)
+		self.ft.findTextInWholePage("回診")
+		self.ck.clickByString("回診")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_addReVisitData")
+		self.ft.findText("今天")
+		checkBoxXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+										   /child::android.view.View'.format("今天")
+		checkBoxObj = self.driver.find_element_by_xpath(checkBoxXpath)
+		checkBoxObj.click()
+		if(self.ft.findText("完成", mode=1)):
+			actionSuccess = True
+		else:
+			actionSuccess = False
+		checkBoxObj.click()
+		if(self.ft.findText("今天", mode=1)):
+			actionSuccess = True
+		else:
+			actionSuccess = False
 
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
+		if(actionSuccess):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		sleep(5)	
 
-
-
-
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+	def addReVisitEmpty(self):
+		self.hp.goBackToHomePage()
+		actionSuccess = False
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 1)
+		self.ft.findText("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic", 0)
+		self.ft.findTextInWholePage("回診")
+		self.ck.clickByString("回診")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_addReVisitData")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_addReVisitData")  #點選介面上的「+」
+		self.ft.findText("新增回診單照片")
+		self.ck.clickByString("完成")
+		if(self.gt.search4Toast("必填項目不可為空", mode=1)):
+			actionSuccess = True
+		else:
+			actionSuccess = False
 
+		# --------------新增回診時間，重新上傳------------------
+		revisitTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("選擇回診時間")
+		revisitTimeObj = self.driver.find_element_by_xpath(revisitTimeXpath)
+		revisitTimeObj.click() #確認回診時間
+		self.ft.findText("確定")
+		self.ck.clickByString("確定")
+		self.ft.findText("確定")
+		self.ck.clickByString("確定")
+		self.ck.clickByString("完成")		
+		if(self.gt.search4Toast("必填項目不可為空", mode=1)):
+			actionSuccess = True
+		else:
+			actionSuccess = False
 
+		# --------------返回上頁，重新新增回診名稱，預期跳出toast顯示「必填項目不可為空」-----------------
+		self.ck.clickByString("取消")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_addReVisitData")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_addReVisitData")  #點選介面上的「+」
+		self.ft.findText("新增回診單照片")
 
+		revisitName = "No." + str(random.randint(1,999))
+		revisitNameXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+											 /child::android.widget.EditText'.format("提醒時間")
+		revisitNameObj = self.driver.find_element_by_xpath(revisitNameXpath)
+		revisitNameObj.click()
+		revisitNameObj.set_text(revisitName)
+		self.ft.findText(revisitName)
+		self.ck.clickByString("完成")
+		if(self.gt.search4Toast("必填項目不可為空", mode=1)):
+			actionSuccess = True
+		else:
+			actionSuccess = False
 
+		#--------------------最後測試沒有照片，預期可以成功上傳-----------------------
+		revisitTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("選擇回診時間")
+		revisitTimeObj = self.driver.find_element_by_xpath(revisitTimeXpath)
+		revisitTimeObj.click() #確認回診時間
+		self.ft.findText("確定")
+		self.ck.clickByString("確定")
+		self.ft.findText("確定")
+		self.ck.clickByString("確定")
+		self.ck.clickByString("完成")
+		timeStampXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+										   /child::android.view.View\
+										   /following-sibling::android.view.View'.format("今天")
+		nameXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+									  /child::android.view.View\
+									  /parent::android.view.View\
+									  /following-sibling::android.view.View\
+									  /child::android.view.View'.format("今天")   #找不到原因，會選到錯的元件，已修正。
+		timeStampObj = self.driver.find_element_by_xpath(timeStampXpath)
+		nameObj = self.driver.find_element_by_xpath(nameXpath)
+		currentTimeStamp = time.strftime("%Y/%m/%d %H:", time.localtime())
+		#----------------刪除-----------------
+		self.ck.clickByString(timeStampObj.text)
+		self.ft.findText("回診詳情")
+		self.ck.clickByString("編輯")
+		self.ft.findTextInWholePage("刪除")
+		self.ck.clickByString("刪除")
+		#----------------刪除-----------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
+		if(currentTimeStamp in timeStampObj.text and revisitName == nameObj.text and actionSuccess):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)	
+		sleep(5)	
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 
 
 
