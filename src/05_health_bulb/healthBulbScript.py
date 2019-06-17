@@ -26,7 +26,7 @@ class script():
 
 
 	def starter(self):
-		""""""
+		"""
 		self.addBP_TW()
 		self.addBP_US()
 		self.addBP_EU()
@@ -41,7 +41,9 @@ class script():
 		self.addRankintable()
 		self.addCigarette()
 		self.addNewSituationEmergency()
-		self.addNewSituationNotice()
+		self.addNewSituationNotice()"""
+
+		self.addReVisit()
 
 	def _setBPStandard(self, standardCode):
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -533,7 +535,7 @@ class script():
 			return 850, 788, 850, 1287, "劇烈", urinaryVolume
 		elif(icLevel == 10):
 			return 919, 788, 919, 1287, "劇烈", urinaryVolume
-	def takeMedicine(self): #無法測試，因為web vierw 的XML跑版，選擇不到元件
+	def takeMedicine(self): #無法測試，因為web view 的XML跑版，選擇不到元件
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -743,9 +745,7 @@ class script():
 													/following-sibling::android.view.View'.format("今日")
 		emergencyTimeObj = self.driver.find_element_by_xpath(emergencyTimeXpath)
 		emergencyStatementObj = self.driver.find_element_by_xpath(emergencyStatementXpath)
-		print(emergencyStatementObj.text)
-		print("\n")
-		print(emergencyStatement)
+		
 
 		if (nowTime in emergencyTimeObj.text and emergencyStatement == emergencyStatementObj.text):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
@@ -758,7 +758,6 @@ class script():
 
 		sleep(5)
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-
 	def _newSituationLevel(self, innerLevels):
 		if(innerLevels == 0):
 			return "新發現臉部表情不對稱"
@@ -776,6 +775,68 @@ class script():
 			return "血便"
 		elif(innerLevels == 7):
 			return "身上不明血點/瘀青"
+
+	def addReVisit(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 1)
+		self.ft.findText("親友健康")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic", 0)
+		self.ft.findTextInWholePage("回診")
+		self.ck.clickByString("回診")
+		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/iv_addReVisitData")
+		self.ck.clickByResourceID(self.apkVersionIdName+"/iv_addReVisitData")  #點選介面上的「+」
+		self.ft.findText("新增回診單照片")
+		self.ck.clickByString("新增回診單照片")
+		self.ft.findText("選擇照片")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/file_thumbnail", 1)
+		self.ck.clickByString("傳送")
+		self.ft.findText("編輯圖片")
+		revisitTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("選擇回診時間")
+		revisitTimeObj = self.driver.find_element_by_xpath(revisitTimeXpath)
+		revisitTimeObj.click() #確認回診時間
+		self.ft.findText("確定")
+		self.ck.clickByString("確定")
+		self.ft.findText("確定")
+		self.ck.clickByString("確定")
+		revisitName = "No." + str(random.randint(1,999))
+		revisitNameXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+											 /child::android.widget.EditText'.format("提醒時間")
+		revisitNameObj = self.driver.find_element_by_xpath(revisitNameXpath)
+		revisitNameObj.click()
+		revisitNameObj.set_text(revisitName)
+		self.ft.findText(revisitName)
+		self.ck.clickByString("完成")
+		timeStampXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+										   /child::android.view.View\
+										   /following-sibling::android.view.View'.format("今天")
+		nameXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+									  /child::android.view.View'.format("今天")
+		timeStampObj = self.driver.find_element_by_xpath(timeStampXpath)
+		nameObj = self.driver.find_element_by_xpath(nameXpath)
+		currentTimeStamp = time.strftime("%Y/%m/%d %H:", time.localtime())
+		print(currentTimeStamp)
+		print(timeStampObj.text)
+		print(revisitName)
+		print(nameObj.get_attribute("className"))
+		if(currentTimeStamp in timeStampObj.text and revisitName == nameObj.text):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)	
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
+
+		sleep(5)	
+
+
+
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+
+
 
 
 
