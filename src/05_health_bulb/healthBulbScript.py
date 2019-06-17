@@ -42,7 +42,6 @@ class script():
 		self.addCigarette()
 		self.addNewSituationEmergency()
 		self.addNewSituationNotice()
-
 		self.addReVisit()
 		self.checkReVisitData()
 		self.addReVisitEmpty()
@@ -958,6 +957,52 @@ class script():
 			print("[FAIL]-"+sys._getframe().f_code.co_name)	
 		sleep(5)	
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+
+	def addMedicalExamination(self):
+		self.hp.goBackToHomePage()
+		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
+		examinationIndex = 0
+		examinationCurrentLevel = 0
+		while(examinationIndex < 21):
+			examinationItem, examinationValue, examinationLevelNumber = self._medicalExamination(examinationIndex, examinationCurrentLevel)
+			if(examinationCurrentLevel < examinationLevelNumber)
+
+
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		
+
+
+	def _medicalExamination(self, examinationIndex, examinationLevel): #examinationIndex: 對應不同的檢驗項目; examinationLevel: 對應各自檢驗項目的數值等級
+		if(examinationIndex == 0):
+			if (examinationLevel == 0):
+				return "CHOL膽固醇", str(random.randint(1,199)), 3
+			elif (examinationLevel == 1):
+				return "CHOL膽固醇", str(random.randint(200,239)), 3
+			elif (examinationLevel == 2):
+				return "CHOL膽固醇", str(random.randint(240,999)), 3
+
+
+		elif(examinationIndex == 1):
+		elif(examinationIndex == 2):
+		elif(examinationIndex == 3):
+		elif(examinationIndex == 4):
+		elif(examinationIndex == 5):
+		elif(examinationIndex == 6):
+		elif(examinationIndex == 7):
+		elif(examinationIndex == 8):
+		elif(examinationIndex == 9):
+		elif(examinationIndex == 10):
+		elif(examinationIndex == 11):
+		elif(examinationIndex == 12):
+		elif(examinationIndex == 13):
+		elif(examinationIndex == 14):
+		elif(examinationIndex == 15):
+		elif(examinationIndex == 16):
+		elif(examinationIndex == 17):
+		elif(examinationIndex == 18):
+		elif(examinationIndex == 19):
+		elif(examinationIndex == 20):
+
 
 
 
