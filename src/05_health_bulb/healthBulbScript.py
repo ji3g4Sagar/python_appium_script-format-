@@ -966,8 +966,15 @@ class script():
 		while(examinationIndex < 21):
 			examinationItem, examinationValue, examinationLevelNumber = self._medicalExamination(examinationIndex, examinationCurrentLevel)
 			if(examinationCurrentLevel < examinationLevelNumber):
+				self.ft.findTextInWholePage(examinationItem)
+				itemValueFiledXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+										   /child::android.view.View\
+										   /following-sibling::android.view.View'.format("今天")
 				#TODO
+				examinationCurrentLevel = examinationCurrentLevel + 1
 			elif:
+				examinationCurrentLevel = 0
+				examinationIndex = examinationIndex + 1
 
 
 
@@ -975,13 +982,13 @@ class script():
 		
 
 
-	def _medicalExamination(self, examinationIndex, examinationLevel): #examinationIndex: 對應不同的檢驗項目; examinationLevel: 對應各自檢驗項目的數值等級
+	def _medicalExamination(self, examinationIndex, examinationCurrentLevel): #examinationIndex: 對應不同的檢驗項目; examinationLevel: 對應各自檢驗項目的數值等級
 		if(examinationIndex == 0):
-			if (examinationLevel == 0):
+			if (examinationCurrentLevel == 0):
 				return "CHOL膽固醇", str(random.randint(1,199)), 3
-			elif (examinationLevel == 1):
+			elif (examinationCurrentLevel == 1):
 				return "CHOL膽固醇", str(random.randint(200,239)), 3
-			elif (examinationLevel == 2):
+			elif (examinationCurrentLevel == 2):
 				return "CHOL膽固醇", str(random.randint(240,999)), 3
 
 
@@ -1005,8 +1012,8 @@ class script():
 		elif(examinationIndex == 18):
 		elif(examinationIndex == 19):
 		elif(examinationIndex == 20):
-"""
 
+"""
 
 
 
