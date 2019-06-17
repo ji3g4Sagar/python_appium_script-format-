@@ -958,14 +958,17 @@ class script():
 		sleep(5)	
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 
-	def addMedicalExamination(self):
+	"""def addMedicalExamination(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		examinationIndex = 0
 		examinationCurrentLevel = 0
 		while(examinationIndex < 21):
 			examinationItem, examinationValue, examinationLevelNumber = self._medicalExamination(examinationIndex, examinationCurrentLevel)
-			if(examinationCurrentLevel < examinationLevelNumber)
+			if(examinationCurrentLevel < examinationLevelNumber):
+				#TODO
+			elif:
+
 
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
@@ -1002,7 +1005,7 @@ class script():
 		elif(examinationIndex == 18):
 		elif(examinationIndex == 19):
 		elif(examinationIndex == 20):
-
+"""
 
 
 
