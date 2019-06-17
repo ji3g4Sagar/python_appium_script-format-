@@ -419,9 +419,9 @@ class findSpecificText():
 		sp = swipePage(self.driver)
 		time = 0 
 		while(targetFind != True):
-			if(time == 3):
+			if(time == 4):
 				targetFind = True
-				sp.swipeDown(n=3)
+				sp.swipeDown(n=4)
 				if(mode == 1):
 					return False
 			elif(self.findText(targetText, mode = 1)):
