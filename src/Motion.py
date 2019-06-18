@@ -27,7 +27,7 @@ class swipePage():
 		except:
 			print("Swipe page init error!\n") 
 
-	def swipeUp(self, t=400, n=1, xStart=0.2, yStart=0.8, yEnd=0.1):
+	def swipeUp(self, t=400, n=1, xStart=0.2, yStart=0.7, yEnd=0.2):
 		"""這個函數會模擬手指向下滑動的操作
 
 			* Args:
@@ -51,7 +51,7 @@ class swipePage():
 				self.driver.swipe(x1, y1, x1, y2, t)
 		except():
 			print("SwipeUp error!!\n") 
-	def swipeDown(self, t=400, n=1, xStart=0.2, yStart=0.1, yEnd=0.8):
+	def swipeDown(self, t=400, n=1, xStart=0.2, yStart=0.2, yEnd=0.7):
 		"""這個函數會模擬手指向下滑動的操作
 
 			* Args:
