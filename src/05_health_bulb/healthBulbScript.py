@@ -30,7 +30,7 @@ class script():
 		self.addBP_TW()
 		self.addBP_US()
 		self.addBP_EU()
-		self.editBP()
+		#self.editBP()
 		self.cancelBP()
 		self.deleteBP()
 		self.addBG()
