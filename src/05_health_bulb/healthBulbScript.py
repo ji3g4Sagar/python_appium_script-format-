@@ -33,11 +33,10 @@ class script():
 		self.editBP()
 		self.failBP()
 		self.deleteBP()
-		self.addBG()"""
+		self.addBG()
 		self.addICData()
 		self.addICNodata()
-		self.icLevels()
-		self.takeMedicine()
+		self.icLevels()"""
 		self.addRankintable()
 		self.addCigarette()
 		self.addNewSituationEmergency()
@@ -513,6 +512,12 @@ class script():
 				actionSuccess = False and actionSuccess
 			sleep(4)
 			self.driver.keyevent("4")
+
+		self.ft.findText("IC_TICA")
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		sleep(3)	
 
 		if(actionSuccess):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
