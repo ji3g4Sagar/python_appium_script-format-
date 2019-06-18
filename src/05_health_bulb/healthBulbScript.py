@@ -301,7 +301,7 @@ class script():
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def failBP(self):
-		actionSuccess = False
+		actionSuccess = True
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
@@ -345,6 +345,7 @@ class script():
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def addBG(self):
 		self.hp.goBackToHomePage()
+		actionSuccess = True
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
 		self.ft.findTextInWholePage("親友健康")
@@ -377,9 +378,15 @@ class script():
 			print(bloodGlucoseLevelObj.text)
 
 			if(bloodGlucoseDateObj.text == "今日" and bloodGlucoseLevelObj.text == bloodGlucoseLevel):
-				print("[PASS]-"+sys._getframe().f_code.co_name)
+				actionSuccess = actionSuccess and True
 			else:
-				print("[FAIL]-"+sys._getframe().f_code.co_name)
+				actionSuccess = actionSuccess and False
+
+		if(actionSuccess):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+
 		sleep(3)		
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
@@ -469,7 +476,7 @@ class script():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
 		self.ft.findTextInWholePage("IC")
 		self.ck.clickByString("IC")
-		actionSuccess = False
+		actionSuccess = True
 		for i in range(11):
 			self.ft.findText("IC_TICA")
 			painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume = self._icLevelToLocation(i)
@@ -849,7 +856,7 @@ class script():
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def checkReVisitData(self):
 		self.hp.goBackToHomePage()
-		actionSuccess = False
+		actionSuccess = True
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 1)
 		self.ft.findText("親友健康")
@@ -885,7 +892,7 @@ class script():
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def addReVisitEmpty(self):
 		self.hp.goBackToHomePage()
-		actionSuccess = False
+		actionSuccess = True
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 1)
 		self.ft.findText("親友健康")

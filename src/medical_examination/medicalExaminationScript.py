@@ -37,9 +37,9 @@ class script():
 		self.ft.findTextInWholePage("檢驗")
 		self.ck.clickByString("檢驗")
 		sleep(10)
-		examinationIndex = 15
+		examinationIndex = 0
 		examinationCurrentLevel = 0
-		actionSuccess = False
+		actionSuccess = True
 		while(examinationIndex < 21):
 			examinationItem, examinationValue, examinationLevelNumber, examinationResult = self._medicalExamination(examinationIndex, examinationCurrentLevel)			
 				
