@@ -36,11 +36,11 @@ class script():
 		self.addBG()
 		self.addICData()
 		self.addICNodata()
-		self.icLevels()"""
+		self.icLevels()
 		self.addRankintable()
 		self.addCigarette()
 		self.addNewSituationEmergency()
-		self.addNewSituationNotice()
+		self.addNewSituationNotice()"""
 		self.addReVisit()
 		self.checkReVisitData()
 		self.addReVisitEmpty()
@@ -626,6 +626,7 @@ class script():
 		self.ck.clickByString("下一頁")
 		targetText = self._rankinLevels(levels)
 		self.ck.clickByString(targetText)
+		self.ft.findTextInWholePage("送出")
 		self.ck.clickByString("送出")
 		self.ft.findText("中風")
 		timeStampXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("今日")
