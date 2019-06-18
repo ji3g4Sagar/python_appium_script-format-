@@ -955,7 +955,7 @@ class script():
 		timeStampObj = self.driver.find_element_by_xpath(timeStampXpath)
 		nameObj = self.driver.find_element_by_xpath(nameXpath)
 		currentTimeStamp = time.strftime("%Y/%m/%d %H:", time.localtime())
-		
+
 		if(currentTimeStamp in timeStampObj.text and revisitName == nameObj.text and actionSuccess):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
@@ -974,8 +974,6 @@ class script():
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		self.ft.findText("親友健康")
-		
-
 	def addMedicalExamination(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
@@ -985,7 +983,7 @@ class script():
 		self.ft.findTextInWholePage("檢驗")
 		self.ck.clickByString("檢驗")
 		sleep(10)
-		examinationIndex = 12
+		examinationIndex = 0
 		examinationCurrentLevel = 0
 		actionSuccess = False
 		while(examinationIndex < 21):
@@ -1057,9 +1055,6 @@ class script():
 
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-		
-
-
 	def _medicalExamination(self, examinationIndex, examinationCurrentLevel): #examinationIndex: 對應不同的檢驗項目; examinationLevel: 對應各自檢驗項目的數值等級
 		if(examinationIndex == 0):
 			if (examinationCurrentLevel == 0):
