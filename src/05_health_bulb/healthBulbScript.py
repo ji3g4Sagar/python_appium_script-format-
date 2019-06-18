@@ -319,16 +319,16 @@ class script():
 		self.ck.clickByString("今日")
 		self.ft.findText("編輯")
 		if(self.ft.findText("此筆資料作廢", mode=1)):
-			actionSuccess = True
+			actionSuccess = True and actionSuccess
 		else:
-			actionSuccess = False
+			actionSuccess = False and actionSuccess
 		self.driver.keyevent("4")
 		self.ft.findText("恢復")
 		self.ck.clickByString("恢復")
 		self.ck.clickByString("今日")
 		self.ft.findText("編輯")
 		if(self.ft.findText("此筆資料作廢", mode=1)):
-			actionSuccess = False
+			actionSuccess = False 
 		else:
 			actionSuccess = True
 		sleep(3)
