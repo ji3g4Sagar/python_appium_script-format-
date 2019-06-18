@@ -836,14 +836,16 @@ class script():
 		print(timeStampObj.text)
 		print(revisitName)
 		print(nameObj.text)
-		self.driver.keyevent("4")
-		self.ft.findText("健康燈設定")
-		self.driver.keyevent("4")
-		self.ft.findText("親友健康")
 		if(currentTimeStamp in timeStampObj.text and revisitName == nameObj.text):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
+
+		
+		self.driver.keyevent("4")
+		self.ft.findText("健康燈設定")
+		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
 		sleep(5)	
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def checkReVisitData(self):
