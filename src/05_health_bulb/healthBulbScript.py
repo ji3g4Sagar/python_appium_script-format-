@@ -26,14 +26,14 @@ class script():
 
 
 	def starter(self):
-		""""""
+		"""
 		self.addBP_TW()
 		self.addBP_US()
 		self.addBP_EU()
 		self.editBP()
 		self.failBP()
 		self.deleteBP()
-		self.addBG()
+		self.addBG()"""
 		self.addICData()
 		self.addICNodata()
 		self.icLevels()
@@ -328,9 +328,9 @@ class script():
 		self.ck.clickByString("今日")
 		self.ft.findText("編輯")
 		if(self.ft.findText("此筆資料作廢", mode=1)):
-			actionSuccess = False 
+			actionSuccess = False and actionSuccess
 		else:
-			actionSuccess = True
+			actionSuccess = True and actionSuccess
 		sleep(3)
 		if(actionSuccess):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
@@ -507,10 +507,10 @@ class script():
 			urgencyTextObj = self.driver.find_element_by_xpath(urgencyXpath)
 			if(painTextObj.text == levelText and urgencyTextObj.text == levelText):
 				print("find")
-				actionSuccess = True
+				actionSuccess = True and actionSuccess
 			else:
 				print("not found")
-				actionSuccess = False
+				actionSuccess = False and actionSuccess
 			sleep(4)
 			self.driver.keyevent("4")
 
@@ -856,14 +856,14 @@ class script():
 		checkBoxObj = self.driver.find_element_by_xpath(checkBoxXpath)
 		checkBoxObj.click()
 		if(self.ft.findText("完成", mode=1)):
-			actionSuccess = True
+			actionSuccess = True and actionSuccess
 		else:
-			actionSuccess = False
+			actionSuccess = False and actionSuccess
 		checkBoxObj.click()
 		if(self.ft.findText("今天", mode=1)):
-			actionSuccess = True
+			actionSuccess = True and actionSuccess
 		else:
-			actionSuccess = False
+			actionSuccess = False and actionSuccess
 
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
@@ -890,9 +890,9 @@ class script():
 		self.ft.findText("新增回診單照片")
 		self.ck.clickByString("完成")
 		if(self.gt.search4Toast("必填項目不可為空", mode=1)):
-			actionSuccess = True
+			actionSuccess = True and actionSuccess
 		else:
-			actionSuccess = False
+			actionSuccess = False and actionSuccess
 
 		# --------------新增回診時間，重新上傳------------------
 		revisitTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("選擇回診時間")
@@ -904,9 +904,9 @@ class script():
 		self.ck.clickByString("確定")
 		self.ck.clickByString("完成")		
 		if(self.gt.search4Toast("必填項目不可為空", mode=1)):
-			actionSuccess = True
+			actionSuccess = True and actionSuccess
 		else:
-			actionSuccess = False
+			actionSuccess = False and actionSuccess
 
 		# --------------返回上頁，重新新增回診名稱，預期跳出toast顯示「必填項目不可為空」-----------------
 		self.ck.clickByString("取消")
@@ -923,9 +923,9 @@ class script():
 		self.ft.findText(revisitName)
 		self.ck.clickByString("完成")
 		if(self.gt.search4Toast("必填項目不可為空", mode=1)):
-			actionSuccess = True
+			actionSuccess = True and actionSuccess
 		else:
-			actionSuccess = False
+			actionSuccess = False and actionSuccess
 
 		#--------------------最後測試沒有照片，預期可以成功上傳-----------------------
 		revisitTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("選擇回診時間")
