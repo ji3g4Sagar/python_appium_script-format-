@@ -40,10 +40,10 @@ class script():
 		self.addRankintable()
 		self.addCigarette()
 		self.addNewSituationEmergency()
-		self.addNewSituationNotice()"""
+		self.addNewSituationNotice()
 		self.addReVisit()
 		self.checkReVisitData()
-		self.addReVisitEmpty()
+		self.addReVisitEmpty()"""
 
 		self.addMedicalExamination()
 
