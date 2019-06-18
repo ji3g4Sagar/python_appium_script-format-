@@ -537,7 +537,7 @@ class script():
 		if(icLevel == 0):
 			return 229, 788, 229, 1287, "正常", urinaryVolume
 		elif(icLevel == 1):
-			return 298, 788, 298, 1287, "輕微", urinaryVolume
+			return 298, 788, 298, 1287, "正常", urinaryVolume
 		elif(icLevel == 2):
 			return 367, 788, 367, 1287, "輕微", urinaryVolume
 		elif(icLevel == 3):
