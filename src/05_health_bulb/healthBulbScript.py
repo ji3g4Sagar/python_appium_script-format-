@@ -841,7 +841,7 @@ class script():
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 
-		
+
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
@@ -955,6 +955,13 @@ class script():
 		timeStampObj = self.driver.find_element_by_xpath(timeStampXpath)
 		nameObj = self.driver.find_element_by_xpath(nameXpath)
 		currentTimeStamp = time.strftime("%Y/%m/%d %H:", time.localtime())
+		
+		if(currentTimeStamp in timeStampObj.text and revisitName == nameObj.text and actionSuccess):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)	
+		sleep(5)	
+		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 		#----------------刪除-----------------
 		self.ck.clickByString(timeStampObj.text)
 		self.ft.findText("回診詳情")
@@ -967,12 +974,7 @@ class script():
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		self.ft.findText("親友健康")
-		if(currentTimeStamp in timeStampObj.text and revisitName == nameObj.text and actionSuccess):
-			print("[PASS]-"+sys._getframe().f_code.co_name)
-		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)	
-		sleep(5)	
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
+		
 
 	def addMedicalExamination(self):
 		self.hp.goBackToHomePage()
