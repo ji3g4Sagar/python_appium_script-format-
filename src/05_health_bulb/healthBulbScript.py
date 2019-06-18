@@ -34,7 +34,7 @@ class script():
 		self.failBP()
 		self.deleteBP()
 		self.addBG()
-		self.addICDatda()
+		self.addICData()
 		self.addICNodata()
 		self.icLevels()
 		self.takeMedicine()
