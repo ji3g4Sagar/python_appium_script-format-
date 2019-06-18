@@ -34,16 +34,10 @@ class script():
 		self.failBP()
 		self.deleteBP()
 		self.addBG()
-		self.addICData()
-		self.addICNodata()
-		self.icLevels()
 		self.addRankintable()
 		self.addCigarette()
 		self.addNewSituationEmergency()
 		self.addNewSituationNotice()
-		self.addReVisit()
-		self.checkReVisitData()
-		self.addReVisitEmpty()
 
 
 	def _setBPStandard(self, standardCode):
