@@ -313,11 +313,13 @@ class script():
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
 		self.ft.findTextInWholePage("血壓")
 		self.ck.clickByString("血壓")
+		sleep(5)
 		self.ft.findText("今日")
 		self.ck.clickByString("今日")
-		sleep(1)
+		sleep(5)
 		self.ft.findText("作廢")
 		self.ck.clickByString("作廢")
+		sleep(5)
 		self.ck.clickByString("今日")
 		self.ft.findText("編輯")
 		if(self.ft.findText("此筆資料作廢", mode=1)):
@@ -325,9 +327,11 @@ class script():
 		else:
 			actionSuccess = False and actionSuccess
 		self.driver.keyevent("4")
+		sleep(5)
 		self.ft.findText("恢復")
 		self.ck.clickByString("恢復")
 		self.ck.clickByString("今日")
+		sleep(5)
 		self.ft.findText("編輯")
 		if(self.ft.findText("此筆資料作廢", mode=1)):
 			actionSuccess = False and actionSuccess
@@ -342,7 +346,7 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findText("今日")
 		self.driver.keyevent("4")
-		self.ft.findText("今日")
+		self.ft.findText("設定標準")
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
