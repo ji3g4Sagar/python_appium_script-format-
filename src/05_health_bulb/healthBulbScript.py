@@ -89,7 +89,7 @@ class script():
 			diastolicFiled.set_text(diastolic)
 			self.ck.clickByString("完成")
 			sleep(5)
-			self.ft.findText("今日")
+			self.ft.findText(bpLevelText)
 			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 											/preceding-sibling::android.view.View\
 											/following-sibling::android.view.View'.format(bpLevelText)
@@ -116,6 +116,7 @@ class script():
 			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
 			self.ft.findText("如何量血壓")
 			systolic, diastolic, bpLevelText = self._bpStandard_EU(i)
+			self.ft.findText("晚上")
 			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
 											/following-sibling::android.widget.EditText'.format("晚上")
 			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
@@ -129,7 +130,7 @@ class script():
 			diastolicFiled.set_text(diastolic)
 			self.ck.clickByString("完成")
 			sleep(5)
-			self.ft.findText("今日")
+			self.ft.findText(bpLevelText)
 			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 											/preceding-sibling::android.view.View\
 											/following-sibling::android.view.View'.format(bpLevelText)
@@ -156,6 +157,7 @@ class script():
 			self.ft.findText("如何量血壓")
 			systolic, diastolic, bpLevelText = self._bpStandard_US(i)
 			print(systolic, diastolic, bpLevelText)
+			self.ft.findText("晚上")
 			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
 											/following-sibling::android.widget.EditText'.format("晚上")
 			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
@@ -169,7 +171,7 @@ class script():
 			diastolicFiled.set_text(diastolic)
 			self.ck.clickByString("完成")
 			sleep(5)
-			self.ft.findText("今日")
+			self.ft.findText(bpLevelText)
 			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 											/preceding-sibling::android.view.View\
 											/following-sibling::android.view.View'.format(bpLevelText)
@@ -238,6 +240,7 @@ class script():
 		for i in range(len(systolicFiled.text)):
 			self.driver.keyevent("67")
 		systolicFiled.set_text(editSystolic)
+		self.ft.findText("晚上")
 		diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
 											/following-sibling::android.widget.EditText\
 											/following-sibling::android.view.View\
@@ -275,6 +278,7 @@ class script():
 		self.ck.clickByString("今日")
 		self.ft.findText("編輯")
 		self.ck.clickByString("編輯")
+		self.ft.findText("晚上")
 		systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
 											/following-sibling::android.widget.EditText'.format("晚上")
 		systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
@@ -364,6 +368,7 @@ class script():
 			self.ec.enter(bloodGlucose, self.apkVersionIdName+"/et_blood_sugar")
 			self.ck.clickByString("確認")
 			sleep(3)
+			self.ft.findText(bloodGlucose+" 	mg/dL")
 			bloodGlucoseDateXpath = '//*[@text=\'{}\']/parent::android.widget.LinearLayout\
 												  /preceding-sibling::android.widget.LinearLayout\
 												  /preceding-sibling::android.widget.FrameLayout\
@@ -422,6 +427,7 @@ class script():
 		painBarX = painBarObj.location['x']
 		painBarY = painBarObj.location['y']
 		self.driver.tap([(painBarX+float(380), painBarY)])
+		self.ft.findText("尿急程度")
 		urgencyBarXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
 											/child::android.view.View\
 											/child::android.view.View'.format("尿急程度")
@@ -431,6 +437,7 @@ class script():
 		self.driver.tap([(urgencyBarX+float(380), urgencyBarY)])
 		self.ft.findTextInWholePage("查看月曆")
 		urinaryVolume = str(random.randint(1,70))
+		self.ft.findText("紀錄您現在的排尿量(單位:c.c.)")
 		urinaryVolumeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
 												  /child::android.widget.EditText'.format("紀錄您現在的排尿量(單位:c.c.)")
 		urinaryVolumeFiled = self.driver.find_element_by_xpath(urinaryVolumeXpath)
@@ -636,6 +643,7 @@ class script():
 		self.ft.findTextInWholePage("送出")
 		self.ck.clickByString("送出")
 		self.ft.findText("中風")
+		self.ft.findText("今日")
 		timeStampXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("今日")
 		timeStampObj = self.driver.find_element_by_xpath(timeStampXpath)
 		levelXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
