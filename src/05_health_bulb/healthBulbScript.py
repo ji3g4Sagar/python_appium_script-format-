@@ -387,7 +387,8 @@ class script():
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 
-		sleep(3)		
+		sleep(3)	
+		self.ft.findText("今日")	
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
