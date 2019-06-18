@@ -90,6 +90,8 @@ class script():
 			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
 			diastolicFiled.set_text(diastolic)
 			self.ck.clickByString("完成")
+			sleep(5)
+			self.ft.findText("今日")
 			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 											/preceding-sibling::android.view.View\
 											/following-sibling::android.view.View'.format(bpLevelText)
@@ -128,6 +130,8 @@ class script():
 			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
 			diastolicFiled.set_text(diastolic)
 			self.ck.clickByString("完成")
+			sleep(5)
+			self.ft.findText("今日")
 			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 											/preceding-sibling::android.view.View\
 											/following-sibling::android.view.View'.format(bpLevelText)
@@ -166,6 +170,8 @@ class script():
 			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
 			diastolicFiled.set_text(diastolic)
 			self.ck.clickByString("完成")
+			sleep(5)
+			self.ft.findText("今日")
 			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 											/preceding-sibling::android.view.View\
 											/following-sibling::android.view.View'.format(bpLevelText)
