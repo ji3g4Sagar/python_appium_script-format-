@@ -28,8 +28,8 @@ class script():
 	def starter(self):
 		""""""
 		self.addBP_TW()
-		self.addBP_US()
-		self.addBP_EU()
+		#self.addBP_US()
+		#self.addBP_EU()
 		#self.editBP()
 		self.cancelBP()
 		self.deleteBP()
@@ -64,38 +64,37 @@ class script():
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self._setBPStandard(1)
-		for i in range (4):
-			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
-			self.ft.findText("如何量血壓")
-			systolic, diastolic, bpLevelText = self._bpStandard_TW(i)
-			print(systolic, diastolic, bpLevelText)
-			self.ft.findText("晚上")
-			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
-											/following-sibling::android.widget.EditText'.format("晚上")
-			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
-			systolicFiled.set_text(systolic)
-
-			diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
-											/following-sibling::android.widget.EditText\
-											/following-sibling::android.view.View\
-											/following-sibling::android.widget.EditText'.format("晚上")
-			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
-			diastolicFiled.set_text(diastolic)
-			self.ck.clickByString("完成")
-			sleep(5)
-			self.ft.findText(bpLevelText)
-			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
-											/preceding-sibling::android.view.View\
-											/following-sibling::android.view.View'.format(bpLevelText)
-			target = self.driver.find_element_by_xpath(targetXpath)
-			bpTime =  time.strftime("%H", time.localtime())
-			print(target.text)
-			print(bpTime)
-			if(bpTime in target.text):
-				print("[PASS]-"+sys._getframe().f_code.co_name)
-			else:
-				print("[FAIL]-"+sys._getframe().f_code.co_name)
-			sleep(2)
+		bpLevelIndex = random.randint(0,3) 
+		self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
+		self.ft.findText("如何量血壓")
+		systolic, diastolic, bpLevelText = self._bpStandard_TW(bpLevelIndex)
+		print(systolic, diastolic, bpLevelText)
+		self.ft.findText("晚上")
+		systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+										/following-sibling::android.widget.EditText'.format("晚上")
+		systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
+		systolicFiled.set_text(systolic)
+		diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+										/following-sibling::android.widget.EditText\
+										/following-sibling::android.view.View\
+										/following-sibling::android.widget.EditText'.format("晚上")
+		diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
+		diastolicFiled.set_text(diastolic)
+		self.ck.clickByString("完成")
+		sleep(5)
+		self.ft.findText(bpLevelText)
+		targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+										/preceding-sibling::android.view.View\
+										/following-sibling::android.view.View'.format(bpLevelText)
+		target = self.driver.find_element_by_xpath(targetXpath)
+		bpTime =  time.strftime("%H", time.localtime())
+		print(target.text)
+		print(bpTime)
+		if(bpTime in target.text):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(2)
 
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
@@ -106,37 +105,36 @@ class script():
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self._setBPStandard(3)
-		for i in range (4):
-			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
-			self.ft.findText("如何量血壓")
-			systolic, diastolic, bpLevelText = self._bpStandard_EU(i)
-			self.ft.findText("晚上")
-			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
-											/following-sibling::android.widget.EditText'.format("晚上")
-			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
-			systolicFiled.set_text(systolic)
-
-			diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
-											/following-sibling::android.widget.EditText\
-											/following-sibling::android.view.View\
-											/following-sibling::android.widget.EditText'.format("晚上")
-			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
-			diastolicFiled.set_text(diastolic)
-			self.ck.clickByString("完成")
-			sleep(5)
-			self.ft.findText(bpLevelText)
-			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
-											/preceding-sibling::android.view.View\
-											/following-sibling::android.view.View'.format(bpLevelText)
-			target = self.driver.find_element_by_xpath(targetXpath)
-			bpTime =  time.strftime("%H", time.localtime())
-			print(target.text)
-			print(bpTime)
-			if(bpTime in target.text):
-				print("[PASS]-"+sys._getframe().f_code.co_name)
-			else:
-				print("[FAIL]-"+sys._getframe().f_code.co_name)
-			sleep(2)
+		bpLevelIndex = random.randint(0,3) 
+		self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
+		self.ft.findText("如何量血壓")
+		systolic, diastolic, bpLevelText = self._bpStandard_EU(bpLevelIndex)
+		self.ft.findText("晚上")
+		systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+										/following-sibling::android.widget.EditText'.format("晚上")
+		systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
+		systolicFiled.set_text(systolic)
+		diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+										/following-sibling::android.widget.EditText\
+										/following-sibling::android.view.View\
+										/following-sibling::android.widget.EditText'.format("晚上")
+		diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
+		diastolicFiled.set_text(diastolic)
+		self.ck.clickByString("完成")
+		sleep(5)
+		self.ft.findText(bpLevelText)
+		targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+										/preceding-sibling::android.view.View\
+										/following-sibling::android.view.View'.format(bpLevelText)
+		target = self.driver.find_element_by_xpath(targetXpath)
+		bpTime =  time.strftime("%H", time.localtime())
+		print(target.text)
+		print(bpTime)
+		if(bpTime in target.text):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(2)
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
@@ -146,38 +144,37 @@ class script():
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self._setBPStandard(2)
-		for i in range (3):
-			self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
-			self.ft.findText("如何量血壓")
-			systolic, diastolic, bpLevelText = self._bpStandard_US(i)
-			print(systolic, diastolic, bpLevelText)
-			self.ft.findText("晚上")
-			systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
-											/following-sibling::android.widget.EditText'.format("晚上")
-			systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
-			systolicFiled.set_text(systolic)
-
-			diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
-											/following-sibling::android.widget.EditText\
-											/following-sibling::android.view.View\
-											/following-sibling::android.widget.EditText'.format("晚上")
-			diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
-			diastolicFiled.set_text(diastolic)
-			self.ck.clickByString("完成")
-			sleep(5)
-			self.ft.findText(bpLevelText)
-			targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
-											/preceding-sibling::android.view.View\
-											/following-sibling::android.view.View'.format(bpLevelText)
-			target = self.driver.find_element_by_xpath(targetXpath)
-			bpTime =  time.strftime("%H", time.localtime())
-			print(target.text)
-			print(bpTime)
-			if(bpTime in target.text):
-				print("[PASS]-"+sys._getframe().f_code.co_name)
-			else:
-				print("[FAIL]-"+sys._getframe().f_code.co_name)
-			sleep(2)
+		bpLevelIndex = random.randint(0,2) 
+		self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
+		self.ft.findText("如何量血壓")
+		systolic, diastolic, bpLevelText = self._bpStandard_US(i)
+		print(systolic, diastolic, bpLevelText)
+		self.ft.findText("晚上")
+		systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+										/following-sibling::android.widget.EditText'.format("晚上")
+		systolicFiled = self.driver.find_element_by_xpath(systolicXpath)
+		systolicFiled.set_text(systolic)
+		diastolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
+										/following-sibling::android.widget.EditText\
+										/following-sibling::android.view.View\
+										/following-sibling::android.widget.EditText'.format("晚上")
+		diastolicFiled = self.driver.find_element_by_xpath(diastolicXpath)
+		diastolicFiled.set_text(diastolic)
+		self.ck.clickByString("完成")
+		sleep(5)
+		self.ft.findText(bpLevelText)
+		targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
+										/preceding-sibling::android.view.View\
+										/following-sibling::android.view.View'.format(bpLevelText)
+		target = self.driver.find_element_by_xpath(targetXpath)
+		bpTime =  time.strftime("%H", time.localtime())
+		print(target.text)
+		print(bpTime)
+		if(bpTime in target.text):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(2)
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
