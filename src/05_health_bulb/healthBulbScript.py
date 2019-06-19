@@ -147,7 +147,7 @@ class script():
 		bpLevelIndex = random.randint(0,2) 
 		self.ck.clickByResourceID(self.apkVersionIdName+"/ivAdd")
 		self.ft.findText("如何量血壓")
-		systolic, diastolic, bpLevelText = self._bpStandard_US(i)
+		systolic, diastolic, bpLevelText = self._bpStandard_US(bpLevelIndex)
 		print(systolic, diastolic, bpLevelText)
 		self.ft.findText("晚上")
 		systolicXpath = '//*[@text=\'{}\']/parent::android.view.View\
