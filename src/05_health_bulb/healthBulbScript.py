@@ -95,10 +95,25 @@ class script():
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		sleep(2)
+		# ------------刪除-----------------
+		self.ck.clickByString(bpLevelText)
+		self.ft.findText("作廢")
+		self.ck.clickByString(bpLevelText)
+		self.ft.findText("編輯")
+		self.ck.clickByString("編輯")
+		self.ft.findTextInWholePage("刪除")
+		self.ck.clickByString("刪除")
+		self.ft.findText("提醒")
+		self.ck.clickByString("確認")
+		self.ft.findText("設定標準")
+		self.driver.keyevent("4")
 
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
+		sleep(5)
+		# ------------刪除-----------------
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def addBP_EU(self):
@@ -135,9 +150,26 @@ class script():
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		sleep(2)
+
+		# ------------刪除-----------------
+		self.ck.clickByString(bpLevelText)
+		self.ft.findText("作廢")
+		self.ck.clickByString(bpLevelText)
+		self.ft.findText("編輯")
+		self.ck.clickByString("編輯")
+		self.ft.findTextInWholePage("刪除")
+		self.ck.clickByString("刪除")
+		self.ft.findText("提醒")
+		self.ck.clickByString("確認")
+		self.ft.findText("設定標準")
+		self.driver.keyevent("4")
+
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
+		sleep(5)
+		# ------------刪除-----------------
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def addBP_US(self):
@@ -175,9 +207,26 @@ class script():
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		sleep(2)
+		# ------------刪除-----------------
+		self.ck.clickByString(bpLevelText)
+		self.ft.findText("作廢")
+		self.ck.clickByString(bpLevelText)
+		self.ft.findText("編輯")
+		self.ck.clickByString("編輯")
+		self.ft.findTextInWholePage("刪除")
+		self.ck.clickByString("刪除")
+		self.ft.findText("提醒")
+		self.ck.clickByString("確認")
+		self.ft.findText("設定標準")
+		self.driver.keyevent("4")
+
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
+		self.ft.findText("親友健康")
+		sleep(5)
+		# ------------刪除-----------------
+
 
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def _bpStandard_TW(self, bpLevel):
