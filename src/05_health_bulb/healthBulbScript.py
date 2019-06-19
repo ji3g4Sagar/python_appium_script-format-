@@ -163,8 +163,6 @@ class script():
 		self.ck.clickByString("確認")
 		self.ft.findText("設定標準")
 		self.driver.keyevent("4")
-
-		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		self.ft.findText("親友健康")
