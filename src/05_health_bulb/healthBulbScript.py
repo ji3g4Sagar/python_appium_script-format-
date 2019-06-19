@@ -28,9 +28,9 @@ class script():
 	def starter(self):
 		""""""
 		self.addBP_TW()
-		#self.addBP_US()
-		#self.addBP_EU()
-		#self.editBP()
+		self.addBP_US()
+		self.addBP_EU()
+		self.editBP()
 		self.cancelBP()
 		self.deleteBP()
 		self.addBG()

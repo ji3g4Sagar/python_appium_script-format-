@@ -24,22 +24,22 @@ class script():
 		self.hp = homePage(driver, apkVersionIdName)
 		self.gt = getToast(driver)
 
-		self.testCountName ="零貳伍" #想辦法改成自動去取得該次測試帳號的使用者名稱
+		self.testCountName ="test999" #想辦法改成自動去取得該次測試帳號的使用者名稱
 		self.albumName = ""
 		self.message = ""
 		self.emotionLevel = 0
 
 
 	def starter(self):
-		self.checkForDynamicWall()
+		"""self.checkForDynamicWall()
 		self.addEmotion()
 		self.leftMessageInEmotion()
 		self.editEmotion()
-		self.deleteEmotion()
-		#self.createAlbum()
-		#self.leftMessageInMyselfAlbum()
-		#self.editAlbumName()
-		#self.deleteAlbum()
+		self.deleteEmotion()"""
+		self.createAlbum()
+		self.leftMessageInMyselfAlbum()
+		self.editAlbumName()
+		self.deleteAlbum()
 		self.clickSearch()
 		#self.hiFiveCheck()
 		

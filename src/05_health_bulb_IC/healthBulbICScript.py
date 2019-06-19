@@ -379,32 +379,6 @@ class script():
 
 
 
-"""
-		self.hp.goBackToHomePage()
-		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
-		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
