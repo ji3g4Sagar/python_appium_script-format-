@@ -105,7 +105,7 @@ class script():
 		self.ck.clickByString("刪除")
 		self.ft.findText("提醒")
 		self.ck.clickByString("確認")
-		self.ft.findText("血壓單位（mmHg）")
+		self.ft.findText("時間")
 		self.driver.keyevent("4")
 
 		self.driver.keyevent("4")
@@ -161,7 +161,7 @@ class script():
 		self.ck.clickByString("刪除")
 		self.ft.findText("提醒")
 		self.ck.clickByString("確認")
-		self.ft.findText("血壓單位（mmHg）")
+		self.ft.findText("時間")
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
@@ -215,7 +215,7 @@ class script():
 		self.ck.clickByString("刪除")
 		self.ft.findText("提醒")
 		self.ck.clickByString("確認")
-		self.ft.findText("血壓單位（mmHg）")
+		self.ft.findText("時間")
 		self.driver.keyevent("4")
 
 		self.driver.keyevent("4")
