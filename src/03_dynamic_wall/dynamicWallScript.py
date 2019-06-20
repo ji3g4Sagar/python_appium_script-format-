@@ -36,10 +36,10 @@ class script():
 		self.leftMessageInEmotion()
 		self.editEmotion()
 		self.deleteEmotion()
-		"""elf.createAlbum()
+		"""self.createAlbum()
 		self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
-		self.deleteAlbum()"""s
+		self.deleteAlbum()"""
 		self.clickSearch()
 		#self.hiFiveCheck()
 		
