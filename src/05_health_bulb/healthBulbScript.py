@@ -84,7 +84,7 @@ class script():
 		diastolicFiled.set_text(diastolic)
 		self.ck.clickByString("完成")
 		sleep(5)
-		seflt.ft.findText("時間")
+		self.ft.findText("時間")
 		self.ft.findText(bpLevelText)
 		targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 										/preceding-sibling::android.view.View\
@@ -138,7 +138,7 @@ class script():
 		diastolicFiled.set_text(diastolic)
 		self.ck.clickByString("完成")
 		sleep(5)
-		seflt.ft.findText("時間")
+		self.ft.findText("時間")
 		self.ft.findText(bpLevelText)
 		targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 										/preceding-sibling::android.view.View\
@@ -194,7 +194,7 @@ class script():
 		diastolicFiled.set_text(diastolic)
 		self.ck.clickByString("完成")
 		sleep(5)
-		seflt.ft.findText("時間")
+		self.ft.findText("時間")
 		self.ft.findText(bpLevelText)
 		targetXpath = '//*[@text=\'{}\']/preceding-sibling::android.view.View\
 										/preceding-sibling::android.view.View\
