@@ -24,7 +24,7 @@ class script():
 		self.hp = homePage(driver, apkVersionIdName)
 		self.gt = getToast(driver)
 
-		self.testCountName ="test999" #想辦法改成自動去取得該次測試帳號的使用者名稱
+		self.testCountName ="" 
 		self.albumName = ""
 		self.message = ""
 		self.emotionLevel = 0
@@ -302,7 +302,10 @@ class script():
 		sleep(3)
 		self.ft.findTextInWholePage("親友健康")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
-		self.ft.findTextInWholePage("健康燈設定")
+		self.ft.findText("健康燈設定")
+		CountNameObj = self.driver.find_element_by_id(self.apkVersionIdName+"/tv_name")
+		self.testCountName = CountNameObj.text
+		print(self.testCountName)
 		self.ft.findTextInWholePage("心情")
 		self.ck.clickByString("心情")
 		sleep(5)
