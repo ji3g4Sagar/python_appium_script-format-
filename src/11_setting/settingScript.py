@@ -28,7 +28,7 @@ class scriptSetting():
 	def starter(self):
 		self.urgentCard()
 		self.editIll()
-		self.clickExpertMedic()
+		#self.clickExpertMedic()
 
 		
 	def urgentCard(self):
