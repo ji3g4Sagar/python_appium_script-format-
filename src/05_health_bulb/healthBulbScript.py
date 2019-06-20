@@ -31,7 +31,7 @@ class script():
 		self.addBP_US()
 		self.addBP_EU()
 		#self.editBP()
-		self.cancelBP()
+		#self.cancelBP()
 		#self.deleteBP()
 		self.addBG()
 		self.addRankintable()
@@ -342,7 +342,7 @@ class script():
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
-	def cancelBP(self):
+	def cancelBP(self): #有問題
 		actionSuccess = True
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
