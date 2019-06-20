@@ -31,15 +31,15 @@ class script():
 
 
 	def starter(self):
-		"""self.checkForDynamicWall()
+		self.checkForDynamicWall()
 		self.addEmotion()
 		self.leftMessageInEmotion()
 		self.editEmotion()
-		self.deleteEmotion()"""
-		self.createAlbum()
+		self.deleteEmotion()
+		"""elf.createAlbum()
 		self.leftMessageInMyselfAlbum()
 		self.editAlbumName()
-		self.deleteAlbum()
+		self.deleteAlbum()"""s
 		self.clickSearch()
 		#self.hiFiveCheck()
 		
