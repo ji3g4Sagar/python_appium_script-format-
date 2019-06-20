@@ -31,7 +31,7 @@ class script():
 		self.addBP_US()
 		self.addBP_EU()
 		#self.editBP()
-		#self.cancelBP()
+		self.cancelBP()
 		#self.deleteBP()
 		self.addBG()
 		self.addRankintable()
