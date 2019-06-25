@@ -530,6 +530,7 @@ class script():
 		self.ck.clickByString("中風")
 		self.ft.findText("請選擇欲新增項目")
 		self.ck.clickByString("Rankin量表")
+		self.ck.click("繼續")
 		levels = random.randint(0,5)
 		self.ft.findText("下一頁")
 		self.ck.clickByString("下一頁")
