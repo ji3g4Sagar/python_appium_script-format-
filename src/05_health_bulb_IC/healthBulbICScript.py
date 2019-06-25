@@ -76,6 +76,7 @@ class script():
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(5)
 		self.driver.keyevent("4")
 		self.ft.findText("IC_TICA")
 		self.driver.keyevent("4")
