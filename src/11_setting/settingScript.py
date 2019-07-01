@@ -26,10 +26,11 @@ class scriptSetting():
 		self.ft = findSpecificText(driver)
 		self.apkVersionIdName = apkVersionIdName
 	def starter(self):
-		self.urgentCard()
+		""""""self.urgentCard()
 		self.editIll()
-		#self.clickExpertMedic()
-
+		self.getCuponFailed()
+		self.addPayment()
+		self.checkDevices()
 		
 	def urgentCard(self):
 		self.hp.goBackToHomePage()
@@ -150,34 +151,90 @@ class scriptSetting():
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
 		self.driver.keyevent("4")	
 		sleep(3)
-	def clickExpertMedic(self):
+	def getCuponFailed(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 2)
-		self.ft.findTextInWholePage("找專家")
-		self.ck.clickByString("找專家")
-		self.ck.clickByString("醫護人員")
-		self.ck.clickByString(" 快速搜尋 ")
-		self.ft.findTextInWholePage("選擇專家條件")
-		self.ck.clickByString(" 全部選取 ")
-		sleep(2)
-		self.ck.clickByString("完成") #搜尋結束後，回到專家搜尋頁面
-		self.ft.findTextInWholePage("醫護人員")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/lin_content")#等待搜尋結果
-		self.ck.clickByResourceID(self.apkVersionIdName+"/lav_favorite")
-		sleep(1)
-		self.ck.clickByResourceID(self.apkVersionIdName+"/tv_expert_name")
-		self.ft.findSpecificItemByResourceID(self.apkVersionIdName+"/tv_expert_subject") #進到專家頁面後，查看是否有出現專家科別，判斷跳轉頁面成功
-		self.ft.findTextInWholePage("性別")
-		self.ft.findTextInWholePage("關鍵字")
-		self.ft.findTextInWholePage("專長")
-		self.ft.findTextInWholePage("語言")
-		self.ft.findTextInWholePage("問答次數")
-		self.ft.findTextInWholePage("經歷")
-		self.ft.findTextInWholePage("專家認證")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
+		self.ft.findText("優惠券")
+		self.ck.clickByString("優惠券")
+		self.ft.findText("領取優惠券")
+		self.ck.clickByString("領取優惠券")
+		cuponCode = "abcdefghij"
+		self.ec.enter(cuponCode, self.apkVersionIdName+"/et_coupon_code")
+		self.ck.clickByString("確認")
+		if(self.gt.search4Toast("代碼無效或重複領取", mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		self.driver.keyevent("4")
-		self.ft.findTextInWholePage(" 快速搜尋 ")
+		self.ft.findText("領取優惠券")
 		self.driver.keyevent("4")
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+	def addPayment(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
+		self.ft.findText("付款")
+		self.ck.clickByString("付款")
+		self.ft.findText("付款方式設定")
+		self.ck.clickByString("+新增卡片")
+		if(self.ft.findTextInWholePage("本服務由中國信託銀行提供", mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("付款方式設定")
+		self.driver.keyevent("4")
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+	def checkDevices(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		actionSuccess = True
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
+		self.ft.findText("裝置")
+		self.ck.clickByString("裝置")
+		self.ft.findText("請選擇您的裝置")
+		fitbitDeviceXpath = '//*[@text=\'{}\']/parent::android.widget.LinearLayout\
+										/parent::android.widget.LinearLayout\
+										/following-sibling::android.widget.LinearLayout'.format("請選擇您的裝置")
+		fitbitDeviceObj = self.driver.find_element_by_xpath(fitbitDeviceXpath)
+		fitbitDeviceObj.click()
+		sleep(10)
+		if(self.ft.findTextInWholePage("想要試用 Fitbit？", mode=1)):
+			actionSuccess and True
+		else:
+			actionSuccess and False
+			
+
+		self.driver.keyevent("4")
+		self.ft.findText("裝置")
+		self.ck.clickByString("裝置")
+		self.ft.findText("請選擇您的裝置")
+		garminDeviceXpath = '//*[@text=\'{}\']/parent::android.widget.LinearLayout\
+										/parent::android.widget.LinearLayout\
+										/following-sibling::android.widget.LinearLayout\
+										/following-sibling::android.widget.LinearLayout\
+										/following-sibling::android.widget.LinearLayout'.format("請選擇您的裝置")
+		garminDeviceObj = self.driver.find_element_by_xpath(garminDeviceXpath)
+		garminDeviceObj.click()
+		sleep(10)
+		if(self.ft.findTextInWholePage("Sign In", mode=1)):
+			actionSuccess and True
+		else:
+			actionSuccess and False
+
+		sleep(4)
+		self.driver.keyevent("4")
+
+		if(actionSuccess):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+
 	
 """
 		self.hp.goBackToHomePage()
