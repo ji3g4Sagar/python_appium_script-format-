@@ -17,7 +17,7 @@ class script():
 		self.sp = swipePage(driver)
 		self.ec = enterContext(driver)
 		self.ck = click(driver)
-		self.wf = waittingFor(driver)
+		self.wf = waittingFor(driver) 
 		self.ft = findSpecificText(driver)
 		self.xy = getXYLocation(driver)
 		self.apkVersionIdName = apkVersionIdName

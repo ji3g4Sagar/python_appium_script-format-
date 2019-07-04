@@ -113,9 +113,10 @@ class script():
 		self.ft.findTextInWholePage("IC")
 		self.ck.clickByString("IC")
 		actionSuccess = True
-		for i in range(11):
+		for i in range(5):
+			icLevelNum = random.randint(0,11)
 			self.ft.findText("IC_TICA")
-			painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume = self._icLevelToLocation(i)
+			painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume = self._icLevelToLocation(icLevelNum)
 			print(painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume)
 			self.ft.findText("疼痛程度")
 			sleep(2)
