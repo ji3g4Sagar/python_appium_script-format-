@@ -26,13 +26,13 @@ class scriptSetting():
 		self.ft = findSpecificText(driver)
 		self.apkVersionIdName = apkVersionIdName
 	def starter(self):
-		"""
+		""""""
 		self.urgentCard()
 		self.editIll()
 		self.getCuponFailed()
 		self.addPayment()
 		self.checkDevices()
-		self.changePhoneNumber()"""
+		self.changePhoneNumber()
 		self.changePassword()
 		
 	def urgentCard(self):
