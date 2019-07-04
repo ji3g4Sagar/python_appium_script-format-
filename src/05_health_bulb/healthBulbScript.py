@@ -34,7 +34,7 @@ class script():
 		#self.cancelBP()
 		#self.deleteBP()
 		self.addBG()
-		self.addRankintable()
+		#self.addRankintable()
 		self.addCigarette()
 		self.addNewSituationEmergency()
 		self.addNewSituationNotice()
