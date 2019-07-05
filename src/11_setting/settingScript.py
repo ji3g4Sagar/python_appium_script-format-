@@ -34,6 +34,8 @@ class scriptSetting():
 		self.checkDevices()
 		self.changePhoneNumber()
 		self.changePassword()
+
+		self.deleteAccountTest()
 		
 	def urgentCard(self):
 		self.hp.goBackToHomePage()
@@ -280,10 +282,7 @@ class scriptSetting():
 		self.driver.keyevent("4")
 		self.ft.findText("設定")
 		sleep(5)
-		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
-
-
-	
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
 	def changePassword(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
@@ -311,6 +310,28 @@ class scriptSetting():
 
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+
+	def deleteAccountTest(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
+		self.ft.findText("設定")
+		self.ft.findTextInWholePage("帳號")
+		self.ck.clickByString("帳號")
+		self.ft.findText("刪除帳號")
+		self.ck.clickByString("刪除帳號")
+		if(self.ft.findText("刪除WaCare帳號後，您將無法再使用該帳號登入。確定要繼續嗎？", mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)			
+		self.ck.clickByString("取消")
+		self.ft.findText("帳號")
+		self.driver.keyevent("4")
+		sleep(5)
+
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
+
+	
 
 
 
