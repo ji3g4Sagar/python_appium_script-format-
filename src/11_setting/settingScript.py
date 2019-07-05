@@ -36,6 +36,9 @@ class scriptSetting():
 		self.changePassword()
 
 		self.deleteAccountTest()
+		self.checkServiceTerm()
+		self.checkPrivatePolicy()
+		self.checkHelp()
 		
 	def urgentCard(self):
 		self.hp.goBackToHomePage()
@@ -323,21 +326,65 @@ class scriptSetting():
 		if(self.ft.findText("刪除WaCare帳號後，您將無法再使用該帳號登入。確定要繼續嗎？", mode=1)):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
-			print("[FAIL]-"+sys._getframe().f_code.co_name)			
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		self.ck.clickByString("取消")
 		self.ft.findText("帳號")
 		self.driver.keyevent("4")
+		self.ft.findText("設定")
 		sleep(5)
 
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 
-	
+	def checkServiceTerm(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
+		self.ft.findText("設定")
+		self.ft.findTextInWholePage("服務條款")
+		self.ck.clickByString("服務條款")
+		sleep(5)
+		if(self.ft.findText("WaCare - 服務條款", mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
 
+		self.driver.keyevent("4")
+		self.ft.findText("設定")
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 
+	def checkPrivatePolicy(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
+		self.ft.findText("設定")
+		self.ft.findTextInWholePage("隱私權政策")
+		self.ck.clickByString("隱私權政策")
+		sleep(5)
+		if(self.ft.findText("WaCare 隱私權承諾書", mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("設定")
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 
-
-
-
+	def checkHelp(self):
+		self.hp.goBackToHomePage()
+		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
+		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
+		self.ft.findText("設定")
+		self.ft.findTextInWholePage("幫助")
+		self.ck.clickByString("幫助")
+		if(self.ft.findText("關於WaCare", mode=1)):
+			print("[PASS]-"+sys._getframe().f_code.co_name)
+		else:
+			print("[FAIL]-"+sys._getframe().f_code.co_name)
+		self.driver.keyevent("4")
+		self.ft.findText("設定")
+		sleep(5)
+		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")
 
 	
 """
