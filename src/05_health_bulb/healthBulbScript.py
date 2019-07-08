@@ -635,7 +635,7 @@ class script():
 		print("\n")
 		print(emergencyStatement)
 
-		if (nowTime in emergencyTimeObj.text and emergencyStatement == emergencyStatementObj.text):
+		if (nowTime in emergencyTimeObj.text or emergencyStatement == emergencyStatementObj.text):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
@@ -677,7 +677,7 @@ class script():
 		emergencyStatementObj = self.driver.find_element_by_xpath(emergencyStatementXpath)
 		
 
-		if (nowTime in emergencyTimeObj.text and emergencyStatement == emergencyStatementObj.text):
+		if (nowTime in emergencyTimeObj.text or emergencyStatement == emergencyStatementObj.text):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
