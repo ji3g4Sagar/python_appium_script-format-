@@ -616,7 +616,7 @@ class script():
 
 		checkBoxX = emergencyCheckBoxObj.location['x']
 		checkBoxY = emergencyCheckBoxObj.location['y']
-		print(checkBoxX, checkBoxY)
+		#print(checkBoxX, checkBoxY)
 		self.driver.tap([(checkBoxX-float(55), checkBoxY+float(30))])
 		emergencyCheckBoxObj.click()
 		self.ck.clickByString("上傳")
@@ -628,6 +628,9 @@ class script():
 													/following-sibling::android.view.View'.format("今日")
 		emergencyTimeObj = self.driver.find_element_by_xpath(emergencyTimeXpath)
 		emergencyStatementObj = self.driver.find_element_by_xpath(emergencyStatementXpath)
+		print(nowTime)
+		print(emergencyTimeObj.text)
+		
 		print(emergencyStatementObj.text)
 		print("\n")
 		print(emergencyStatement)
