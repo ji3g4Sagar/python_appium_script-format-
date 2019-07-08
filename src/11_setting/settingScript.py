@@ -67,7 +67,7 @@ class scriptSetting():
 		self.ft.findText("編輯")
 		self.ck.clickByString("編輯")
 		self.ft.findTextInWholePage("疾病史")
-		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",0)
+		#self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",0)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",1)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",2)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/cb_subject",3) #疾病史多選
