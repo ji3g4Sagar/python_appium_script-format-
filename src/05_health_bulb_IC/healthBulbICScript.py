@@ -72,6 +72,7 @@ class script():
 		urinaryVolumeFiled.set_text(urinaryVolume)
 		self.ck.clickByString("上傳")
 		self.gt.search4Toast("新增成功")
+		sleep(5)
 		if(self.ft.findText(urinaryVolume+"c.c", mode=1)):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
@@ -131,6 +132,7 @@ class script():
 			urinaryVolumeFiled.click()
 			urinaryVolumeFiled.set_text(urinaryVolume)
 			self.ck.clickByString("上傳")
+			sleep(10)
 			self.ft.findText("日常紀錄")
 			self.ft.findText(urinaryVolume+"c.c")
 			painXpath = '//*[@text=\'{}\']/parent::android.view.View\
