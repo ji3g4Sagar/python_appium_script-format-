@@ -27,15 +27,15 @@ class script():
 
 	def starter(self):
 		""""""
-		self.addBP_TW()
-		self.addBP_US()
-		self.addBP_EU()
+		#self.addBP_TW()
+		#self.addBP_US()
+		#self.addBP_EU()
 		#self.editBP()
 		#self.cancelBP()
 		#self.deleteBP()
-		self.addBG()
+		#self.addBG()
 		#self.addRankintable()
-		self.addCigarette()
+		#self.addCigarette()
 		self.addNewSituationEmergency()
 		self.addNewSituationNotice()
 
@@ -656,7 +656,7 @@ class script():
 		self.ck.clickByString("中風")
 		self.ft.findText("請選擇欲新增項目")
 		self.ck.clickByString("新發現狀況")
-		emergencyStatement = self._newSituationLevel(random.randint(3, 7))
+		emergencyStatement = self._newSituationLevel(3)  #介面上發現不同中風等級敘述，樹狀結構稍有不同，故改成固定的。
 		self.ft.findText(emergencyStatement)
 		emergencyCheckBoxXpath = '//*[@text=\'{}\']'.format(emergencyStatement)
 		emergencyCheckBoxObj = self.driver.find_element_by_xpath(emergencyCheckBoxXpath)
@@ -672,6 +672,9 @@ class script():
 		nowTime = time.strftime("%H", time.localtime())
 		emergencyTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("今日")
 		emergencyStatementXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
+													/following-sibling::android.view.View\
+													/following-sibling::android.view.View\
+													/following-sibling::android.view.View\
 													/following-sibling::android.view.View'.format("今日")
 		emergencyTimeObj = self.driver.find_element_by_xpath(emergencyTimeXpath)
 		emergencyStatementObj = self.driver.find_element_by_xpath(emergencyStatementXpath)
