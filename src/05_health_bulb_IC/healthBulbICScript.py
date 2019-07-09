@@ -40,7 +40,7 @@ class script():
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		self.ft.findTextInWholePage("親友健康")
+		self.ft.findTextInWholePage("親友")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
 		self.ft.findTextInWholePage("IC")
 		self.ck.clickByString("IC")
@@ -89,7 +89,7 @@ class script():
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		self.ft.findTextInWholePage("親友健康")
+		self.ft.findTextInWholePage("親友")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
 		self.ft.findTextInWholePage("IC")
 		self.ck.clickByString("IC")
@@ -109,7 +109,7 @@ class script():
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
-		self.ft.findTextInWholePage("親友健康")
+		self.ft.findTextInWholePage("親友")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
 		self.ft.findTextInWholePage("IC")
 		self.ck.clickByString("IC")
@@ -200,7 +200,7 @@ class script():
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 1)
-		self.ft.findText("親友健康")
+		self.ft.findText("親友")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic", 0)
 		self.ft.findTextInWholePage("回診")
 		self.ck.clickByString("回診")
@@ -251,7 +251,7 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
-		self.ft.findText("親友健康")
+		self.ft.findText("親友")
 		sleep(5)	
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")
 	def checkReVisitData(self):
@@ -259,7 +259,7 @@ class script():
 		actionSuccess = True
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 1)
-		self.ft.findText("親友健康")
+		self.ft.findText("親友")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic", 0)
 		self.ft.findTextInWholePage("回診")
 		self.ck.clickByString("回診")
@@ -282,7 +282,7 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
-		self.ft.findText("親友健康")
+		self.ft.findText("親友")
 		if(actionSuccess):
 			print("[PASS]-"+sys._getframe().f_code.co_name)
 		else:
@@ -295,7 +295,7 @@ class script():
 		actionSuccess = True
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 1)
-		self.ft.findText("親友健康")
+		self.ft.findText("親友")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic", 0)
 		self.ft.findTextInWholePage("回診")
 		self.ck.clickByString("回診")
@@ -379,7 +379,7 @@ class script():
 		self.driver.keyevent("4")
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
-		self.ft.findText("親友健康")
+		self.ft.findText("親友")
 
 
 
