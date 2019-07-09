@@ -675,6 +675,10 @@ class script():
 													/following-sibling::android.view.View'.format("今日")
 		emergencyTimeObj = self.driver.find_element_by_xpath(emergencyTimeXpath)
 		emergencyStatementObj = self.driver.find_element_by_xpath(emergencyStatementXpath)
+		print(nowTime)
+		print(emergencyTimeObj.text)
+		print(emergencyStatement)
+		print(emergencyStatementObj.text)
 		
 
 		if (nowTime in emergencyTimeObj.text or emergencyStatement == emergencyStatementObj.text):
