@@ -28,12 +28,12 @@ class script():
 	def starter(self):
 		""""""
 		self.addICData()
-		self.addICNodata()
+		#self.addICNodata()
 		self.icLevels()
 		
-		self.addReVisit()
-		self.checkReVisitData()
-		self.addReVisitEmpty()
+		#self.addReVisit()
+		#self.checkReVisitData()
+		#self.addReVisitEmpty()
 
 
 	def addICData(self):
@@ -117,6 +117,7 @@ class script():
 		for i in range(5):
 			icLevelNum = random.randint(0,11)
 			self.ft.findText("IC_TICA")
+			print(icLevelNum)
 			painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume = self._icLevelToLocation(icLevelNum)
 			print(painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume)
 			self.ft.findText("疼痛程度")

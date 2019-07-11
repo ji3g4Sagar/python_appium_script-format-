@@ -670,6 +670,7 @@ class script():
 		self.ft.findText("建議您提早回診")
 		self.ck.clickByString("確認")
 		nowTime = time.strftime("%H", time.localtime())
+		self.ft.findText("今日")
 		emergencyTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("今日")
 		emergencyStatementXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
 													/following-sibling::android.view.View\
