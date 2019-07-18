@@ -31,7 +31,7 @@ class script():
 		#self.addICNodata()
 		self.icLevels()
 		
-		#self.addReVisit()
+		self.addReVisit()
 		#self.checkReVisitData()
 		#self.addReVisitEmpty()
 
@@ -114,7 +114,7 @@ class script():
 		self.ft.findTextInWholePage("IC")
 		self.ck.clickByString("IC")
 		actionSuccess = True
-		for i in range(5):
+		for i in range(2):
 			icLevelNum = random.randint(0,11)
 			self.ft.findText("IC_TICA")
 			print(icLevelNum)
