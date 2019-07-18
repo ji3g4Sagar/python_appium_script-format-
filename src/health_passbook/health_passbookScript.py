@@ -40,8 +40,9 @@ class script():
 		self.hp.goBackToHomePage()
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
 		self.ft.findTextInWholePage("設定")
+		self.ck.clickByString("健康存摺")
+		self.ft.findTextInWholePage("健康資訊")
 		self.ck.clickByString("健康存摺(網頁版)")
-		self.ft.findTextInWholePage("健康存摺")
 		self.ck.clickByString("下載最新")
 		self.ft.findTextInWholePage(" 簽署同意書 ") #6191 5732   0000 7389 8381
 		self.ec.enter("Z299999929", self.apkVersionIdName+"/et_identityId")
