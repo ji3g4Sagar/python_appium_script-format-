@@ -671,6 +671,7 @@ class script():
 		self.ck.clickByString("確認")
 		nowTime = time.strftime("%H", time.localtime())
 		self.ft.findText("今日")
+		sleep(5)
 		emergencyTimeXpath = '//*[@text=\'{}\']/following-sibling::android.view.View'.format("今日")
 		emergencyStatementXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
 													/following-sibling::android.view.View\
