@@ -72,7 +72,7 @@ class script():
 					sleep(5)
 					result = self.imgageToString()
 					print("Result in else: "+result)
-		self.ft.findTextInWholePage("健康存摺")
+		self.ft.findTextInWholePage("健康資訊")
 		self.driver.keyevent("4")
 		self.ft.findTextInWholePage("設定")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 0)
