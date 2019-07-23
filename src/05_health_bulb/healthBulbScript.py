@@ -37,7 +37,7 @@ class script():
 		self.addRankintable()
 		self.addCigarette()
 		self.addNewSituationEmergency()
-		self.addNewSituationNotice()
+		#self.addNewSituationNotice()
 
 
 	def _setBPStandard(self, standardCode):
