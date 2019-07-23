@@ -115,7 +115,7 @@ class script():
 		self.ck.clickByString("IC")
 		actionSuccess = True
 		for i in range(2):
-			icLevelNum = random.randint(0,11)
+			icLevelNum = random.randint(0,10)
 			self.ft.findText("IC_TICA")
 			print(icLevelNum)
 			painBarX, painBarY, urgencyBarX, urgencyBarY, levelText, urinaryVolume = self._icLevelToLocation(icLevelNum)
@@ -381,14 +381,6 @@ class script():
 		self.ft.findText("健康燈設定")
 		self.driver.keyevent("4")
 		self.ft.findText("親友")
-
-
-
-
-
-
-
-
 
 
 
