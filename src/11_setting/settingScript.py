@@ -168,6 +168,7 @@ class scriptSetting():
 		else:
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		self.driver.keyevent("4")
+		sleep(5)
 		self.ft.findText("領取優惠券")
 		self.driver.keyevent("4")
 		sleep(5)
