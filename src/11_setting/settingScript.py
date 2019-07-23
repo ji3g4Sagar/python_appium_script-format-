@@ -156,7 +156,7 @@ class scriptSetting():
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
 		sleep(10)
-		self.ft.findText("優惠券")
+		self.ft.findTextInWholePage("優惠券")
 		self.ck.clickByString("優惠券")
 		self.ft.findText("領取優惠券")
 		self.ck.clickByString("領取優惠券")
