@@ -214,7 +214,6 @@ class script():
 			print("[FAIL]-"+sys._getframe().f_code.co_name)
 		sleep(2)
 		# ------------刪除-----------------
-		""""""
 		self.ck.clickByString(bpLevelText)
 		self.ft.findText("作廢")
 		self.ck.clickByString(bpLevelText)

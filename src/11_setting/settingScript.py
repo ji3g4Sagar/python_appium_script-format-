@@ -29,7 +29,7 @@ class scriptSetting():
 		""""""
 		self.urgentCard()
 		self.editIll()
-		self.getCuponFailed()
+		self.getCuponUnsuccessfully()
 		self.addPayment()
 		self.checkDevices()
 		self.changePhoneNumber()
@@ -151,7 +151,7 @@ class scriptSetting():
 		print("-----Test for ", sys._getframe().f_code.co_name, " finish!!!!!!")	
 		self.driver.keyevent("4")	
 		sleep(3)
-	def getCuponFailed(self):
+	def getCuponUnsuccessfully(self):
 		self.hp.goBackToHomePage()
 		print("-----Start test ", sys._getframe().f_code.co_name, "!!!------")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon", 4)
