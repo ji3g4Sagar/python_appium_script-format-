@@ -524,6 +524,7 @@ class script():
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/home_tab_icon",1)
 		self.ft.findText("親友")
+		sleep(5)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
 		self.ft.findTextInWholePage("中風")
 		self.ck.clickByString("中風")
