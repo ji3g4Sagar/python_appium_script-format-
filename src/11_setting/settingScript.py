@@ -30,7 +30,7 @@ class scriptSetting():
 		self.urgentCard()
 		self.editIll()
 		self.getCuponUnsuccessfully()
-		self.addPayment()
+		#self.addPayment()
 		self.checkDevices()
 		self.changePhoneNumber()
 		self.changePassword()
