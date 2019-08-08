@@ -180,6 +180,7 @@ class scriptSetting():
 		self.ft.findText("付款")
 		self.ck.clickByString("付款")
 		self.ft.findText("付款方式設定")
+		sleep(5)
 		self.ck.clickByString("+新增卡片")
 		if(self.ft.findTextInWholePage("本服務由中國信託銀行提供", mode=1)):
 			print("[PASS]-"+sys._getframe().f_code.co_name)

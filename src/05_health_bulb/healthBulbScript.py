@@ -527,6 +527,7 @@ class script():
 		sleep(5)
 		self.ck.clickFromManyThingsByResourceID(self.apkVersionIdName+"/iv_userPic",0)
 		self.ft.findTextInWholePage("中風")
+		sleep(3)
 		self.ck.clickByString("中風")
 		self.ft.findText("請選擇欲新增項目")
 		self.ck.clickByString("Rankin量表")

@@ -46,6 +46,7 @@ class script():
 		self.ck.clickByString("IC")
 		self.ft.findText("IC_TICA")
 		self.ft.findText("疼痛程度")
+		sleep(5)
 		painBarXpath = '//*[@text=\'{}\']/following-sibling::android.view.View\
 										/child::android.view.View\
 										/child::android.view.View'.format("疼痛程度")
