@@ -30,7 +30,7 @@ class Config():
 		return self.driver
 
 	def getApkVersionIdName(self):
-		if(self.apkName.startswith("qaExternalWaCare")):
+		if(self.apkName.startswith("qaWaCare")):
 			return ("com.lavidatec.wacareqaexternal:id")
 		elif(self.apkName.startswith("qaExternalWaPro")):
 			return ("com.lavidatec.waproqaexternal:id")
