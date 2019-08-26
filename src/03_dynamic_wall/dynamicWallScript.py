@@ -362,15 +362,15 @@ class script():
 		print("-----Test for "+sys._getframe().f_code.co_name+" finish!!!!!!")	
 	def emotionLeveltoString(self):
 		if(self.emotionLevel == "1"):
-			return "心情很差！"
+			return "狀態很差！"
 		elif(self.emotionLevel == "2"):
-			return "心情不太好！"
+			return "狀態不太好！"
 		elif(self.emotionLevel == "3"):
-			return "心情普通！"
+			return "狀態普通！"
 		elif(self.emotionLevel == "4"):
-			return "心情不錯！"
+			return "狀態不錯！"
 		elif(self.emotionLevel == "5"):
-			return "心情棒透了！"
+			return "狀態棒透了！"
 	def clickSearch(self):
 		self.hp.goBackToHomePage()
 		print("-----Test for "+sys._getframe().f_code.co_name+" start!!!!!!!")
