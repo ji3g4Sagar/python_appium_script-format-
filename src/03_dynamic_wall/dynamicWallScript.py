@@ -256,7 +256,7 @@ class script():
 		self.ck.clickByString("心情")
 		self.ft.findItemByIdInWholePage(self.apkVersionIdName+"/emotionCalender")
 		self.ck.clickByResourceID(self.apkVersionIdName+"/addEmotion")
-		self.ft.findTextInWholePage("選擇您的心情")
+		self.ft.findTextInWholePage("說說您的健康狀況...")
 		self.emotionLevel = str(random.randint(1,5))
 		self.ck.clickByResourceID(self.apkVersionIdName+"/faceImage"+self.emotionLevel)
 		emotionMessage = ''.join(random.choice(string.ascii_letters) for x in range(256))
