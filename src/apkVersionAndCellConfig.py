@@ -11,7 +11,7 @@ class Config():
 			app = ('http://35.194.192.102:5000/getfile?filename='+apkName)
 			desired_caps['app'] = app
 			desired_caps['platformName'] = 'Android' #定義測試的系統環境
-			desired_caps['platformVersion'] = '8.0' #定義版本
+			desired_caps['platformVersion'] = '9' #定義版本
 			desired_caps['deviceName'] = 'TestDevicesAndroid9' #定義裝置名稱  TestDevices, TestDevicesAndroid9
 			desired_caps['automationName'] = 'uiautomator2'
 			desired_caps['noReset'] = 'true'
