@@ -12,7 +12,7 @@ class Config():
 			desired_caps['app'] = app
 			desired_caps['platformName'] = 'Android' #定義測試的系統環境
 			desired_caps['platformVersion'] = '8.0' #定義版本
-			desired_caps['deviceName'] = 'TestDevices' #定義裝置名稱  TestDevices, TestDevicesAndroid9
+			desired_caps['deviceName'] = 'TestDevicesAndroid9' #定義裝置名稱  TestDevices, TestDevicesAndroid9
 			desired_caps['automationName'] = 'uiautomator2'
 			desired_caps['noReset'] = 'true'
 			desired_caps['noSign'] = 'true'
