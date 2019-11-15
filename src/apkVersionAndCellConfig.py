@@ -4,7 +4,7 @@
 from appium import webdriver
 import os
 class Config():
-	def __init__(self, apkName="proWaCare-v1.0.15.6.apk", desired_caps_outer={}, port ="4723"):#proWaCare-v1.0.15.6.apk, qaWaCare-v1.0.14.0.7.apk devWaCare-googlePlay-alpha-v1.0.13.9.apk proWaCareAlpha-v1.0.14.2.apk
+	def __init__(self, apkName="qaWaCare-v1.1.0.0.0.apk", desired_caps_outer={}, port ="4723"):#proWaCare-v1.0.15.6.apk, qaWaCare-v1.0.14.0.7.apk devWaCare-googlePlay-alpha-v1.0.13.9.apk proWaCareAlpha-v1.0.14.2.apk
 		if (len(desired_caps_outer)==0): 
 			self.apkName = apkName
 			desired_caps = {} # Appium收到http Request後會解析這個key-value pair
